@@ -1,5 +1,12 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/config/config.dart';
+import 'package:flutter_application_project/views/Customerhome_page.dart';
 import 'package:flutter_application_project/views/register.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_easyloading/src/easy_loading.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -12,6 +19,21 @@ class LoginScreenState extends State<LoginScreen> {
   bool hidepassword = true;
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  void initState() {
+    super.initState();
+    checkToken1();
+  }
+
+  checkToken1() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('token') != null) {
+      headers?['Authorization'] = "bearer ${prefs.getString('token')}";
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => Customerhome()),
+          (Route<dynamic> route) => false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -180,4 +202,29 @@ class LoginScreenState extends State<LoginScreen> {
   }
 }
 
-checkLogin(String text, String text2, BuildContext context) {}
+Future checkLogin(String username, String password, context) async {
+  EasyLoading.init();
+
+  Uri url = Uri.parse('http://192.168.43.18:3200/api/users/login');
+  http
+      .post(
+    url,
+    headers: headers,
+    body: jsonEncode({"username": username, "password": password}),
+  )
+      .then((req) async {
+    if (req.statusCode == 200) {
+      final prefs = await SharedPreferences.getInstance();
+      var data = jsonDecode(req.body);
+      prefs.setString('token', data['token']);
+      prefs.setInt('idm', data['user_id']);
+      headers?['Authorization'] = "bearer ${data['token']}";
+      EasyLoading.showSuccess('Great Success!');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => Customerhome()),
+          (Route<dynamic> route) => false);
+    } else {
+      EasyLoading.showError('Failed with Error');
+    }
+  });
+}
