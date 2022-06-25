@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/views/Customerhome_page.dart';
+import 'package:flutter_application_project/views/login.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config/config.dart';
 
@@ -89,7 +91,26 @@ class AdertiseState extends State<adertise> {
                           ),
                         ),
                       ]),
-                    ))
+                    )),
+                ListTile(
+                  // leading: Icon(FontAwesomeIcons.rightFromBracket),
+                  title: Text(
+                    'ออกจากระบบ',
+                    style: TextStyle(color: Colors.red),
+                  ), //แก้ตรงนี้--------------------------------------------------------------------------------------
+                  onTap: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.remove('token');
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                          //แก้ตรงนี้--------------------------------------------------------------------------------------
+                        ),
+                        (route) => false);
+                  },
+                ),
               ]),
             ),
           ),

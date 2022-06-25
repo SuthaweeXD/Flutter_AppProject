@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/views/Customerhome_page.dart';
+import 'package:flutter_application_project/views/advertise.dart';
 import 'package:flutter_application_project/views/register.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +31,7 @@ class LoginScreenState extends State<LoginScreen> {
     if (prefs.getString('token') != null) {
       headers?['Authorization'] = "bearer ${prefs.getString('token')}";
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome()),
+          MaterialPageRoute(builder: (context) => const adertise()),
           (Route<dynamic> route) => false);
     }
   }
