@@ -9,7 +9,7 @@ class C_Orders extends StatefulWidget {
 }
 
 class C_OrdersState extends State<C_Orders> {
-  TextEditingController type_message = TextEditingController();
+  TextEditingController type_text = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

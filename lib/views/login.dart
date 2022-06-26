@@ -31,7 +31,7 @@ class LoginScreenState extends State<LoginScreen> {
     if (prefs.getString('token') != null) {
       headers?['Authorization'] = "bearer ${prefs.getString('token')}";
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const adertise()),
+          MaterialPageRoute(builder: (context) => Customerhome()),
           (Route<dynamic> route) => false);
     }
   }

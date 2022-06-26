@@ -19,6 +19,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
+ 
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -49,7 +50,6 @@ dependencies:
   flutter_lints: ^1.0.0
   
   shared_preferences: ^2.0.15
-  dio: ^4.0.6
   http: ^0.13.4
 
 # For information on the generic Dart part of this file, see the

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/customer_orders.dart';
 import 'package:flutter_application_project/views/emp_menu.dart';
+import 'package:flutter_application_project/views/employee/customer_data.dart';
 
 class Customerhome extends StatefulWidget {
+  const Customerhome({Key? key}) : super(key: key);
+
   @override
   CustomerHome createState() => CustomerHome();
 }
@@ -55,11 +57,13 @@ class CustomerHome extends State<Customerhome> {
             titleSpacing: 20,
           ),
           body: TabBarView(
-            children: [
-              buildPage('สถานะสั่งซื้อ'),
-              buildPage('ยกเลิก'),
-              // LoginScreen(),
-              EmplMenu(),
+            children: <Widget>[
+              Center(
+                child: Text('hello'),
+              ),
+              Center(),
+              Center(),
+              CustomerDB(),
             ],
           ),
           drawer: SideMenu(),
