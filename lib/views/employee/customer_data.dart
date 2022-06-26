@@ -5,7 +5,7 @@ import 'package:flutter_application_project/views/homepage1.dart';
 import 'package:http/http.dart ' as http;
 
 class CustomerDB extends StatefulWidget {
-  CustomerDB({Key? key}) : super(key: key);
+  const CustomerDB({Key? key}) : super(key: key);
 
   @override
   State<CustomerDB> createState() => _CustomerDBState();
@@ -30,10 +30,6 @@ class _CustomerDBState extends State<CustomerDB> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 227, 227, 227),
-        appBar: AppBar(
-          title: const Text('....'),
-          backgroundColor: const Color.fromARGB(255, 45, 134, 156),
-        ),
         body: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: RefreshIndicator(

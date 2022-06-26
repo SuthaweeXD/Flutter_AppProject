@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/views/Customerhome_page.dart';
 import 'package:flutter_application_project/views/advertise.dart';
+import 'package:flutter_application_project/views/home.dart';
 import 'package:flutter_application_project/views/register.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
@@ -31,7 +32,7 @@ class LoginScreenState extends State<LoginScreen> {
     if (prefs.getString('token') != null) {
       headers?['Authorization'] = "bearer ${prefs.getString('token')}";
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome()),
+          MaterialPageRoute(builder: (context) => const Customerhome()),
           (Route<dynamic> route) => false);
     }
   }
@@ -40,9 +41,9 @@ class LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("เข้าสู่ระบบ"),
+          title: const Text("เข้าสู่ระบบ"),
         ),
-        backgroundColor: Color.fromARGB(255, 225, 231, 234),
+        backgroundColor: const Color.fromARGB(255, 225, 231, 234),
         body: SafeArea(
           child: SingleChildScrollView(
             child: SizedBox(
@@ -134,8 +135,8 @@ class LoginScreenState extends State<LoginScreen> {
                                             ? Icons.visibility
                                             : Icons.visibility_off,
                                         size: 30,
-                                        color:
-                                            Color.fromARGB(255, 46, 152, 252),
+                                        color: const Color.fromARGB(
+                                            255, 46, 152, 252),
                                       )))),
                           const SizedBox(height: 30),
                           ElevatedButton(
@@ -176,7 +177,7 @@ class LoginScreenState extends State<LoginScreen> {
                             onPressed: () {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
-                                return RegisterScreen();
+                                return const RegisterScreen();
                               }));
                             },
                             child: const Text('สร้างบัญชีผู้ใช้',
@@ -222,7 +223,7 @@ Future checkLogin(String username, String password, context) async {
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome()),
+          MaterialPageRoute(builder: (context) => const Customerhome()),
           (Route<dynamic> route) => false);
     } else {
       EasyLoading.showError('Failed with Error');

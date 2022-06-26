@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/route/route.dart';
 import 'package:flutter_application_project/views/Customerhome_page.dart';
+import 'package:flutter_application_project/views/login.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Customerhome(),
+      home: const LoginScreen(),
       routes: routes,
       builder: EasyLoading.init(),
     );

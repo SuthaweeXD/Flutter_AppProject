@@ -51,6 +51,9 @@ dependencies:
   
   shared_preferences: ^2.0.15
   http: ^0.13.4
+  curved_navigation_bar: ^1.0.3
+  icon: ^2.2.1
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
