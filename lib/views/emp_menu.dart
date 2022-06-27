@@ -450,7 +450,7 @@ class EmplMenu extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return HomePage();
+                          return ProfileUpdate();
                         }));
                       },
                     ),

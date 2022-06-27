@@ -16,10 +16,10 @@ class Customerhome extends StatefulWidget {
 class CustomerHome extends State<Customerhome> {
   int _selectedIndex = 0;
   final screens = [
-    const CustomerDB(),
     EmplMenu(),
+    const CustomerDB(),
     adertise(),
-    HomePage(),
+    ProfileUpdate(),
   ];
 
   void _onItemTapped(int index) {

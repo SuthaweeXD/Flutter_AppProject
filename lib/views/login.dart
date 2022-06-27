@@ -1,3 +1,5 @@
+// ignore_for_file: implementation_imports
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/config.dart';
