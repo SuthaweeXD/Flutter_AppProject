@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/views/advertise.dart';
-import 'package:flutter_application_project/views/home.dart';
+import 'package:flutter_application_project/views/ProflieUpdate.dart';
 // import 'advertise.dart';
 // import 'status_update.dart';
 

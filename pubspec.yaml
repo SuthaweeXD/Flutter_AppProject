@@ -51,8 +51,8 @@ dependencies:
   
   shared_preferences: ^2.0.15
   http: ^0.13.4
-  curved_navigation_bar: ^1.0.3
   icon: ^2.2.1
+ 
   
 
 # For information on the generic Dart part of this file, see the
@@ -67,12 +67,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets :
-
-    - assets/images/Rectangle1.png
-    - assets/images/Rectangle2.png
-    - assets/images/Rectangle3.png
-    - assets/images/Ellipse2.png
+  assets:
+    - assets/images/
+    
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

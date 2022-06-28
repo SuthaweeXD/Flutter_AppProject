@@ -4,8 +4,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/views/Customerhome_page.dart';
-import 'package:flutter_application_project/views/advertise.dart';
-import 'package:flutter_application_project/views/home.dart';
 import 'package:flutter_application_project/views/register.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
@@ -179,7 +177,7 @@ class LoginScreenState extends State<LoginScreen> {
                             onPressed: () {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
-                                return const RegisterScreen();
+                                return RegisterScreen();
                               }));
                             },
                             child: const Text('สร้างบัญชีผู้ใช้',

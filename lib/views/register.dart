@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/model/TextModel.dart';
 import 'package:flutter_application_project/views/Customerhome_page.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,330 +8,103 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_application_project/config/config.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _Register();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _Register extends State<RegisterScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formkey = GlobalKey<FormState>();
-  TextEditingController? username,
-      password,
-      conpassword,
-      name,
-      surname,
-      picdate;
-
-  DateTime? datenow = DateTime.now();
+  TextEditingController fname = TextEditingController();
+  TextEditingController lname = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController role = TextEditingController();
+  TextEditingController address = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    void newDate() async {
-      DateTime? date = await showDatePicker(
-          context: context,
-          initialDate: datenow!,
-          firstDate: DateTime(DateTime.now().year - 70),
-          lastDate: DateTime(DateTime.now().year, DateTime.now().day));
-
-      print(date);
-
-      if (date != null) {
-        setState(() {
-          datenow = date;
-          // picdate.text = date.toString();
-          // picdate.text = DateFormat("dd/MM/yyyy").format(date);
-        });
-      }
-    }
-
-    void newtime() async {
-      TimeOfDay? time =
-          await showTimePicker(context: context, initialTime: TimeOfDay.now());
-      if (time != null) {
-        setState(() {
-          // picdate.text = date.toString();
-          // pictime.text = '${time.hour}:${time.minute}';
-        });
-      }
-    }
-
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 63, 217, 255),
+      appBar: AppBar(
+        title: Text('สมัครสมาชิก'),
+      ),
+      backgroundColor: Color.fromARGB(255, 93, 234, 137),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
             key: _formkey,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Column(children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                Text(
-                  'Register',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),
+                TextFormFieldModel(
+                  controller: fname,
+                  labelText: 'ชื่อ',
+                  hintText: 'ชื่อ',
+                  textError: 'กรุณากรอก',
+                  helperText: 'กรุณากรอกชื่อ',
                 ),
-                SizedBox(
-                  height: 20,
+                const SizedBox(
+                  height: 15,
                 ),
-                TextFormField(
+                TextFormFieldModel(
+                  controller: lname,
+                  labelText: 'นามสกุล',
+                  hintText: 'นามสกุล',
+                  textError: 'กรุณากรอก',
+                  helperText: 'กรุณากรอกนามสกุล',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormFieldModel(
+                  controller: phone,
+                  labelText: 'เบอร์โทรศัพท์',
+                  hintText: 'เบอร์โทรศัพท์',
+                  textError: 'กรุณากรอก',
+                  helperText: 'กรุณากรอกเบอร์โทรศัพท์',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormFieldModel(
+                  controller: role,
+                  labelText: 'ประเภท',
+                  hintText: 'ประเภท',
+                  textError: 'กรุณากรอก',
+                  helperText: 'กรอกประเภท',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormFieldModel(
+                  controller: address,
+                  labelText: 'ที่อยู่',
+                  hintText: 'ที่อยู่',
+                  textError: 'กรุณากรอก',
+                  helperText: 'กรอกที่อยู่',
+                ),
+                TextFormFieldModel(
                   controller: username,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please fill you Usename in the blank';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'Usename',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you Usename for display',
-                    hintText: 'Usename',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
+                  labelText: 'ชื่อผู้ใช้',
+                  hintText: 'ชื่อผู้ใช้',
+                  textError: 'กรุณากรอก',
+                  helperText: 'กรอกชื่อผู้ใช้',
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
+                TextFormFieldModel(
                   controller: password,
-                  validator: (value) {
-                    if (value!.length < 6) {
-                      return 'Password More 6 Charactor';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'password',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you password more 6 Charactor',
-                    hintText: 'password',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
+                  labelText: 'รหัสผ่าน',
+                  hintText: 'รหัสผ่าน',
+                  textError: 'กรุณากรอก',
+                  helperText: 'กรอกรหัสผ่านอย่างน้อย 6 ตัว',
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: conpassword,
-                  validator: (value) {
-                    if (value!.length < 6) {
-                      return 'Confirm Password More 6 Charactor';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'confirm password',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type confirm password for display',
-                    hintText: 'confirm password',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: name,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please fill you name in the blank';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'name',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you name for display',
-                    hintText: 'name',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: surname,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please fill you surname in the blank';
-                    } else {
-                      return null;
-                    }
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'surname',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you surname for display',
-                    hintText: 'surname',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 240, 4, 4)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: picdate,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please fill you date in the blank';
-                    } else {
-                      return null;
-                    }
-                  },
-                  readOnly: true,
-                  onTap: () {
-                    newDate();
-                  },
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  // ignore: prefer_const_constructors
-                  decoration: InputDecoration(
-                    labelText: 'date',
-                    labelStyle: TextStyle(color: Colors.white),
-                    helperText: 'Type you date for display',
-                    hintText: 'date',
-                    hintStyle:
-                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 62, 144, 202)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 206, 6, 6)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  height: 5,
+                const SizedBox(
+                  height: 15,
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -340,25 +114,23 @@ class _Register extends State<RegisterScreen> {
                     print('สมัครสมาชิก');
 
                     await checkRegister(
-                        username, password, name, surname, picdate, context);
-
-                    // Navigator.pushNamedAndRemoveUntil(context,
-                    //     "/Page1", (Route<dynamic> route) => false);
+                        fname.text,
+                        lname.text,
+                        phone.text,
+                        role.text,
+                        address.text,
+                        username.text,
+                        password.text,
+                        context);
                   },
                   child: Text(
-                    'Confirm',
+                    'ยืนยัน',
                     style: TextStyle(
                         color: Color.fromARGB(255, 45, 134, 156),
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    primary: Color.fromARGB(255, 255, 255, 255),
-                  ),
-                )
+                ),
               ]),
             ),
           ),
@@ -366,22 +138,52 @@ class _Register extends State<RegisterScreen> {
       ),
     );
   }
+
+//                   style: ElevatedButton.styleFrom(
+//                     shape: RoundedRectangleBorder(
+//                         borderRadius: BorderRadius.all(Radius.circular(30))),
+//                     padding: EdgeInsets.symmetric(horizontal: 40),
+//                     primary: Color.fromARGB(255, 255, 255, 255),
+//                   // TextButton(
+//                   //   onPressed: () {
+//                   //     checkRegister(
+//                   //         fname.text,
+//                   //         lname.text,
+//                   //         phone.text,
+//                   //         role.text,
+//                   //         address.text,
+//                   //         username.text,
+//                   //         password.text,
+//                   //         context);
+//                   //   },
+//                   //   child: const Text(
+//                   //     'ยืนยัน',
+//                   //   ),
+//                   //   style: ElevatedButton.styleFrom(
+//                   //     shape: RoundedRectangleBorder(
+//                   //         borderRadius: BorderRadius.all(Radius.circular(30))),
+//                   //     padding: EdgeInsets.symmetric(horizontal: 40),
+//                   //     primary: Color.fromARGB(255, 255, 255, 255),
+
 }
 
 Future checkRegister(
-    username, password, name, surname, picdate, context) async {
+    fname, lname, phone, role, address, username, password, context) async {
   EasyLoading.show(status: 'loading...');
 
-  Uri url = Uri.parse('http://10.0.2.2/api/users');
+  Uri url = Uri.parse('http://192.168.43.18:3200/api/users');
   http
       .post(
     url,
     headers: headers,
     body: jsonEncode({
-      "username": username,
+      "fname": fname,
+      "lname": lname,
+      "number": phone,
+      "role": role,
+      "address": address,
+      "name": username,
       "password": password,
-      "fname": name,
-      "lname": surname,
     }),
   )
       .then((req) async {
@@ -392,7 +194,7 @@ Future checkRegister(
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome()),
+          MaterialPageRoute(builder: (context) => const Customerhome()),
           (Route<dynamic> route) => false);
     } else {
       print('error');

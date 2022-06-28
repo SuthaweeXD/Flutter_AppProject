@@ -24,6 +24,7 @@ class AdertiseState extends State<adertise> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 89, 160, 51),
           title: Text("ประชาสัมพันธ์    "),
         ),
         backgroundColor: Color.fromARGB(255, 225, 231, 234),

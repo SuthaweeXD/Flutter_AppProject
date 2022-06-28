@@ -29,6 +29,10 @@ class _CustomerDBState extends State<CustomerDB> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 60, 42, 217),
+          title: const Text("ข้อมูลผู้ใช้ระบบ "),
+        ),
         backgroundColor: const Color.fromARGB(255, 227, 227, 227),
         body: SizedBox(
             width: MediaQuery.of(context).size.width,
