@@ -74,10 +74,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 TextFormFieldModel(
                   controller: role,
-                  labelText: 'ประเภท',
-                  hintText: 'ประเภท',
+                  labelText: 'ประเภทผู้ใช้งาน',
+                  hintText: 'ประเภทผู้ใช้งาน',
                   textError: 'กรุณากรอก',
-                  helperText: 'กรอกประเภท',
+                  helperText: 'กรอกประเภทผู้ใช้งาน ลูกค้า: C ,พนักงาน: S  ',
                 ),
                 const SizedBox(
                   height: 15,
@@ -138,33 +138,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-
-//                   style: ElevatedButton.styleFrom(
-//                     shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.all(Radius.circular(30))),
-//                     padding: EdgeInsets.symmetric(horizontal: 40),
-//                     primary: Color.fromARGB(255, 255, 255, 255),
-//                   // TextButton(
-//                   //   onPressed: () {
-//                   //     checkRegister(
-//                   //         fname.text,
-//                   //         lname.text,
-//                   //         phone.text,
-//                   //         role.text,
-//                   //         address.text,
-//                   //         username.text,
-//                   //         password.text,
-//                   //         context);
-//                   //   },
-//                   //   child: const Text(
-//                   //     'ยืนยัน',
-//                   //   ),
-//                   //   style: ElevatedButton.styleFrom(
-//                   //     shape: RoundedRectangleBorder(
-//                   //         borderRadius: BorderRadius.all(Radius.circular(30))),
-//                   //     padding: EdgeInsets.symmetric(horizontal: 40),
-//                   //     primary: Color.fromARGB(255, 255, 255, 255),
-
 }
 
 Future checkRegister(
@@ -182,11 +155,12 @@ Future checkRegister(
       "number": phone,
       "role": role,
       "address": address,
-      "name": username,
+      "username": username,
       "password": password,
     }),
   )
       .then((req) async {
+    print(req.statusCode);
     if (req.statusCode == 201) {
       final prefs = await SharedPreferences.getInstance();
       var data = jsonDecode(req.body);

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, duplicate_ignore
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/views/login.dart';
@@ -26,7 +28,9 @@ class _ProfileState extends State<Profile> {
           SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            // ignore: prefer_const_literals_to_create_immutables
             children: [
+              // ignore: prefer_const_constructors
               CircleAvatar(
                 radius: 60,
                 // backgroundImage: AssetImage(''),

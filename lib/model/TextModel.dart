@@ -57,3 +57,26 @@ class TextFormFieldModel extends StatelessWidget {
     );
   }
 }
+
+class TextFormFieldProfile extends StatelessWidget {
+  const TextFormFieldProfile({Key? key, this.controller, this.labelText})
+      : super(key: key);
+
+  final TextEditingController? controller;
+  final String? labelText;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 18,
+      ),
+      decoration: InputDecoration(
+          labelText: labelText,
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(25.0))),
+      controller: controller,
+    );
+  }
+}

@@ -3,9 +3,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/Customerhome_page.dart';
+import 'package:flutter_application_project/views/ProflieUpdate.dart';
 import 'package:flutter_application_project/views/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_application_project/views/profile.dart';
 import 'package:http/http.dart' as http;
 import '../config/config.dart';
 
@@ -67,7 +68,7 @@ class _SideMenuState extends State<SideMenu> {
                     Navigator.push(
                         context,
                         MaterialPageRoute<void>(
-                            builder: (BuildContext context) => Profile(
+                            builder: (BuildContext context) => ProfileUpdate(
                                   data: null,
                                 )));
                   }),
@@ -86,8 +87,7 @@ class _SideMenuState extends State<SideMenu> {
                           children: [
                             data != null
                                 ? Text(
-                                    '''${data['username']}
-${data['fname']}  ${data['lname']}''',
+                                    '''${data['user_name']} ${data['user_fname']}  ${data['user_lname']}''',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -133,8 +133,8 @@ ${data['fname']}  ${data['lname']}''',
                   context,
                   Icon(Icons.settings_backup_restore),
                   //แก้ตรงนี้--------------------------------------------------------------------------------------
-                  'ดูประวัติการสั่งซื้อ',
-                  '/Backup',
+                  'สำหรับพนักงาน',
+                  '/DataUser',
                 ),
               ],
             ),
@@ -179,9 +179,9 @@ ${data['fname']}  ${data['lname']}''',
       leading: leading,
       title: Text(name),
       onTap: () {
-        widget.routeName == routeItemName
-            ? Navigator.pop(context, true)
-            : Navigator.pushReplacementNamed(context, routeItemName);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => Customerhome()),
+            (Route<dynamic> route) => false);
       },
     );
   }
@@ -190,8 +190,8 @@ ${data['fname']}  ${data['lname']}''',
 Future<dynamic> getdata() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? idUser = prefs.getInt('idm');
-  Uri url = Uri.parse('http://192.168.43.18/api/users/$idUser');
+  int? user_id = prefs.getInt('idm');
+  Uri url = Uri.parse('http://192.168.43.18/api/users/$user_id');
 
   return await http
       .get(

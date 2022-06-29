@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/advertise.dart';
 import 'package:flutter_application_project/views/employee/customer_data.dart';
 import 'package:flutter_application_project/views/ProflieUpdate.dart';
+import 'package:flutter_application_project/views/history_orders.dart';
 import 'package:flutter_application_project/views/order/Orders.dart';
 
 class Customerhome extends StatefulWidget {
@@ -18,7 +18,7 @@ class CustomerHome extends State<Customerhome> {
   final screens = [
     Orders(),
     const CustomerDB(),
-    adertise(),
+    HistoryOrders(),
     ProfileUpdate(),
   ];
 

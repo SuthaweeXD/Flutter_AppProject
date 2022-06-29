@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class ModelOrders extends StatelessWidget {
@@ -26,7 +28,10 @@ class ModelOrders extends StatelessWidget {
             ),
           ),
         ),
-        Text(TextP!),
+        Text(
+          TextP!,
+          style: const TextStyle(fontSize: 18),
+        ),
       ],
     );
   }
@@ -59,7 +64,10 @@ class ModelOrdersNetwork extends StatelessWidget {
             ),
           ),
         ),
-        Text(TextP!),
+        Text(
+          TextP!,
+          style: const TextStyle(fontSize: 18),
+        ),
       ],
     );
   }
@@ -76,14 +84,21 @@ class TextOrders extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(texC!),
+        Text(
+          texC!,
+          style: const TextStyle(fontSize: 18),
+        ),
         SizedBox(
           width: 50,
           child: TextFormField(
+            style: const TextStyle(fontSize: 16),
             controller: controller,
           ),
         ),
-        const Text('กิโลกรัม'),
+        const Text(
+          'กิโลกรัม',
+          style: TextStyle(fontSize: 18),
+        ),
       ],
     );
   }
