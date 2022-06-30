@@ -60,7 +60,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 height: 10,
               ),
               CircleAvatar(
-                // backgroundImage: AssetImage(''),
+                backgroundImage: NetworkImage(
+                    'https://github.com/SuthaweeXD/images/blob/main/ACE.jpg?raw=true'),
                 backgroundColor: Color.fromARGB(255, 255, 206, 121),
                 radius: 60,
               ),

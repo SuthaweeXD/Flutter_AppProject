@@ -30,7 +30,7 @@ class ModelOrders extends StatelessWidget {
         ),
         Text(
           TextP!,
-          style: const TextStyle(fontSize: 18),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ],
     );
@@ -66,7 +66,7 @@ class ModelOrdersNetwork extends StatelessWidget {
         ),
         Text(
           TextP!,
-          style: const TextStyle(fontSize: 18),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ],
     );
@@ -91,6 +91,7 @@ class TextOrders extends StatelessWidget {
         SizedBox(
           width: 50,
           child: TextFormField(
+            keyboardType: TextInputType.number,
             style: const TextStyle(fontSize: 16),
             controller: controller,
           ),
