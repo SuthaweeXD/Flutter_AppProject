@@ -1,20 +1,24 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/views/advertise.dart';
 import 'package:flutter_application_project/views/employee/customer_data.dart';
 import 'package:flutter_application_project/views/ProflieUpdate.dart';
 import 'package:flutter_application_project/views/history_orders.dart';
 import 'package:flutter_application_project/views/order/Orders.dart';
 
 class Customerhome extends StatefulWidget {
-  const Customerhome({Key? key}) : super(key: key);
-
+  Customerhome({Key? key, required this.index}) : super(key: key);
+  int index;
   @override
   CustomerHome createState() => CustomerHome();
 }
 
 class CustomerHome extends State<Customerhome> {
   int _selectedIndex = 0;
+  @override
+  void initState() {
+    widget.index != null ? _selectedIndex = widget.index : _selectedIndex = 0;
+  }
+
   final screens = [
     Orders(),
     const CustomerDB(),
@@ -35,8 +39,9 @@ class CustomerHome extends State<Customerhome> {
       bottomNavigationBar: BottomNavigationBar(
         // type: BottomNavigationBarType.fixed,
         backgroundColor: Color.fromARGB(255, 163, 50, 255),
-        iconSize: 40,
-        // selectedFontSize: 15,
+        iconSize: 32.0,
+
+        unselectedFontSize: 14,
         unselectedItemColor: Color.fromARGB(255, 251, 247, 247),
         selectedItemColor: Color.fromARGB(255, 43, 255, 0),
         showUnselectedLabels: true,

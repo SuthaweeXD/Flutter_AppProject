@@ -32,7 +32,7 @@ class LoginScreenState extends State<LoginScreen> {
     if (prefs.getString('token') != null) {
       headers?['Authorization'] = "bearer ${prefs.getString('token')}";
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const Customerhome()),
+          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
           (Route<dynamic> route) => false);
     }
   }
@@ -223,7 +223,7 @@ Future checkLogin(String username, String password, context) async {
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const Customerhome()),
+          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
           (Route<dynamic> route) => false);
     } else {
       EasyLoading.showError('Failed with Error');

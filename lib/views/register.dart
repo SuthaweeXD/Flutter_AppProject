@@ -168,7 +168,7 @@ Future checkRegister(
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const Customerhome()),
+          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
           (Route<dynamic> route) => false);
     } else {
       print('error');

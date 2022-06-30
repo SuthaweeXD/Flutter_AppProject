@@ -133,7 +133,7 @@ Future checkPr(String prdate, String prdescription, context) async {
     if (req.statusCode == 200) {
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome()),
+          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
           (Route<dynamic> route) => false);
     } else {
       EasyLoading.showError('Failed with Error');
