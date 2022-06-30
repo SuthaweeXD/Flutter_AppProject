@@ -25,24 +25,25 @@ class _OrdersState extends State<Orders> {
   TextEditingController roll = TextEditingController();
   TextEditingController picdate = TextEditingController();
   TextEditingController pictime = TextEditingController();
-  DateTime? selectdate;
+  DateTime? odate;
   TimeOfDay? selecttime;
   DateTime? datenow = DateTime.now();
 
-  final now = DateTime.now();
+  DateTime now = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     void newDate() async {
-      selectdate = await showDatePicker(
+      odate = await showDatePicker(
           context: context,
           initialDate: datenow!,
           firstDate: DateTime(DateTime.now().year, DateTime.now().month, 1),
           lastDate: DateTime(DateTime.now().year, DateTime.now().month, 90));
-      if (selectdate != null) {
+      if (odate != null) {
         setState(() {
-          datenow = selectdate;
-          picdate.text = DateFormat("yyyy-MM-dd").format(selectdate!);
-          DateFormat("yyyy-MM-dd").format(selectdate!);
+          datenow = odate;
+          picdate.text = DateFormat("yyyy-MM-dd").format(odate!);
+          DateFormat("yyyy-MM-dd").format(odate!);
         });
       }
     }
@@ -118,56 +119,61 @@ class _OrdersState extends State<Orders> {
           SizedBox(
             height: 5,
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Column(children: [
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: picdate,
-                readOnly: true,
-                onTap: () {
-                  newDate();
-                },
-                decoration: const InputDecoration(
-                  labelText: 'วันที่ต้องการรับ',
-                  labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  hintStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                      borderRadius: BorderRadius.all(Radius.circular(100))),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 23, 142, 239), width: 1.5),
-                      borderRadius: BorderRadius.all(Radius.circular(100))),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 20),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Column(children: [
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              TextFormField(
-                controller: pictime,
-                readOnly: true,
-                onTap: () {
-                  newTime();
-                },
-                decoration: const InputDecoration(
-                  labelText: 'เวลา',
-                  labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  hintStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                      borderRadius: BorderRadius.all(Radius.circular(100))),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 23, 142, 239), width: 1.5),
-                      borderRadius: BorderRadius.all(Radius.circular(100))),
+                TextFormField(
+                  controller: picdate,
+                  readOnly: true,
+                  onTap: () {
+                    newDate();
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'วันที่ต้องการรับ',
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    hintStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 0, 0, 0), width: 1),
+                        borderRadius: BorderRadius.all(Radius.circular(100))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 23, 142, 239),
+                            width: 1.5),
+                        borderRadius: BorderRadius.all(Radius.circular(100))),
+                  ),
                 ),
-              ),
-            ]),
+                const SizedBox(
+                  height: 5,
+                ),
+                TextFormField(
+                  controller: pictime,
+                  readOnly: true,
+                  onTap: () {
+                    newTime();
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'เวลา',
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    hintStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 0, 0, 0), width: 1),
+                        borderRadius: BorderRadius.all(Radius.circular(100))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 23, 142, 239),
+                            width: 1.5),
+                        borderRadius: BorderRadius.all(Radius.circular(100))),
+                  ),
+                ),
+              ]),
+            ),
           ),
           // ignore: prefer_const_constructors
           SizedBox(
@@ -175,7 +181,8 @@ class _OrdersState extends State<Orders> {
           ),
           ElevatedButton(
             onPressed: () {
-              ConfirmOrders();
+              sendorders(small.text, big.text, roll.text, picdate.text,
+                  pictime.text, now.toString(), context);
             },
             child: const Text('ถัดไป',
                 style: TextStyle(
@@ -196,26 +203,29 @@ class _OrdersState extends State<Orders> {
   }
 }
 
-Future sendtimebook(
-    idmentor, pictime, picdate, pictime2, picdate2, ratePhr, context) async {
+Future sendorders(small, big, roll, picdate, pictime, now, context) async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? idUser = prefs.getInt('idm');
+  int? userid = prefs.getInt('idm');
   Uri url = Uri.parse('http://192.168.43.18:3200/api/orders');
   http
       .post(
     url,
     headers: headers,
     body: jsonEncode({
-      "start_time": picdate + ' ' + pictime,
-      "end_time": picdate2 + ' ' + pictime2,
-      "result": ratePhr,
-      "men_id": idmentor,
-      "cust_id": idUser,
-      "bstatus": 71,
+      "userid": userid,
+      "small": small,
+      "big": big,
+      "roll": roll,
+      "ogetdate": picdate + ' ' + pictime,
+      "odate": now
     }),
   )
       .then((req) async {
+    print(req.statusCode);
+    print(picdate);
+    print(pictime);
+
     if (req.statusCode == 201) {
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(

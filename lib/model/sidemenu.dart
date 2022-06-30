@@ -180,7 +180,7 @@ class _SideMenuState extends State<SideMenu> {
       title: Text(name),
       onTap: () {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => Customerhome()),
+            MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
             (Route<dynamic> route) => false);
       },
     );
