@@ -3,7 +3,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/views/Customerhome_page.dart';
+import 'package:flutter_application_project/views/employee/customer_data.dart';
+import 'package:flutter_application_project/views/homepage.dart';
 import 'package:flutter_application_project/views/ProflieUpdate.dart';
 import 'package:flutter_application_project/views/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,7 +34,7 @@ class _SideMenuState extends State<SideMenu> {
 
   startApi() async {
     //เอาตัวidของcustomerมาใช้กับหน้านี้แล้วเอาค่าไปใส่ในidUser
-    dynamic item = await getdata(); //ส่งค่าไปยัง getdataหรือตัวรับapi
+    dynamic item = await getdataprofile(); //ส่งค่าไปยัง getdataหรือตัวรับapi
     setState(() {
       data = item;
     });
@@ -87,7 +88,7 @@ class _SideMenuState extends State<SideMenu> {
                           children: [
                             data != null
                                 ? Text(
-                                    '''${data['user_name']} ${data['user_fname']}  ${data['user_lname']}''',
+                                    ''' ${data['user_fname']}  ${data['user_lname']}''',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -106,36 +107,45 @@ class _SideMenuState extends State<SideMenu> {
           Expanded(
             child: ListView(
               physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.fromLTRB(1, 5, 20, 5),
               children: [
-                routeItem(
-                  context,
-                  Icon(Icons.house),
-                  //แก้ตรงนี้--------------------------------------------------------------------------------------
-                  'หน้าหลัก',
-                  '/Page1',
-                ),
-                routeItem(
-                  context,
-                  Icon(Icons.event_note),
-                  //แก้ตรงนี้--------------------------------------------------------------------------------------
-                  'วันที่รับ',
-                  '/book',
-                ),
-                // routeItem(
-                //   context,
-                //   Icon(Icons.map),
-                //   //แก้ตรงนี้--------------------------------------------------------------------------------------
-                //   'Map',
-                //   '/Map',
-                // ),
-                routeItem(
-                  context,
-                  Icon(Icons.settings_backup_restore),
-                  //แก้ตรงนี้--------------------------------------------------------------------------------------
-                  'สำหรับพนักงาน',
-                  '/DataUser',
-                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Customerhome(index: 0),
+                            //แก้ตรงนี้--------------------------------------------------------------------------------------
+                          ),
+                          (route) => false);
+                    },
+                    child: Text(
+                      'หน้าหลัก',
+                      style: TextStyle(fontSize: 18),
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Customerhome(index: 2),
+                            //แก้ตรงนี้--------------------------------------------------------------------------------------
+                          ),
+                          (route) => false);
+                    },
+                    child: Text('วันที่รับ', style: TextStyle(fontSize: 18))),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CustomerDB(),
+                            //แก้ตรงนี้--------------------------------------------------------------------------------------
+                          ),
+                          (route) => false);
+                    },
+                    child:
+                        Text('สำหรับพนักงาน', style: TextStyle(fontSize: 18))),
               ],
             ),
           ),
@@ -149,7 +159,7 @@ class _SideMenuState extends State<SideMenu> {
                   title: Text(
                     'ออกจากระบบ',
                     style: TextStyle(color: Colors.red),
-                  ), //แก้ตรงนี้--------------------------------------------------------------------------------------
+                  ),
                   onTap: () async {
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
@@ -158,7 +168,6 @@ class _SideMenuState extends State<SideMenu> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => LoginScreen(),
-                          //แก้ตรงนี้--------------------------------------------------------------------------------------
                         ),
                         (route) => false);
                   },
@@ -187,11 +196,11 @@ class _SideMenuState extends State<SideMenu> {
   }
 }
 
-Future<dynamic> getdata() async {
+Future<dynamic> getdataprofile() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? user_id = prefs.getInt('idm');
-  Uri url = Uri.parse('http://192.168.43.18/api/users/$user_id');
+  Uri url = Uri.parse('http://192.168.43.18:3200/api/users/$user_id');
 
   return await http
       .get(
@@ -199,6 +208,7 @@ Future<dynamic> getdata() async {
     headers: headers,
   )
       .then((req) async {
+    print(req.statusCode);
     if (req.statusCode == 200) {
       var data = jsonDecode(req.body);
       return data;

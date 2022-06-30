@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/TextModel.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/Customerhome_page.dart';
+import 'package:flutter_application_project/views/homepage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -48,70 +48,73 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 169, 26, 205),
+        backgroundColor: Color.fromARGB(255, 255, 182, 36),
         title: Text('ข้อมูลส่วนตัว'),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            CircleAvatar(
-              // backgroundImage: AssetImage(''),
-              backgroundColor: Color.fromARGB(255, 247, 78, 227),
-              radius: 40,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormFieldProfile(
-              labelText: 'ชื่อ',
-              controller: fname,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormFieldProfile(
-              labelText: 'นามสกุล',
-              controller: lname,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormFieldProfile(
-              labelText: 'เบอร์โทรศัพท์',
-              controller: phone,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormFieldProfile(
-              labelText: 'ที่อยู่',
-              controller: address,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                sendDataProfile1(
-                    fname.text, lname.text, phone.text, address.text, context);
-              },
-              child: const Text('ยืนยัน',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold)),
-              style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(50))),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 80),
-                primary: Color.fromARGB(255, 34, 221, 56),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10,
               ),
-            )
-          ],
+              CircleAvatar(
+                // backgroundImage: AssetImage(''),
+                backgroundColor: Color.fromARGB(255, 255, 206, 121),
+                radius: 60,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormFieldProfile(
+                labelText: 'ชื่อ',
+                controller: fname,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              TextFormFieldProfile(
+                labelText: 'นามสกุล',
+                controller: lname,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              TextFormFieldProfile(
+                labelText: 'เบอร์โทรศัพท์',
+                controller: phone,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              TextFormFieldProfile(
+                labelText: 'ที่อยู่',
+                controller: address,
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  sendDataProfile1(fname.text, lname.text, phone.text,
+                      address.text, context);
+                },
+                child: const Text('ยืนยัน',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontSize: 27,
+                        fontWeight: FontWeight.bold)),
+                style: ElevatedButton.styleFrom(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(40))),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
+                  primary: Color.fromARGB(255, 77, 158, 88),
+                ),
+              )
+            ],
+          ),
         ),
       ),
       drawer: SideMenu(),

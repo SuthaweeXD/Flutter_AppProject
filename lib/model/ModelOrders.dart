@@ -15,7 +15,7 @@ class ModelOrders extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Container(
-            color: const Color.fromARGB(255, 240, 180, 51),
+            color: const Color.fromARGB(255, 77, 158, 88),
             padding: const EdgeInsets.fromLTRB(7, 7, 7, 13),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
@@ -51,7 +51,7 @@ class ModelOrdersNetwork extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Container(
-            color: const Color.fromARGB(255, 240, 180, 51),
+            color: const Color.fromARGB(255, 77, 158, 88),
             padding: const EdgeInsets.fromLTRB(7, 7, 7, 13),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
@@ -31,7 +32,7 @@ class _CustomerDBState extends State<CustomerDB> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 60, 42, 217),
+        backgroundColor: Color.fromARGB(255, 30, 146, 255),
         title: const Text("ข้อมูลผู้ใช้ระบบ "),
       ),
       backgroundColor: const Color.fromARGB(255, 227, 227, 227),
@@ -54,8 +55,8 @@ class _CustomerDBState extends State<CustomerDB> {
                 },
                 child: Card(
                   elevation: 10,
-                  color: Color.fromARGB(255, 93, 204, 98),
-                  shadowColor: Color.fromARGB(255, 22, 177, 22),
+                  color: Color.fromARGB(255, 183, 235, 255),
+                  shadowColor: Color.fromARGB(255, 90, 90, 90),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -86,20 +87,21 @@ class _CustomerDBState extends State<CustomerDB> {
                                   children: [
                                     Text(
                                       '${data[i]['user_fname']} ${data[i]['user_lname']}',
-                                      style: const TextStyle(fontSize: 15),
-                                    ),
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-                                    Text('Address ${data[i]['user_address']}'),
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-                                    Text(
-                                      '${data[i]['user_number']}',
                                       style: const TextStyle(
-                                        fontSize: 20,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      'เบอร์โทรติดต่อ : ${data[i]['user_number']}',
+                                      style: const TextStyle(
+                                        fontSize: 15,
                                       ),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      'ที่อยู่ : ${data[i]['user_address']}',
+                                      style: TextStyle(fontSize: 15),
                                     ),
                                   ],
                                 ),

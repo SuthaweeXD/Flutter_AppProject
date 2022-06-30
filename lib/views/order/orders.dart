@@ -62,7 +62,7 @@ class _OrdersState extends State<Orders> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 240, 180, 51),
+        backgroundColor: const Color.fromARGB(255, 77, 158, 88),
         title: const Text('สั่งซื้อ'),
       ),
       body: SingleChildScrollView(
@@ -149,7 +149,7 @@ class _OrdersState extends State<Orders> {
                   ),
                 ),
                 const SizedBox(
-                  height: 5,
+                  height: 15,
                 ),
                 TextFormField(
                   controller: pictime,
@@ -177,7 +177,7 @@ class _OrdersState extends State<Orders> {
           ),
           // ignore: prefer_const_constructors
           SizedBox(
-            height: 10,
+            height: 5,
           ),
           ElevatedButton(
             onPressed: () {
@@ -187,13 +187,13 @@ class _OrdersState extends State<Orders> {
             child: const Text('ถัดไป',
                 style: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
-                    fontSize: 28,
+                    fontSize: 27,
                     fontWeight: FontWeight.bold)),
             style: ElevatedButton.styleFrom(
               shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 80),
-              primary: Color.fromARGB(255, 34, 221, 56),
+                  borderRadius: BorderRadius.all(Radius.circular(60))),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
+              primary: Color.fromARGB(255, 77, 158, 88),
             ),
           ),
         ]),

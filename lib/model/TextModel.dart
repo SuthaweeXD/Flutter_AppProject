@@ -28,7 +28,7 @@ class TextFormFieldModel extends StatelessWidget {
         }
       },
       style: TextStyle(
-        color: Colors.white,
+        color: Color.fromARGB(255, 101, 101, 101),
         fontSize: 16,
       ),
       decoration: InputDecoration(
@@ -48,7 +48,7 @@ class TextFormFieldModel extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(50)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
           borderRadius: BorderRadius.all(
             Radius.circular(50),
           ),

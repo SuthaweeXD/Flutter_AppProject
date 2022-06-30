@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/config.dart';
-import 'package:flutter_application_project/views/Customerhome_page.dart';
+import 'package:flutter_application_project/views/homepage.dart';
 import 'package:flutter_application_project/views/register.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
@@ -52,7 +52,7 @@ class LoginScreenState extends State<LoginScreen> {
                 child: Column(children: [
                   const SizedBox(height: 100),
                   const Text(
-                    'ลงทะเบียน',
+                    'เข้าสู่ระบบ',
                     style: TextStyle(
                         color: Color.fromARGB(255, 54, 178, 240),
                         fontSize: 50,
