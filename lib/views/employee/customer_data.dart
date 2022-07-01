@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
+import 'package:flutter_application_project/views/employee/editcustomer.dart';
 import 'package:flutter_application_project/views/homepage1.dart';
 import 'package:http/http.dart ' as http;
 
@@ -51,7 +52,7 @@ class _CustomerDBState extends State<CustomerDB> {
                       context,
                       MaterialPageRoute<void>(
                           builder: (BuildContext context) =>
-                              HomePage(data: data[i])));
+                              EditCustomer(data: data[i])));
                 },
                 child: Card(
                   elevation: 10,
