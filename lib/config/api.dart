@@ -72,7 +72,7 @@ Future checkLogin(String username, String password, context) async {
   });
 }
 
-Future<dynamic> getdataprofile() async {
+Future<dynamic> getdtprofile() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? user_id = prefs.getInt('idm');
@@ -165,6 +165,26 @@ Future sendorders(small, big, roll, picdate, pictime, now, context) async {
           (Route<dynamic> route) => false);
     } else {
       EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
+Future<dynamic> gethistoryod() async {
+  final prefs =
+      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
+  int? user_id = prefs.getInt('idm');
+  Uri url = Uri.parse('http://206.189.92.71:3700/api/orders/$user_id');
+  return await http
+      .get(
+    url,
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 200) {
+      var data = jsonDecode(req.body);
+      return data;
+    } else {
+      return null;
     }
   });
 }

@@ -15,23 +15,23 @@ class _AddressOrdersState extends State<AddressOrders> {
   dynamic data;
 
   @override
-  void initState() {
-    super.initState();
-    startApi();
-  }
+  // void initState() {
+  //   super.initState();
+  //   startApi();
+  // }
 
-  startApi() async {
-    var item = await getdataprofile();
-    setState(() {
-      data = item;
-      // data['user_fname'] != null
-      //     ? fname.text = data['user_fname']
-      //     : fname.text = "";
+  // startApi() async {
+  //   var item = await getdprofile();
+  //   setState(() {
+  //     data = item;
+  //     // data['user_fname'] != null
+  //     //     ? fname.text = data['user_fname']
+  //     //     : fname.text = "";
 
-      phone.text = data['user_number'];
-      address.text = data['user_address'];
-    });
-  }
+  //     phone.text = data['user_number'];
+  //     address.text = data['user_address'];
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

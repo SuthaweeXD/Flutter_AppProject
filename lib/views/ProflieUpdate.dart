@@ -32,7 +32,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   }
 
   startApi() async {
-    var item = await getdataprofile();
+    var item = await getdtprofile();
     setState(() {
       data = item;
       // data['user_fname'] != null
@@ -124,27 +124,27 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   }
 }
 
-Future<dynamic> getdataprofile() async {
-  final prefs =
-      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? user_id = prefs.getInt('idm');
-  Uri url = Uri.parse('http://192.168.1.144:3200/api/users/$user_id');
+// Future<dynamic> getdataprofile() async {
+//   final prefs =
+//       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
+//   int? user_id = prefs.getInt('idm');
+//   Uri url = Uri.parse('http://206.189.92.71:3700/api/users/$user_id');
 
-  return await http
-      .get(
-    url,
-    headers: headers,
-  )
-      .then((req) async {
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      print(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
-}
+//   return await http
+//       .get(
+//     url,
+//     headers: headers,
+//   )
+//       .then((req) async {
+//     if (req.statusCode == 200) {
+//       var data = jsonDecode(req.body);
+//       print(req.body);
+//       return data;
+//     } else {
+//       return null;
+//     }
+//   });
+// }
 
 // Future sendDataProfile1(fname, lname, phone, address, context) async {
 //   final prefs =

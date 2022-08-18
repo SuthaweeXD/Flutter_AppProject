@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
+import 'package:flutter_application_project/views/order/CancleOrders.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.data}) : super(key: key);
@@ -16,7 +17,19 @@ class _HomePageState extends State<HomePage> {
         title: Text('รายละเอียดการสั่งซื้อ'),
       ),
       body: Column(
-        children: [Text('รายละเอียดการสั่งซื้อ')],
+        children: [
+          TextButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CancleOrders(),
+                      //แก้ตรงนี้--------------------------------------------------------------------------------------
+                    ),
+                    (route) => false);
+              },
+              child: Text('ยกเลิก', style: TextStyle(fontSize: 18))),
+        ],
       ),
       drawer: SideMenu(),
     );

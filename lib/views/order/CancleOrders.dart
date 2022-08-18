@@ -41,8 +41,8 @@ class _CancleOrdersState extends State<CancleOrders> {
               // startApi();
             },
             child: ListView.builder(
-              itemCount:
-                  data?.length ?? 0, //เอาออกไปก่อนเพราะตัวdata.lengthยังพังอยู่
+              // itemCount:
+              //     data?.length ?? 0, //เอาออกไปก่อนเพราะตัวdata.lengthยังพังอยู่
               itemBuilder: (context, i) => InkWell(
                 onTap: () {},
                 child: Card(
@@ -76,7 +76,7 @@ class _CancleOrdersState extends State<CancleOrders> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      '${data[i]['title']} ${data[i]['fname']} ${data[i]['lname']}',
+                                      '5',
                                       style: const TextStyle(fontSize: 15),
                                     ),
 
