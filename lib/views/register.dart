@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/TextModel.dart';
 import 'package:flutter_application_project/views/homepage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -154,41 +155,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-}
-
-Future checkRegister(
-    fname, lname, phone, role, address, username, password, context) async {
-  EasyLoading.show(status: 'loading...');
-
-  Uri url = Uri.parse('http://192.168.1.144:3200/api/users');
-  http
-      .post(
-    url,
-    headers: headers,
-    body: jsonEncode({
-      "fname": fname,
-      "lname": lname,
-      "number": phone,
-      "role": role,
-      "address": address,
-      "username": username,
-      "password": password,
-    }),
-  )
-      .then((req) async {
-    print(req.statusCode);
-    if (req.statusCode == 201) {
-      final prefs = await SharedPreferences.getInstance();
-      var data = jsonDecode(req.body);
-      prefs.setString('token', data['token']);
-      headers?['Authorization'] = "bearer ${data['token']}";
-      EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
-          (Route<dynamic> route) => false);
-    } else {
-      print('error');
-      EasyLoading.showError('Failed with Error');
-    }
-  });
 }

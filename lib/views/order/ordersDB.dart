@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/homepage1.dart';
 import 'package:http/http.dart ' as http;
@@ -132,19 +133,19 @@ class _OrderDBState extends State<OrderDB> {
   }
 }
 
-Future<dynamic> getOrders() async {
-  Uri url = Uri.parse('http://192.168.1.144:3200/api/orders');
-  return await http
-      .get(
-    url,
-  )
-      .then((req) async {
-    print(req.statusCode);
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
-}
+// Future<dynamic> getOrders() async {
+//   Uri url = Uri.parse('http://192.168.1.144:3200/api/orders');
+//   return await http
+//       .get(
+//     url,
+//   )
+//       .then((req) async {
+//     print(req.statusCode);
+//     if (req.statusCode == 200) {
+//       var data = jsonDecode(req.body);
+//       return data;
+//     } else {
+//       return null;
+//     }
+//   });
+// }

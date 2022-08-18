@@ -88,20 +88,20 @@ class _ProfileState extends State<Profile> {
   }
 }
 
-Future senddata(
-    dynamic idUser, String title, String fname, String lname) async {
-  Uri url = Uri.parse('http://127.0.0.1:3200/api/users/$idUser');
-  http
-      .post(
-    url,
-    body: jsonEncode({"title": title, "fname": fname, "lname": lname}),
-  )
-      .then((req) async {
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
-}
+// Future senddata(
+//     dynamic idUser, String title, String fname, String lname) async {
+//   Uri url = Uri.parse('http://127.0.0.1:3200/api/users/$idUser');
+//   http
+//       .post(
+//     url,
+//     body: jsonEncode({"title": title, "fname": fname, "lname": lname}),
+//   )
+//       .then((req) async {
+//     if (req.statusCode == 200) {
+//       var data = jsonDecode(req.body);
+//       return data;
+//     } else {
+//       return null;
+//     }
+//   });
+// }

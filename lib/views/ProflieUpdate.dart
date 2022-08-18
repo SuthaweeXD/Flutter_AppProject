@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/TextModel.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/homepage.dart';
@@ -145,26 +146,26 @@ Future<dynamic> getdataprofile() async {
   });
 }
 
-Future sendDataProfile1(fname, lname, phone, address, context) async {
-  final prefs =
-      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? user_id = prefs.getInt('idm');
-  Uri url = Uri.parse('http://192.168.1.144:3200/api/users/$user_id');
-  http
-      .put(
-    url,
-    headers: headers,
-    body: jsonEncode(
-        {"fname": fname, "lname": lname, "number": phone, "address": address}),
-  )
-      .then((req) async {
-    if (req.statusCode == 204) {
-      EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
-          (Route<dynamic> route) => false);
-    } else {
-      EasyLoading.showError('Failed with Error');
-    }
-  });
-}
+// Future sendDataProfile1(fname, lname, phone, address, context) async {
+//   final prefs =
+//       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
+//   int? user_id = prefs.getInt('idm');
+//   Uri url = Uri.parse('http://192.168.1.144:3200/api/users/$user_id');
+//   http
+//       .put(
+//     url,
+//     headers: headers,
+//     body: jsonEncode(
+//         {"fname": fname, "lname": lname, "number": phone, "address": address}),
+//   )
+//       .then((req) async {
+//     if (req.statusCode == 204) {
+//       EasyLoading.showSuccess('Great Success!');
+//       Navigator.of(context).pushAndRemoveUntil(
+//           MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
+//           (Route<dynamic> route) => false);
+//     } else {
+//       EasyLoading.showError('Failed with Error');
+//     }
+//   });
+// }

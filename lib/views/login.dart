@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/views/homepage.dart';
 import 'package:flutter_application_project/views/register.dart';
@@ -204,29 +205,29 @@ class LoginScreenState extends State<LoginScreen> {
   }
 }
 
-Future checkLogin(String username, String password, context) async {
-  EasyLoading.init();
+// Future checkLogin(String username, String password, context) async {
+//   EasyLoading.init();
 
-  Uri url = Uri.parse('http://192.168.1.142:3200/api/users/login');
-  http
-      .post(
-    url,
-    headers: headers,
-    body: jsonEncode({"username": username, "password": password}),
-  )
-      .then((req) async {
-    if (req.statusCode == 200) {
-      final prefs = await SharedPreferences.getInstance();
-      var data = jsonDecode(req.body);
-      prefs.setString('token', data['token']);
-      prefs.setInt('idm', data['user_id']);
-      headers?['Authorization'] = "bearer ${data['token']}";
-      EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
-          (Route<dynamic> route) => false);
-    } else {
-      EasyLoading.showError('Failed with Error');
-    }
-  });
-}
+//   Uri url = Uri.parse('http://192.168.1.142:3200/api/users/login');
+//   http
+//       .post(
+//     url,
+//     headers: headers,
+//     body: jsonEncode({"username": username, "password": password}),
+//   )
+//       .then((req) async {
+//     if (req.statusCode == 200) {
+//       final prefs = await SharedPreferences.getInstance();
+//       var data = jsonDecode(req.body);
+//       prefs.setString('token', data['token']);
+//       prefs.setInt('idm', data['user_id']);
+//       headers?['Authorization'] = "bearer ${data['token']}";
+//       EasyLoading.showSuccess('Great Success!');
+//       Navigator.of(context).pushAndRemoveUntil(
+//           MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
+//           (Route<dynamic> route) => false);
+//     } else {
+//       EasyLoading.showError('Failed with Error');
+//     }
+//   });
+// }
