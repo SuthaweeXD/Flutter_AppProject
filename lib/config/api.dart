@@ -12,7 +12,7 @@ Future checkRegister(
     fname, lname, phone, role, address, username, password, context) async {
   EasyLoading.show(status: 'loading...');
 
-  Uri url = Uri.parse('http://192.168.1.144:3200/api/users');
+  Uri url = Uri.parse('http://206.189.92.71:3700/api/users');
   http
       .post(
     url,
@@ -48,7 +48,7 @@ Future checkRegister(
 Future checkLogin(String username, String password, context) async {
   EasyLoading.init();
 
-  Uri url = Uri.parse('http://192.168.1.112:3200/api/users/login');
+  Uri url = Uri.parse('http://206.189.92.71:3700/api/users/login');
   http
       .post(
     url,
@@ -76,7 +76,7 @@ Future<dynamic> getdataprofile() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? user_id = prefs.getInt('idm');
-  Uri url = Uri.parse('http://192.168.1.144:3200/api/users/$user_id');
+  Uri url = Uri.parse('http://206.189.92.71:3700/api/users/$user_id');
 
   return await http
       .get(
@@ -98,7 +98,7 @@ Future sendDataProfile1(fname, lname, phone, address, context) async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? user_id = prefs.getInt('idm');
-  Uri url = Uri.parse('http://192.168.1.144:3200/api/users/$user_id');
+  Uri url = Uri.parse('http://206.189.92.71:3700/api/users/$user_id');
   http
       .put(
     url,
@@ -119,7 +119,7 @@ Future sendDataProfile1(fname, lname, phone, address, context) async {
 }
 
 Future<dynamic> getOrders() async {
-  Uri url = Uri.parse('http://192.168.1.144:3200/api/orders');
+  Uri url = Uri.parse('http://206.189.92.71:3700/api/orders');
   return await http
       .get(
     url,
@@ -139,7 +139,7 @@ Future sendorders(small, big, roll, picdate, pictime, now, context) async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? userid = prefs.getInt('idm');
-  Uri url = Uri.parse('http://192.168.1.112:3200/api/orders');
+  Uri url = Uri.parse('http://206.189.92.71:3700/api/orders');
   http
       .post(
     url,

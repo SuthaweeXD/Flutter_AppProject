@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/model/ModelOrders.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
@@ -207,36 +208,36 @@ class _OrdersState extends State<Orders> {
   }
 }
 
-Future sendorders(small, big, roll, picdate, pictime, now, context) async {
-  final prefs =
-      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? userid = prefs.getInt('idm');
-  Uri url = Uri.parse('http://192.168.1.112:3200/api/orders');
-  http
-      .post(
-    url,
-    headers: headers,
-    body: jsonEncode({
-      "userid": userid,
-      "small": small,
-      "big": big,
-      "roll": roll,
-      "ogetdate": picdate + ' ' + pictime,
-      "odate": now
-    }),
-  )
-      .then((req) async {
-    print(req.statusCode);
-    print(picdate);
-    print(pictime);
+// Future sendorders(small, big, roll, picdate, pictime, now, context) async {
+//   final prefs =
+//       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
+//   int? userid = prefs.getInt('idm');
+//   Uri url = Uri.parse('http://192.168.1.112:3200/api/orders');
+//   http
+//       .post(
+//     url,
+//     headers: headers,
+//     body: jsonEncode({
+//       "userid": userid,
+//       "small": small,
+//       "big": big,
+//       "roll": roll,
+//       "ogetdate": picdate + ' ' + pictime,
+//       "odate": now
+//     }),
+//   )
+//       .then((req) async {
+//     print(req.statusCode);
+//     print(picdate);
+//     print(pictime);
 
-    if (req.statusCode == 201) {
-      EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => ConfirmOrders()),
-          (Route<dynamic> route) => false);
-    } else {
-      EasyLoading.showError('Failed with Error');
-    }
-  });
-}
+//     if (req.statusCode == 201) {
+//       EasyLoading.showSuccess('Great Success!');
+//       Navigator.of(context).pushAndRemoveUntil(
+//           MaterialPageRoute(builder: (context) => ConfirmOrders()),
+//           (Route<dynamic> route) => false);
+//     } else {
+//       EasyLoading.showError('Failed with Error');
+//     }
+//   });
+// }
