@@ -4,6 +4,8 @@
         android:label="ร้านก๊ะนะห์ขนมจีนเส้นสด"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCmYcp6rpJ59JVRqr2rUaSObL5lxq61u1Y"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -19,6 +21,7 @@
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
+              
               />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

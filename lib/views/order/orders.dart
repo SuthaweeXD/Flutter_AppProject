@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/model/ModelOrders.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
+import 'package:flutter_application_project/views/map.dart';
 import 'package:flutter_application_project/views/order/ConfirmOrders.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
@@ -180,6 +181,10 @@ class _OrdersState extends State<Orders> {
           ),
           ElevatedButton(
             onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                      builder: (BuildContext context) => AddressMap()));
               sendorders(small.text, big.text, roll.text, picdate.text,
                   pictime.text, now.toString(), context);
             },
@@ -206,7 +211,7 @@ Future sendorders(small, big, roll, picdate, pictime, now, context) async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? userid = prefs.getInt('idm');
-  Uri url = Uri.parse('http://192.168.43.18:3200/api/orders');
+  Uri url = Uri.parse('http://192.168.1.112:3200/api/orders');
   http
       .post(
     url,

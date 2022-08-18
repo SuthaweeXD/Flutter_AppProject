@@ -119,7 +119,7 @@ class _CustomerDBState extends State<CustomerDB> {
 }
 
 Future<dynamic> getdata() async {
-  Uri url = Uri.parse('http://192.168.43.18:3200/api/users');
+  Uri url = Uri.parse('http://192.168.1.144:3200/api/users');
   return await http
       .get(
     url,

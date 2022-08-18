@@ -133,7 +133,7 @@ class _OrderDBState extends State<OrderDB> {
 }
 
 Future<dynamic> getOrders() async {
-  Uri url = Uri.parse('http://192.168.43.18:3200/api/orders');
+  Uri url = Uri.parse('http://192.168.1.144:3200/api/orders');
   return await http
       .get(
     url,

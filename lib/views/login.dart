@@ -207,7 +207,7 @@ class LoginScreenState extends State<LoginScreen> {
 Future checkLogin(String username, String password, context) async {
   EasyLoading.init();
 
-  Uri url = Uri.parse('http://192.168.43.18:3200/api/users/login');
+  Uri url = Uri.parse('http://192.168.1.142:3200/api/users/login');
   http
       .post(
     url,
