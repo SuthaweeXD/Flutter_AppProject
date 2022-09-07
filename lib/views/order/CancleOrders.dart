@@ -76,7 +76,7 @@ class _CancleOrdersState extends State<CancleOrders> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      '5',
+                                      'ยังไม่แก้',
                                       style: const TextStyle(fontSize: 15),
                                     ),
 

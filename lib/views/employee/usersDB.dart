@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
+import 'package:flutter_application_project/model/ModelOrders.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/homepage1.dart';
-import 'package:intl/intl.dart';
 
-class HistoryOrders extends StatefulWidget {
-  HistoryOrders({Key? key}) : super(key: key);
+class usersDB extends StatefulWidget {
+  usersDB({Key? key}) : super(key: key);
 
   @override
-  State<HistoryOrders> createState() => _HistoryOrdersState();
+  State<usersDB> createState() => _usersDBState();
 }
 
-class _HistoryOrdersState extends State<HistoryOrders> {
+class _usersDBState extends State<usersDB> {
   dynamic data;
   @override
   void initState() {
@@ -20,7 +20,7 @@ class _HistoryOrdersState extends State<HistoryOrders> {
   }
 
   startApi() async {
-    var item = await gethistoryod();
+    var item = await getUsers();
     setState(() {
       data = item;
     });
@@ -30,9 +30,10 @@ class _HistoryOrdersState extends State<HistoryOrders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ประวัติการสั่งซื้อ'),
-        backgroundColor: Color.fromARGB(255, 89, 160, 51),
+        backgroundColor: Color.fromARGB(255, 255, 115, 243),
+        title: const Text("ข้อมูลคำสั่งซื้อ"),
       ),
+      backgroundColor: const Color.fromARGB(255, 227, 227, 227),
       body: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: RefreshIndicator(
@@ -85,41 +86,31 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'วันที่สั่ง : ' +
-                                          DateFormat('dd-mm-yy KK:MM').format(
-                                              DateTime.parse(
-                                                  '${data[i]['order_date']}')),
-                                      style: const TextStyle(fontSize: 17),
-
-                                      // 'วันที่สั่ง : ${data[i]['order_date']}',
-                                      // style: const TextStyle(fontSize: 17),
-                                    ),
-                                    const SizedBox(height: 2),
-                                    Text(
-                                      'วันที่รับ :' +
-                                          DateFormat('dd-mm-yy KK:MM').format(
-                                              DateTime.parse(
-                                                  '${data[i]['order_getdate']}')),
-                                      style: const TextStyle(fontSize: 17),
-                                    ),
                                     const SizedBox(
                                       height: 2,
                                     ),
                                     Text(
-                                      'เส้นเล็ก : ${data[i]['order_small']}'
+                                      'ชื่อ : ${data[i]['user_fname']}'
                                       '  '
-                                      'เส้นใหญ่ : ${data[i]['order_big']}'
-                                      '  '
-                                      'เส้นม้วน : ${data[i]['order_roll']}',
-                                      style: TextStyle(fontSize: 15),
+                                      'นามสกุล : ${data[i]['user_lname']}',
+                                      style: TextStyle(fontSize: 20),
                                     ),
                                     const SizedBox(
                                       height: 2,
                                     ),
                                     Text(
                                       'ที่อยู่ในการจัดส่ง : '
-                                      '${data[i]['order_address']}',
+                                      '${data[i]['user_address']}',
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    Text(
+                                      'เบอร์โทร : '
+                                      '${data[i]['user_number']}',
                                       style: const TextStyle(
                                         fontSize: 15,
                                       ),

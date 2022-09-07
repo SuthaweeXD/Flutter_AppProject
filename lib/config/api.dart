@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/config.dart';
+import 'package:flutter_application_project/model/ModelOrders.dart';
+import 'package:flutter_application_project/views/employee/employeemain.dart';
 import 'package:flutter_application_project/views/homepage.dart';
 import 'package:flutter_application_project/views/order/ConfirmOrders.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -35,9 +37,16 @@ Future checkRegister(
       prefs.setString('token', data['token']);
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
-          (Route<dynamic> route) => false);
+      data['user_role'] == "C"
+          ? Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
+              (Route<dynamic> route) => false)
+          : Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => MainEmployee(
+                        index: 0,
+                      )),
+              (Route<dynamic> route) => false);
     } else {
       print('error');
       EasyLoading.showError('Failed with Error');
@@ -63,9 +72,16 @@ Future checkLogin(String username, String password, context) async {
       prefs.setInt('idm', data['user_id']);
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
-          (Route<dynamic> route) => false);
+      data['user_role'] == "C"
+          ? Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
+              (Route<dynamic> route) => false)
+          : Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => MainEmployee(
+                        index: 0,
+                      )),
+              (Route<dynamic> route) => false);
     } else {
       EasyLoading.showError('Failed with Error');
     }
@@ -188,3 +204,22 @@ Future<dynamic> gethistoryod() async {
     }
   });
 }
+
+Future<dynamic> getUsers() async {
+  Uri url = Uri.parse('http://206.189.92.71:3700/api/users');
+  return await http
+      .get(
+    url,
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 200) {
+      var data = jsonDecode(req.body);
+      return data;
+    } else {
+      return null;
+    }
+  });
+}
+// 192.168.1.142:3200
+// 206.189.92.71:3700

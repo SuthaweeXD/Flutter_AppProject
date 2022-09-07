@@ -102,15 +102,24 @@ class _OrdersState extends State<Orders> {
           ),
           TextOrders(
             controller: small,
-            texC: ('เส้นเล็ก'),
+            texC: (' เส้นเล็ก'),
+          ),
+          SizedBox(
+            height: 10,
           ),
           TextOrders(
             controller: big,
             texC: ('เส้นใหญ่'),
           ),
+          SizedBox(
+            height: 10,
+          ),
           TextOrders(
             controller: roll,
-            texC: ('เส้นม้วน'),
+            texC: (' เส้นม้วน'),
+          ),
+          SizedBox(
+            height: 10,
           ),
           const SizedBox(
             height: 20,
@@ -182,10 +191,10 @@ class _OrdersState extends State<Orders> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                      builder: (BuildContext context) => AddressMap()));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute<void>(
+              //         builder: (BuildContext context) => AddressMap()));
               sendorders(small.text, big.text, roll.text, picdate.text,
                   pictime.text, now.toString(), context);
             },

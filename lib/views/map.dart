@@ -11,19 +11,18 @@ class AddressMap extends StatefulWidget {
 class _AddressMapState extends State<AddressMap> {
   static final CameraPosition tr = CameraPosition(
       target: LatLng(13.749085509399437, 100.53328902001459), zoom: 15);
-  List<Marker> mymarker = [];
+  List<Marker> mymarker = [
+    Marker(
+        markerId: MarkerId("นายแดง"),
+        position: LatLng(13.749085509399437, 100.53328902001459))
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('แผนที่'),
-      ),
-      body: GoogleMap(
-        initialCameraPosition: tr,
-        markers: Set.from(mymarker),
-        onTap: tounch,
-      ),
+    return GoogleMap(
+      initialCameraPosition: tr,
+      markers: Set.from(mymarker),
+      onTap: tounch,
     );
   }
 

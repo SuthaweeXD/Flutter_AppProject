@@ -5,6 +5,7 @@ import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/homepage1.dart';
 import 'package:http/http.dart ' as http;
+import 'package:intl/intl.dart';
 
 class OrderDB extends StatefulWidget {
   const OrderDB({Key? key}) : super(key: key);
@@ -89,13 +90,18 @@ class _OrderDBState extends State<OrderDB> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'วันที่สั่ง : ${data[i]['order_date']}',
+                                      'วันที่สั่ง : ' +
+                                          DateFormat('dd-mm-yy KK:MM').format(
+                                              DateTime.parse(
+                                                  '${data[i]['order_date']}')),
                                       style: const TextStyle(fontSize: 17),
                                     ),
                                     const SizedBox(height: 2),
                                     Text(
-                                      'วันที่รับ :'
-                                      '${data[i]['order_getdate']} ',
+                                      'วันที่รับ :' +
+                                          DateFormat('dd-mm-yy KK:MM').format(
+                                              DateTime.parse(
+                                                  '${data[i]['order_getdate']}')),
                                       style: const TextStyle(fontSize: 17),
                                     ),
                                     const SizedBox(
