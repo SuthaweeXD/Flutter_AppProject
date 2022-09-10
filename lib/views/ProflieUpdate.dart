@@ -6,7 +6,9 @@ import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/TextModel.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/homepage.dart';
+import 'package:flutter_application_project/views/map.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_application_project/config/config.dart';
@@ -93,6 +95,14 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
               TextFormFieldProfile(
                 labelText: 'ที่อยู่',
                 controller: address,
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              SizedBox(
+                height: 200,
+                width: 350,
+                child: AddressMap(),
               ),
               SizedBox(
                 height: 40,

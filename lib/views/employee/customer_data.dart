@@ -6,6 +6,8 @@ import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/employee/editcustomer.dart';
 import 'package:flutter_application_project/views/homepage1.dart';
 import 'package:http/http.dart ' as http;
+import 'package:flutter_application_project/config/api.dart';
+import 'package:intl/intl.dart';
 
 class CustomerDB extends StatefulWidget {
   const CustomerDB({Key? key}) : super(key: key);
@@ -23,7 +25,7 @@ class _CustomerDBState extends State<CustomerDB> {
   }
 
   startApi() async {
-    var item = await getdata();
+    var item = await getOrders();
     setState(() {
       data = item;
     });
@@ -33,8 +35,8 @@ class _CustomerDBState extends State<CustomerDB> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 30, 146, 255),
-        title: const Text("ข้อมูลผู้ใช้ระบบ "),
+        backgroundColor: Color.fromARGB(255, 255, 115, 243),
+        title: const Text("ข้อมูลคำสั่งซื้อ"),
       ),
       backgroundColor: const Color.fromARGB(255, 227, 227, 227),
       body: SizedBox(
@@ -52,12 +54,12 @@ class _CustomerDBState extends State<CustomerDB> {
                       context,
                       MaterialPageRoute<void>(
                           builder: (BuildContext context) =>
-                              EditCustomer(data: data[i])));
+                              HomePage(data: data[i])));
                 },
                 child: Card(
                   elevation: 10,
-                  color: Color.fromARGB(255, 183, 235, 255),
-                  shadowColor: Color.fromARGB(255, 90, 90, 90),
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  shadowColor: Color.fromARGB(255, 114, 114, 114),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -72,14 +74,17 @@ class _CustomerDBState extends State<CustomerDB> {
                                 width: 10,
                               ),
                               const SizedBox(
-                                width: 55.0,
-                                height: 55.0,
+                                width: 20.0,
+                                height: 20.0,
                                 // color: Color.fromARGB(255, 150, 217, 234),
                                 // ignore: prefer_const_constructors
-                                child: CircleAvatar(),
+                                child: CircleAvatar(
+                                  backgroundColor:
+                                      Color.fromARGB(255, 186, 186, 186),
+                                ),
                               ),
                               const SizedBox(
-                                width: 10,
+                                width: 2,
                               ),
                               Container(
                                 padding: const EdgeInsets.all(22),
@@ -87,22 +92,40 @@ class _CustomerDBState extends State<CustomerDB> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      '${data[i]['user_fname']} ${data[i]['user_lname']}',
-                                      style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
+                                      'วันที่สั่ง : ' +
+                                          DateFormat('dd-mm-yy KK:MM').format(
+                                              DateTime.parse(
+                                                  '${data[i]['order_date']}')),
+                                      style: const TextStyle(fontSize: 17),
                                     ),
                                     const SizedBox(height: 2),
                                     Text(
-                                      'เบอร์โทรติดต่อ : ${data[i]['user_number']}',
+                                      'วันที่รับ :' +
+                                          DateFormat('dd-mm-yy KK:MM').format(
+                                              DateTime.parse(
+                                                  '${data[i]['order_getdate']}')),
+                                      style: const TextStyle(fontSize: 17),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    Text(
+                                      'เส้นเล็ก : ${data[i]['order_small']}'
+                                      '  '
+                                      'เส้นใหญ่ : ${data[i]['order_big']}'
+                                      '  '
+                                      'เส้นม้วน : ${data[i]['order_roll']}',
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    Text(
+                                      'ที่อยู่ในการจัดส่ง : '
+                                      '${data[i]['order_address']}',
                                       style: const TextStyle(
                                         fontSize: 15,
                                       ),
-                                    ),
-                                    const SizedBox(height: 2),
-                                    Text(
-                                      'ที่อยู่ : ${data[i]['user_address']}',
-                                      style: TextStyle(fontSize: 15),
                                     ),
                                   ],
                                 ),
@@ -118,19 +141,19 @@ class _CustomerDBState extends State<CustomerDB> {
   }
 }
 
-Future<dynamic> getdata() async {
-  Uri url = Uri.parse('http://192.168.1.144:3200/api/users');
-  return await http
-      .get(
-    url,
-  )
-      .then((req) async {
-    print(req.statusCode);
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
-}
+// Future<dynamic> getdata() async {
+//   Uri url = Uri.parse('http://192.168.1.144:3200/api/users');
+//   return await http
+//       .get(
+//     url,
+//   )
+//       .then((req) async {
+//     print(req.statusCode);
+//     if (req.statusCode == 200) {
+//       var data = jsonDecode(req.body);
+//       return data;
+//     } else {
+//       return null;
+//     }
+//   });
+// }
