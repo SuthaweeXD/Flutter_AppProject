@@ -1,12 +1,11 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/TextModel.dart';
-import 'package:flutter_application_project/views/homepage.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_application_project/config/config.dart';
+
+const List<String> list = <String>[
+  'ลูกค้า',
+  'พนักงาน',
+];
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key? key}) : super(key: key);
@@ -73,16 +72,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 15,
                   ),
-                  TextFormFieldModel(
-                    controller: phone,
-                    labelText: 'เบอร์โทรศัพท์',
-                    hintText: 'เบอร์โทรศัพท์',
-                    textError: 'กรุณากรอก',
-                    helperText: 'กรุณากรอกเบอร์โทรศัพท์',
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  // TextFormFieldModel(
+                  //   controller: phone,
+                  //   labelText: 'เบอร์โทรศัพท์',
+                  //   hintText: 'เบอร์โทรศัพท์',
+                  //   textError: 'กรุณากรอก',
+                  //   helperText: 'กรุณากรอกเบอร์โทรศัพท์',
+                  // ),
+                  // const SizedBox(
+                  //   height: 15,
+                  // ),
                   TextFormFieldModel(
                     controller: role,
                     labelText: 'ประเภทผู้ใช้งาน',
@@ -117,6 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 5,
                   ),
+                  DropdownButtonExample(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromARGB(255, 77, 158, 88),
@@ -152,6 +152,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class DropdownButtonExample extends StatefulWidget {
+  const DropdownButtonExample({key});
+
+  @override
+  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
+}
+
+class _DropdownButtonExampleState extends State<DropdownButtonExample> {
+  String dropdownValue = list.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: DropdownButton<String>(
+        value: dropdownValue,
+        icon: const Icon(Icons.arrow_downward),
+        elevation: 16,
+        style: const TextStyle(color: Colors.deepPurple),
+        underline: Container(
+          height: 2,
+          color: Colors.deepPurpleAccent,
+        ),
+        onChanged: (String? value) {
+          // This is called when the user selects an item.
+          setState(() {
+            dropdownValue = value!;
+          });
+        },
+        items: list.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
       ),
     );
   }

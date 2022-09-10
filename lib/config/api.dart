@@ -180,7 +180,7 @@ Future sendorders(small, big, roll, picdate, pictime, now, context) async {
           MaterialPageRoute(builder: (context) => ConfirmOrders()),
           (Route<dynamic> route) => false);
     } else {
-      EasyLoading.showError('Failed with Error');
+      normalDialog(context, ('มีช่องว่าง'));
     }
   });
 }

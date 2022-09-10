@@ -191,10 +191,7 @@ class _OrdersState extends State<Orders> {
           ),
           ElevatedButton(
             onPressed: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute<void>(
-              //         builder: (BuildContext context) => AddressMap()));
+              //เช็ค
               sendorders(small.text, big.text, roll.text, picdate.text,
                   pictime.text, now.toString(), context);
             },

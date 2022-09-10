@@ -94,14 +94,16 @@ class TextOrders extends StatelessWidget {
           style: const TextStyle(fontSize: 18),
         ),
         SizedBox(
-          height: 50,
-          width: 150,
-          child: SpinBox(
-            value: 0,
-            decimals: 1,
-            step: 0.5,
-          ),
-        ),
+            height: 50,
+            width: 150,
+            child: SpinBox(
+                value: 0,
+                decimals: 1,
+                step: 0.5,
+                onChanged: (value) {
+                  controller?.text = value.toString();
+                  print(controller?.text);
+                })),
         const Text(
           'กิโลกรัม',
           style: TextStyle(fontSize: 18),
@@ -110,6 +112,46 @@ class TextOrders extends StatelessWidget {
     );
   }
 }
+
+Future<void> normalDialog(BuildContext context, String message) async {
+  showDialog(
+      context: context,
+      builder: (context) => AlertDialog(title: Text(message), actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            )
+          ]));
+}
+
+// class DialogExample extends StatelessWidget {
+//   // ignore: use_key_in_widget_constructors
+//   const DialogExample({key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextButton(
+//       onPressed: () => showDialog<String>(
+//         context: context,
+//         builder: (BuildContext context) => AlertDialog(
+//           title: const Text('AlertDialog Title'),
+//           content: const Text('AlertDialog description'),
+//           actions: <Widget>[
+// //             TextButton(
+// //               onPressed: () => Navigator.pop(context, 'Cancel'),
+// //               child: const Text('Cancel'),
+// //             ),
+//             TextButton(
+//               onPressed: () => Navigator.pop(context, 'OK'),
+//               child: const Text('OK'),
+// //             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 
 // class MainEmployee extends StatefulWidget {
 //   MainEmployee({Key? key, required this.index}) : super(key: key);
