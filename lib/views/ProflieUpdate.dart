@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/TextModel.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/homepage.dart';
-import 'package:flutter_application_project/views/map.dart';
+import 'package:flutter_application_project/views/Homepage.dart';
+import 'package:flutter_application_project/views/Map.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,9 +37,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
     var item = await getdtprofile();
     setState(() {
       data = item;
-      // data['user_fname'] != null
-      //     ? fname.text = data['user_fname']
-      //     : fname.text = "";
+      print(data);
+
       fname.text = data['user_fname'];
       lname.text = data['user_lname'];
       phone.text = data['user_number'];
@@ -51,7 +50,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 182, 36),
+        backgroundColor: Color.fromARGB(255, 89, 160, 51),
         title: Text('ข้อมูลส่วนตัว'),
       ),
       body: SingleChildScrollView(
@@ -63,8 +62,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 height: 10,
               ),
               CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://github.com/SuthaweeXD/images/blob/main/ACE.jpg?raw=true'),
+                // child: Image.asset('assets/images/ACE.png'),
                 backgroundColor: Color.fromARGB(255, 255, 206, 121),
                 radius: 60,
               ),
@@ -99,11 +97,39 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
               SizedBox(
                 height: 40,
               ),
-              SizedBox(
-                height: 200,
-                width: 350,
-                child: AddressMap(),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('เลือกที่อยู่',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w200)),
+                style: ElevatedButton.styleFrom(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                  primary: Color.fromARGB(255, 28, 122, 255),
+                ),
               ),
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                  height: 240,
+                  width: 500,
+                  child: data != null
+                      ? Card(
+                          color: Color.fromARGB(255, 255, 236, 181),
+                          shadowColor: const Color.fromARGB(255, 114, 114, 114),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0)),
+                          child: AddressMap(
+                            lat: data['lat'],
+                            lng: data['lng'],
+                          ),
+                        )
+                      : Text('ไม่มีข้อมูล')),
               SizedBox(
                 height: 40,
               ),
@@ -133,49 +159,3 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
     );
   }
 }
-
-// Future<dynamic> getdataprofile() async {
-//   final prefs =
-//       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-//   int? user_id = prefs.getInt('idm');
-//   Uri url = Uri.parse('http://206.189.92.71:3700/api/users/$user_id');
-
-//   return await http
-//       .get(
-//     url,
-//     headers: headers,
-//   )
-//       .then((req) async {
-//     if (req.statusCode == 200) {
-//       var data = jsonDecode(req.body);
-//       print(req.body);
-//       return data;
-//     } else {
-//       return null;
-//     }
-//   });
-// }
-
-// Future sendDataProfile1(fname, lname, phone, address, context) async {
-//   final prefs =
-//       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-//   int? user_id = prefs.getInt('idm');
-//   Uri url = Uri.parse('http://192.168.1.144:3200/api/users/$user_id');
-//   http
-//       .put(
-//     url,
-//     headers: headers,
-//     body: jsonEncode(
-//         {"fname": fname, "lname": lname, "number": phone, "address": address}),
-//   )
-//       .then((req) async {
-//     if (req.statusCode == 204) {
-//       EasyLoading.showSuccess('Great Success!');
-//       Navigator.of(context).pushAndRemoveUntil(
-//           MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
-//           (Route<dynamic> route) => false);
-//     } else {
-//       EasyLoading.showError('Failed with Error');
-//     }
-//   });
-// }

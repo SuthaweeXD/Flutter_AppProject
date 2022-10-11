@@ -1,47 +1,175 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/homepage.dart';
+import 'package:flutter_application_project/config/api.dart';
+import 'package:flutter_application_project/model/ModelOrders.dart';
 
 class ConfirmOrders extends StatefulWidget {
-  ConfirmOrders({Key? key}) : super(key: key);
+  ConfirmOrders(
+      {Key? key,
+      this.small,
+      this.big,
+      this.roll,
+      this.picdate,
+      this.pictime,
+      this.now,
+      context})
+      : super(key: key);
+
+  dynamic small, big, roll, picdate, pictime, now;
 
   @override
   State<ConfirmOrders> createState() => _ConfirmOrdersState();
 }
 
 class _ConfirmOrdersState extends State<ConfirmOrders> {
+  dynamic data;
+
+  @override
+  void initState() {
+    super.initState();
+    startApi();
+  }
+
+  startApi() async {
+    dynamic item = await getaddress();
+    setState(() {
+      data = item;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ยืนยันที่อยู่การจัดส่ง'),
-      ),
-      body: Column(
-        children: [
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(60))),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
-                primary: Color.fromARGB(255, 77, 158, 88),
-              ),
-              onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Customerhome(index: 1),
-                      //แก้ตรงนี้--------------------------------------------------------------------------------------
-                    ),
-                    (route) => false);
-              },
-              child: Text(
-                'ยืนยัน',
-                style: TextStyle(fontSize: 18),
-              )),
-        ],
-      ),
-      drawer: SideMenu(),
-    );
+        appBar: AppBar(
+          title: Text('ยืนยันคำสั่งซื้อ'),
+        ),
+        body: data != null
+            ? Container(
+                padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
+                child: SizedBox(
+                  width: 950,
+                  height: 750,
+                  child: Card(
+                    color: Color.fromARGB(255, 187, 255, 145),
+                    shadowColor: const Color.fromARGB(255, 114, 114, 114),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0)),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Text(
+                            'เส้นเล็ก: ' + widget.small + ' กิโลกรัม',
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'เส้นใหญ่: ' + widget.big + ' กิโลกรัม',
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'เส้นม้วน: ' + widget.roll + ' กิโลกรัม',
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'วันที่รับ: ' + widget.picdate,
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'เวลาที่รับ: ' + widget.pictime + ' น.',
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'ที่อยู่สำหรับจัดส่ง: '
+                            ''' ${data['user_address']}''',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(height: 75),
+                          TextButton(
+                            onPressed: () {
+                              showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                          title: const Text(
+                                              'แก้ไขที่อยู่การจัดส่ง'),
+                                          content: const Text(
+                                              '*หากต้องการแก้ไขให้ไปที่ข้อมูลส่วนตัว*'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  context, 'Cancel'),
+                                              child: const Text('ยกเลิก'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () =>
+                                                  Navigator.pop(context, 'OK'),
+                                              child: const Text('ตกลง'),
+                                            ),
+                                          ]));
+                            },
+                            child: const Text('แก้ไขที่อยู่สำหรับจัดส่ง',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold)),
+                            style: ElevatedButton.styleFrom(
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30))),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 30),
+                              primary: Color.fromARGB(255, 202, 108, 21),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          TextButton(
+                            onPressed: () {
+                              sendorders(
+                                  widget.small,
+                                  widget.big,
+                                  widget.roll,
+                                  widget.picdate,
+                                  widget.pictime,
+                                  widget.now,
+                                  context);
+                            },
+                            child: const Text('ยืนยันคำสั่งซื้อ',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold)),
+                            style: ElevatedButton.styleFrom(
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30))),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 30),
+                              primary: Color.fromARGB(255, 77, 158, 88),
+                            ),
+                          ),
+                        ]),
+                  ),
+                ),
+              )
+            : Text('error'));
   }
 }

@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/TextModel.dart';
 
-const List<String> list = <String>[
-  'ลูกค้า',
-  'พนักงาน',
-];
-
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
@@ -21,7 +16,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController phone = TextEditingController();
-  TextEditingController role = TextEditingController();
+  TextEditingController role = TextEditingController(text: 'C');
   TextEditingController address = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -72,26 +67,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 15,
                   ),
-                  // TextFormFieldModel(
-                  //   controller: phone,
-                  //   labelText: 'เบอร์โทรศัพท์',
-                  //   hintText: 'เบอร์โทรศัพท์',
-                  //   textError: 'กรุณากรอก',
-                  //   helperText: 'กรุณากรอกเบอร์โทรศัพท์',
-                  // ),
-                  // const SizedBox(
-                  //   height: 15,
-                  // ),
                   TextFormFieldModel(
-                    controller: role,
-                    labelText: 'ประเภทผู้ใช้งาน',
-                    hintText: 'ประเภทผู้ใช้งาน',
+                    controller: phone,
+                    labelText: 'เบอร์โทรศัพท์',
+                    hintText: 'เบอร์โทรศัพท์',
                     textError: 'กรุณากรอก',
-                    helperText: 'กรอกประเภทผู้ใช้งาน ลูกค้า: C ,พนักงาน: S  ',
+                    helperText: 'กรุณากรอกเบอร์โทรศัพท์',
                   ),
                   const SizedBox(
                     height: 15,
                   ),
+                  // TextFormFieldModel(
+                  //   controller: role,
+                  //   labelText: 'ประเภทผู้ใช้งาน',
+                  //   hintText: 'ประเภทผู้ใช้งาน',
+                  //   textError: 'กรุณากรอก',
+                  //   helperText: 'กรอกประเภทผู้ใช้งาน ลูกค้า: C ,พนักงาน: S  ',
+                  // ),
+                  // const SizedBox(
+                  //   height: 15,
+                  // ),
                   TextFormFieldModel(
                     controller: address,
                     labelText: 'ที่อยู่',
@@ -116,7 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 5,
                   ),
-                  DropdownButtonExample(),
+
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromARGB(255, 77, 158, 88),
@@ -126,18 +121,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () async {
                       if (_formkey.currentState!.validate()) {
                         _formkey.currentState?.save();
+                        await checkRegister(
+                            fname.text,
+                            lname.text,
+                            phone.text,
+                            address.text,
+                            username.text,
+                            password.text,
+                            context);
                       }
                       print('สมัครสมาชิก');
-
-                      await checkRegister(
-                          fname.text,
-                          lname.text,
-                          phone.text,
-                          role.text,
-                          address.text,
-                          username.text,
-                          password.text,
-                          context);
+                      print(role);
                     },
                     child: Text(
                       'ยืนยัน',
@@ -152,46 +146,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class DropdownButtonExample extends StatefulWidget {
-  const DropdownButtonExample({key});
-
-  @override
-  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
-}
-
-class _DropdownButtonExampleState extends State<DropdownButtonExample> {
-  String dropdownValue = list.first;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: DropdownButton<String>(
-        value: dropdownValue,
-        icon: const Icon(Icons.arrow_downward),
-        elevation: 16,
-        style: const TextStyle(color: Colors.deepPurple),
-        underline: Container(
-          height: 2,
-          color: Colors.deepPurpleAccent,
-        ),
-        onChanged: (String? value) {
-          // This is called when the user selects an item.
-          setState(() {
-            dropdownValue = value!;
-          });
-        },
-        items: list.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
-        }).toList(),
       ),
     );
   }

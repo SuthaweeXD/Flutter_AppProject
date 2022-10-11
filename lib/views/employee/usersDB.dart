@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
-import 'package:flutter_application_project/model/ModelOrders.dart';
-import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/homepage1.dart';
+import 'package:flutter_application_project/model/SidemenuEmp.dart';
+import 'package:flutter_application_project/views/employee/UserDetail.dart';
 
 class usersDB extends StatefulWidget {
   usersDB({Key? key}) : super(key: key);
@@ -30,7 +29,7 @@ class _usersDBState extends State<usersDB> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 115, 243),
+        backgroundColor: Color.fromARGB(255, 59, 115, 255),
         title: const Text("ข้อมูลคำสั่งซื้อ"),
       ),
       backgroundColor: const Color.fromARGB(255, 227, 227, 227),
@@ -49,7 +48,7 @@ class _usersDBState extends State<usersDB> {
                       context,
                       MaterialPageRoute<void>(
                           builder: (BuildContext context) =>
-                              HomePage(data: data[i])));
+                              UserDetail(data: data[i])));
                 },
                 child: Card(
                   elevation: 10,
@@ -71,12 +70,6 @@ class _usersDBState extends State<usersDB> {
                               const SizedBox(
                                 width: 20.0,
                                 height: 20.0,
-                                // color: Color.fromARGB(255, 150, 217, 234),
-                                // ignore: prefer_const_constructors
-                                child: CircleAvatar(
-                                  backgroundColor:
-                                      Color.fromARGB(255, 186, 186, 186),
-                                ),
                               ),
                               const SizedBox(
                                 width: 2,
@@ -99,7 +92,7 @@ class _usersDBState extends State<usersDB> {
                                       height: 2,
                                     ),
                                     Text(
-                                      'ที่อยู่ในการจัดส่ง : '
+                                      'ที่อยู่ในการจัดส่ง : \n'
                                       '${data[i]['user_address']}',
                                       style: const TextStyle(
                                         fontSize: 15,
@@ -124,7 +117,7 @@ class _usersDBState extends State<usersDB> {
               ),
             ),
           )),
-      drawer: SideMenu(),
+      drawer: SideMenuEmp(),
     );
   }
 }

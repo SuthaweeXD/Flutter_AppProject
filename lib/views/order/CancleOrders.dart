@@ -19,7 +19,7 @@ class _CancleOrdersState extends State<CancleOrders> {
   }
 
   startApi() async {
-    dynamic item = await (74); //ส่งค่าไปยัง getdataหรือตัวรับapi
+    dynamic item = await (74);
     setState(() {
       data = item;
     });
@@ -32,66 +32,9 @@ class _CancleOrdersState extends State<CancleOrders> {
         title: const Text('ยกเลิกคำสั่งซื้อ'),
         backgroundColor: const Color.fromARGB(255, 160, 42, 207),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: RefreshIndicator(
-            onRefresh: () async {
-              // startApi();
-            },
-            child: ListView.builder(
-              // itemCount:
-              //     data?.length ?? 0, //เอาออกไปก่อนเพราะตัวdata.lengthยังพังอยู่
-              itemBuilder: (context, i) => InkWell(
-                onTap: () {},
-                child: Card(
-                  elevation: 10,
-                  color: const Color.fromARGB(255, 186, 198, 201),
-                  shadowColor: const Color.fromARGB(255, 99, 108, 110),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(27),
-                  ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              const SizedBox(
-                                width: 55.0,
-                                height: 55.0,
-                                child: CircleAvatar(),
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(25),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'ยังไม่แก้',
-                                      style: const TextStyle(fontSize: 15),
-                                    ),
-
-                                    // Text(
-                                  ],
-                                ),
-                              ),
-                            ])
-                      ]),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ), //หน้าปุ่มsidemenu
+      body: Column(
+        children: [Text('')],
+      ),
     );
   }
 }

@@ -2,11 +2,11 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/views/login.dart';
+import 'package:flutter_application_project/views/Login.dart';
 import 'package:flutter_application_project/model/menuprofile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'login.dart';
+import 'Login.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key, required this.data}) : super(key: key);

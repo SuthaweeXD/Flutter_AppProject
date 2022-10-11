@@ -2,9 +2,9 @@
 
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/views/employee/customer_data.dart';
-import 'package:flutter_application_project/views/employee/usersDB.dart';
-import 'package:flutter_application_project/views/order/ordersDB.dart';
+import 'package:flutter_application_project/views/employee/UsersDB.dart';
+import 'package:flutter_application_project/views/order/ConfirmOrders.dart';
+import 'package:flutter_application_project/views/order/OrdersDB.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
 
 class ModelOrders extends StatelessWidget {
@@ -100,6 +100,18 @@ class TextOrders extends StatelessWidget {
                 value: 0,
                 decimals: 1,
                 step: 0.5,
+                max: 2000,
+                showButtons: true,
+                decoration:
+                    const InputDecoration(labelText: 'ระบุจำนวนที่ต้องการ'),
+                iconColor: MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.disabled)) {
+                    return Color.fromARGB(255, 255, 28, 12);
+                  }
+                  if (states.contains(MaterialState.focused)) {
+                    return Colors.green;
+                  }
+                }),
                 onChanged: (value) {
                   controller?.text = value.toString();
                   print(controller?.text);
@@ -123,6 +135,10 @@ Future<void> normalDialog(BuildContext context, String message) async {
             )
           ]));
 }
+
+
+
+
 
 // class DialogExample extends StatelessWidget {
 //   // ignore: use_key_in_widget_constructors

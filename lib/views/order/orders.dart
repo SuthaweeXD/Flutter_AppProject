@@ -1,14 +1,16 @@
 // ignore_for_file: file_names
 
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/model/ModelOrders.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/map.dart';
+import 'package:flutter_application_project/views/Map.dart';
 import 'package:flutter_application_project/views/order/ConfirmOrders.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,11 +23,12 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
-  TextEditingController small = TextEditingController();
-  TextEditingController big = TextEditingController();
-  TextEditingController roll = TextEditingController();
+  TextEditingController small = TextEditingController(text: '0.0');
+  TextEditingController big = TextEditingController(text: '0.0');
+  TextEditingController roll = TextEditingController(text: '0.0');
   TextEditingController picdate = TextEditingController();
   TextEditingController pictime = TextEditingController();
+
   DateTime? odate;
   TimeOfDay? selecttime;
   DateTime? datenow = DateTime.now();
@@ -44,7 +47,7 @@ class _OrdersState extends State<Orders> {
         setState(() {
           datenow = odate;
           picdate.text = DateFormat("yyyy-MM-dd").format(odate!);
-          DateFormat("yyyy-MM-dd").format(odate!);
+          DateFormat("dd-MM-yyyy").format(odate!);
         });
       }
     }
@@ -54,7 +57,6 @@ class _OrdersState extends State<Orders> {
           await showTimePicker(context: context, initialTime: TimeOfDay.now());
       if (selecttime != null) {
         setState(() {
-          // datenow = date;
           pictime.text = '${selecttime!.hour}:${selecttime?.minute}';
           // DateFormat("dd/MM/yyyy").format(date);
         });
@@ -90,9 +92,8 @@ class _OrdersState extends State<Orders> {
               const SizedBox(
                 width: 5,
               ),
-              const ModelOrdersNetwork(
-                ImagesP:
-                    ('https://github.com/SuthaweeXD/images/blob/main/roll.png?raw=true'),
+              const ModelOrders(
+                ImagesP: ('assets/images/roll.png'),
                 TextP: ('เส้นม้วน'),
               )
             ],
@@ -125,7 +126,6 @@ class _OrdersState extends State<Orders> {
             height: 20,
           ),
 
-          // ignore: prefer_const_constructors
           SizedBox(
             height: 5,
           ),
@@ -163,6 +163,13 @@ class _OrdersState extends State<Orders> {
                 ),
                 TextFormField(
                   controller: pictime,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'มีช่องว่าง';
+                    } else {
+                      return null;
+                    }
+                  },
                   readOnly: true,
                   onTap: () {
                     newTime();
@@ -191,9 +198,25 @@ class _OrdersState extends State<Orders> {
           ),
           ElevatedButton(
             onPressed: () {
-              //เช็ค
-              sendorders(small.text, big.text, roll.text, picdate.text,
-                  pictime.text, now.toString(), context);
+              double.parse(small.text) +
+                              double.parse(big.text) +
+                              double.parse(roll.text) <
+                          5 ||
+                      picdate.text == "" ||
+                      pictime.text == ""
+                  ? normalDialog(context,
+                      ('*กรุณากรอกให้ถูกต้อง สั่งขั้นต่ำทั้งหมด 5 กิโลกรัมขึ้นไป*'))
+                  : Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ConfirmOrders(
+                            small: small.text,
+                            big: big.text,
+                            roll: roll.text,
+                            picdate: picdate.text,
+                            pictime: pictime.text,
+                            now: now.toString()),
+                      ));
             },
             child: const Text('ถัดไป',
                 style: TextStyle(
@@ -213,37 +236,3 @@ class _OrdersState extends State<Orders> {
     );
   }
 }
-
-// Future sendorders(small, big, roll, picdate, pictime, now, context) async {
-//   final prefs =
-//       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-//   int? userid = prefs.getInt('idm');
-//   Uri url = Uri.parse('http://192.168.1.112:3200/api/orders');
-//   http
-//       .post(
-//     url,
-//     headers: headers,
-//     body: jsonEncode({
-//       "userid": userid,
-//       "small": small,
-//       "big": big,
-//       "roll": roll,
-//       "ogetdate": picdate + ' ' + pictime,
-//       "odate": now
-//     }),
-//   )
-//       .then((req) async {
-//     print(req.statusCode);
-//     print(picdate);
-//     print(pictime);
-
-//     if (req.statusCode == 201) {
-//       EasyLoading.showSuccess('Great Success!');
-//       Navigator.of(context).pushAndRemoveUntil(
-//           MaterialPageRoute(builder: (context) => ConfirmOrders()),
-//           (Route<dynamic> route) => false);
-//     } else {
-//       EasyLoading.showError('Failed with Error');
-//     }
-//   });
-// }

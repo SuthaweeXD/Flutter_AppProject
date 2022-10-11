@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/route/route.dart';
-import 'package:flutter_application_project/views/homepage.dart';
-import 'package:flutter_application_project/views/login.dart';
+import 'package:flutter_application_project/views/Homepage.dart';
+import 'package:flutter_application_project/views/Login.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class MyApp extends StatelessWidget {

@@ -12,6 +12,7 @@ class _checkpaymentState extends State<checkpayment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 59, 115, 255),
         title: Text('ตรวจสอบการโอนชำระ'),
       ),
     );

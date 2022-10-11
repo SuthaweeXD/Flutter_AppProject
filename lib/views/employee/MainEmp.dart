@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/views/employee/payment.dart';
-import 'package:flutter_application_project/views/employee/statusDB.dart';
-import 'package:flutter_application_project/views/employee/usersDB.dart';
-import 'package:flutter_application_project/views/order/ordersDB.dart';
+import 'package:flutter_application_project/views/employee/OrderDBEmp.dart';
+import 'package:flutter_application_project/views/employee/Payment.dart';
+import 'package:flutter_application_project/views/employee/StatusDB.dart';
+import 'package:flutter_application_project/views/employee/UsersDB.dart';
 
 class MainEmployee extends StatefulWidget {
   MainEmployee({Key? key, required this.index}) : super(key: key);
@@ -19,7 +19,7 @@ class _State extends State<MainEmployee> {
   }
 
   final screens = [
-    OrderDB(),
+    ListOrders(),
     usersDB(),
     statusDB(),
     checkpayment(),
@@ -43,7 +43,12 @@ class _State extends State<MainEmployee> {
 
         unselectedFontSize: 14,
         unselectedItemColor: Color.fromARGB(255, 126, 125, 125),
-        selectedItemColor: Color.fromARGB(255, 82, 255, 1),
+        selectedItemColor: Color.fromARGB(
+          255,
+          59,
+          115,
+          255,
+        ),
         showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -51,15 +56,15 @@ class _State extends State<MainEmployee> {
             label: 'ข้อมูลการสั่งซื้อ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shop),
+            icon: Icon(Icons.person_pin),
             label: 'ข้อมูลผู้ใช้งาน',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
+            icon: Icon(Icons.add_business_sharp),
             label: 'ปรับปรุงสถานะ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.payments_sharp),
             label: 'ตรวจสอบการโอนชำระ',
           ),
         ],

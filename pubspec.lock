@@ -156,6 +156,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  geolocator_platform_interface:
+    dependency: transitive
+    description:
+      name: geolocator_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.6"
+  geolocator_web:
+    dependency: "direct main"
+    description:
+      name: geolocator_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.6"
   google_maps_flutter:
     dependency: "direct main"
     description:

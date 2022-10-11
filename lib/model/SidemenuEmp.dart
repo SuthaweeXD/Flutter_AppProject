@@ -1,16 +1,17 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'dart:convert';
-import 'package:flutter_application_project/views/Homepage.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/employee/MainEmp.dart';
 import 'package:flutter_application_project/views/ProflieUpdate.dart';
 import 'package:flutter_application_project/views/Login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../config/config.dart';
 
-class SideMenu extends StatefulWidget {
-  SideMenu({
+class SideMenuEmp extends StatefulWidget {
+  SideMenuEmp({
     Key? key,
     this.routeName,
   }) : super(key: key);
@@ -18,10 +19,10 @@ class SideMenu extends StatefulWidget {
   final String? routeName;
 
   @override
-  State<SideMenu> createState() => _SideMenuState();
+  State<SideMenuEmp> createState() => _SideMenuEmpState();
 }
 
-class _SideMenuState extends State<SideMenu> {
+class _SideMenuEmpState extends State<SideMenuEmp> {
   dynamic data;
 
   @override
@@ -49,7 +50,7 @@ class _SideMenuState extends State<SideMenu> {
           Container(
             padding: EdgeInsets.symmetric(vertical: 20),
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 230, 191, 35),
+              color: Color.fromARGB(255, 129, 253, 28),
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
@@ -113,8 +114,7 @@ class _SideMenuState extends State<SideMenu> {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Customerhome(index: 0),
-                            //แก้ตรงนี้--------------------------------------------------------------------------------------
+                            builder: (context) => MainEmployee(index: 0),
                           ),
                           (route) => false);
                     },
@@ -165,7 +165,7 @@ class _SideMenuState extends State<SideMenu> {
       title: Text(name),
       onTap: () {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
+            MaterialPageRoute(builder: (context) => MainEmployee(index: 0)),
             (Route<dynamic> route) => false);
       },
     );

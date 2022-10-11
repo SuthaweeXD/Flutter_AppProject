@@ -12,7 +12,8 @@ class _statusDBState extends State<statusDB> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ปรับปรุงสถานะ'),
+        backgroundColor: Color.fromARGB(255, 59, 115, 255),
+        title: Text('ประชาสัมพันธ์'),
       ),
     );
   }

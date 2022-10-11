@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/config/api.dart';
-import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/homepage1.dart';
+import 'package:flutter_application_project/views/employee/EditOrder.dart';
 import 'package:intl/intl.dart';
+import '../../config/api.dart';
+import '../../model/ColorCard.dart';
+import '../../model/SidemenuEmp.dart';
+import '../order/OrderDetail.dart';
 
-class HistoryOrders extends StatefulWidget {
-  HistoryOrders({Key? key}) : super(key: key);
+class ListOrders extends StatefulWidget {
+  ListOrders({Key? key}) : super(key: key);
 
   @override
-  State<HistoryOrders> createState() => _HistoryOrdersState();
+  State<ListOrders> createState() => _ListOrdersState();
 }
 
-class _HistoryOrdersState extends State<HistoryOrders> {
+class _ListOrdersState extends State<ListOrders> {
   dynamic data;
+  dynamic dataadd;
   @override
   void initState() {
     super.initState();
@@ -20,9 +23,11 @@ class _HistoryOrdersState extends State<HistoryOrders> {
   }
 
   startApi() async {
-    var item = await gethistoryod();
+    var item = await getOrders();
+    var itemadd = await getdataprofile1();
     setState(() {
       data = item;
+      dataadd = itemadd;
     });
   }
 
@@ -30,30 +35,37 @@ class _HistoryOrdersState extends State<HistoryOrders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ประวัติการสั่งซื้อ'),
-        backgroundColor: Color.fromARGB(255, 89, 160, 51),
+        backgroundColor: Color.fromARGB(255, 59, 115, 255),
+        title: const Text("ข้อมูลคำสั่งซื้อ"),
       ),
-      body: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: RefreshIndicator(
-            onRefresh: () async {
-              startApi();
-            },
-            child: ListView.builder(
-              itemCount: data?.length ?? 0,
-              itemBuilder: (context, i) => InkWell(
-                // onTap: () => Navigator.pushNamed(context, "/CDT"),
+      backgroundColor: const Color.fromARGB(255, 227, 227, 227),
+      body: Container(
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        child: SizedBox(
+            child: RefreshIndicator(
+          onRefresh: () async {
+            startApi();
+          },
+          child: ListView.builder(
+            reverse: true,
+            itemCount: data?.length ?? 0,
+            itemBuilder: (context, i) => Container(
+              height: 180,
+              width: 20,
+              child: InkWell(
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
                           builder: (BuildContext context) =>
-                              HomePage(data: data[i])));
+                              EditOrders(data: data[i])));
                 },
                 child: Card(
                   elevation: 10,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  shadowColor: Color.fromARGB(255, 114, 114, 114),
+                  color: data[i]["order_status"] != null
+                      ? ColorCard(data[i]["order_status"])
+                      : const Color.fromARGB(255, 255, 255, 255),
+                  shadowColor: const Color.fromARGB(255, 114, 114, 114),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -65,20 +77,9 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               const SizedBox(
-                                width: 10,
-                              ),
-                              const SizedBox(
-                                width: 20.0,
-                                height: 20.0,
-                                // color: Color.fromARGB(255, 150, 217, 234),
-                                // ignore: prefer_const_constructors
-                                child: CircleAvatar(
-                                  backgroundColor:
-                                      Color.fromARGB(255, 186, 186, 186),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 2,
+                                width: 45,
+                                height: 10.0,
+                                child: ClipOval(),
                               ),
                               Container(
                                 padding: const EdgeInsets.all(22),
@@ -87,19 +88,16 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                                   children: [
                                     Text(
                                       'วันที่สั่ง : ' +
-                                          DateFormat('dd-mm-yy KK:MM').format(
-                                              DateTime.parse(
+                                          DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                              .format(DateTime.parse(
                                                   '${data[i]['order_date']}')),
                                       style: const TextStyle(fontSize: 17),
-
-                                      // 'วันที่สั่ง : ${data[i]['order_date']}',
-                                      // style: const TextStyle(fontSize: 17),
                                     ),
                                     const SizedBox(height: 2),
                                     Text(
                                       'วันที่รับ :' +
-                                          DateFormat('dd-mm-yy KK:MM').format(
-                                              DateTime.parse(
+                                          DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                              .format(DateTime.parse(
                                                   '${data[i]['order_getdate']}')),
                                       style: const TextStyle(fontSize: 17),
                                     ),
@@ -112,16 +110,25 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                                       'เส้นใหญ่ : ${data[i]['order_big']}'
                                       '  '
                                       'เส้นม้วน : ${data[i]['order_roll']}',
-                                      style: TextStyle(fontSize: 15),
+                                      style: const TextStyle(fontSize: 15),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    // ignore: prefer_const_constructors
+                                    Text(
+                                      'ที่อยู่ในการจัดส่ง : ',
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                      ),
                                     ),
                                     const SizedBox(
                                       height: 2,
                                     ),
                                     Text(
-                                      'ที่อยู่ในการจัดส่ง : '
-                                      '${data[i]['order_address']}',
+                                      '${dataadd['user_address']}',
                                       style: const TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 17,
                                       ),
                                     ),
                                   ],
@@ -132,8 +139,10 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                 ),
               ),
             ),
-          )),
-      drawer: SideMenu(),
+          ),
+        )),
+      ),
+      drawer: SideMenuEmp(),
     );
   }
 }

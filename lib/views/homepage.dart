@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/views/ProflieUpdate.dart';
-import 'package:flutter_application_project/views/history_orders.dart';
+import 'package:flutter_application_project/views/HistoryOrder.dart';
 import 'package:flutter_application_project/views/order/Orders.dart';
-import 'package:flutter_application_project/views/order/ordersDB.dart';
+import 'package:flutter_application_project/views/order/OrdersDB.dart';
 
 class Customerhome extends StatefulWidget {
   Customerhome({Key? key, required this.index}) : super(key: key);
@@ -37,11 +37,7 @@ class CustomerHome extends State<Customerhome> {
     return Scaffold(
       body: screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        // type: BottomNavigationBarType.fixed,
-        // backgroundColor: Color.fromARGB(255, 163, 50, 255),
-        // fixedColor: Color.fromARGB(255, 163, 50, 255),
         iconSize: 32.0,
-
         unselectedFontSize: 14,
         unselectedItemColor: Color.fromARGB(255, 126, 125, 125),
         selectedItemColor: Color.fromARGB(255, 255, 153, 20),

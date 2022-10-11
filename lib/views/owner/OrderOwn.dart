@@ -1,23 +1,20 @@
-import 'dart:convert';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/employee/editcustomer.dart';
-import 'package:flutter_application_project/views/homepage1.dart';
-import 'package:http/http.dart ' as http;
-import 'package:flutter_application_project/config/api.dart';
 import 'package:intl/intl.dart';
 
-class CustomerDB extends StatefulWidget {
-  const CustomerDB({Key? key}) : super(key: key);
+import '../../config/api.dart';
+import '../../model/ColorCard.dart';
+import '../employee/EditOrder.dart';
+
+class OrderOwn extends StatefulWidget {
+  OrderOwn({Key? key}) : super(key: key);
 
   @override
-  State<CustomerDB> createState() => _CustomerDBState();
+  State<OrderOwn> createState() => _OrderOwnState();
 }
 
-class _CustomerDBState extends State<CustomerDB> {
+class _OrderOwnState extends State<OrderOwn> {
   dynamic data;
+  dynamic dataadd;
   @override
   void initState() {
     super.initState();
@@ -26,8 +23,10 @@ class _CustomerDBState extends State<CustomerDB> {
 
   startApi() async {
     var item = await getOrders();
+    var itemadd = await getdataprofile1();
     setState(() {
       data = item;
+      dataadd = itemadd;
     });
   }
 
@@ -35,31 +34,37 @@ class _CustomerDBState extends State<CustomerDB> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 115, 243),
+        backgroundColor: Color.fromARGB(255, 59, 115, 255),
         title: const Text("ข้อมูลคำสั่งซื้อ"),
       ),
       backgroundColor: const Color.fromARGB(255, 227, 227, 227),
-      body: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: RefreshIndicator(
-            onRefresh: () async {
-              startApi();
-            },
-            child: ListView.builder(
-              itemCount: data?.length ?? 0,
-              itemBuilder: (context, i) => InkWell(
-                // onTap: () => Navigator.pushNamed(context, "/CDT"),
+      body: Container(
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        child: SizedBox(
+            child: RefreshIndicator(
+          onRefresh: () async {
+            startApi();
+          },
+          child: ListView.builder(
+            reverse: true,
+            itemCount: data?.length ?? 0,
+            itemBuilder: (context, i) => Container(
+              height: 180,
+              width: 20,
+              child: InkWell(
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
                           builder: (BuildContext context) =>
-                              HomePage(data: data[i])));
+                              EditOrders(data: data[i])));
                 },
                 child: Card(
                   elevation: 10,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  shadowColor: Color.fromARGB(255, 114, 114, 114),
+                  color: data[i]["order_status"] != null
+                      ? ColorCard(data[i]["order_status"])
+                      : const Color.fromARGB(255, 255, 255, 255),
+                  shadowColor: const Color.fromARGB(255, 114, 114, 114),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -71,20 +76,9 @@ class _CustomerDBState extends State<CustomerDB> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               const SizedBox(
-                                width: 10,
-                              ),
-                              const SizedBox(
-                                width: 20.0,
-                                height: 20.0,
-                                // color: Color.fromARGB(255, 150, 217, 234),
-                                // ignore: prefer_const_constructors
-                                child: CircleAvatar(
-                                  backgroundColor:
-                                      Color.fromARGB(255, 186, 186, 186),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 2,
+                                width: 45,
+                                height: 10.0,
+                                child: ClipOval(),
                               ),
                               Container(
                                 padding: const EdgeInsets.all(22),
@@ -93,16 +87,16 @@ class _CustomerDBState extends State<CustomerDB> {
                                   children: [
                                     Text(
                                       'วันที่สั่ง : ' +
-                                          DateFormat('dd-mm-yy KK:MM').format(
-                                              DateTime.parse(
+                                          DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                              .format(DateTime.parse(
                                                   '${data[i]['order_date']}')),
                                       style: const TextStyle(fontSize: 17),
                                     ),
                                     const SizedBox(height: 2),
                                     Text(
                                       'วันที่รับ :' +
-                                          DateFormat('dd-mm-yy KK:MM').format(
-                                              DateTime.parse(
+                                          DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                              .format(DateTime.parse(
                                                   '${data[i]['order_getdate']}')),
                                       style: const TextStyle(fontSize: 17),
                                     ),
@@ -115,16 +109,25 @@ class _CustomerDBState extends State<CustomerDB> {
                                       'เส้นใหญ่ : ${data[i]['order_big']}'
                                       '  '
                                       'เส้นม้วน : ${data[i]['order_roll']}',
-                                      style: TextStyle(fontSize: 15),
+                                      style: const TextStyle(fontSize: 15),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    // ignore: prefer_const_constructors
+                                    Text(
+                                      'ที่อยู่ในการจัดส่ง : ',
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                      ),
                                     ),
                                     const SizedBox(
                                       height: 2,
                                     ),
                                     Text(
-                                      'ที่อยู่ในการจัดส่ง : '
-                                      '${data[i]['order_address']}',
+                                      '${dataadd['user_address']}',
                                       style: const TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 17,
                                       ),
                                     ),
                                   ],
@@ -135,25 +138,9 @@ class _CustomerDBState extends State<CustomerDB> {
                 ),
               ),
             ),
-          )),
-      drawer: SideMenu(),
+          ),
+        )),
+      ),
     );
   }
 }
-
-// Future<dynamic> getdata() async {
-//   Uri url = Uri.parse('http://192.168.1.144:3200/api/users');
-//   return await http
-//       .get(
-//     url,
-//   )
-//       .then((req) async {
-//     print(req.statusCode);
-//     if (req.statusCode == 200) {
-//       var data = jsonDecode(req.body);
-//       return data;
-//     } else {
-//       return null;
-//     }
-//   });
-// }
