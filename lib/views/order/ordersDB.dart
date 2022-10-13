@@ -7,7 +7,9 @@ import 'package:http/http.dart ' as http;
 import 'package:intl/intl.dart';
 
 class OrderDB extends StatefulWidget {
-  const OrderDB({Key? key}) : super(key: key);
+  const OrderDB({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<OrderDB> createState() => _OrderDBState();
@@ -50,7 +52,7 @@ class _OrderDBState extends State<OrderDB> {
             // reverse: true,
             itemCount: data?.length ?? 0,
             itemBuilder: (context, i) => Container(
-              height: 180,
+              height: 150,
               width: 45,
               child: InkWell(
                 onTap: () {
@@ -78,11 +80,10 @@ class _OrderDBState extends State<OrderDB> {
                           Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                const SizedBox(
-                                  width: 45,
-                                  height: 50.0,
-                                  child: ClipOval(),
+                                SizedBox(
+                                  width: 10,
                                 ),
+                                IconStatus1(data[i]["order_status"]),
                                 Container(
                                   padding: const EdgeInsets.all(22),
                                   child: Column(
@@ -90,11 +91,18 @@ class _OrderDBState extends State<OrderDB> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
+                                        'ชื่อ : ${dataadd['user_fname']}'
+                                        '  '
+                                        'นามสกุล : ${dataadd['user_lname']}',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+
+                                      Text(
                                         'วันที่สั่ง : ' +
                                             DateFormat('dd-MM-yyyy เวลา HH:mm')
                                                 .format(DateTime.parse(
                                                     '${data[i]['order_date']}')),
-                                        style: const TextStyle(fontSize: 17),
+                                        style: const TextStyle(fontSize: 16),
                                       ),
                                       const SizedBox(height: 2),
                                       Text(
@@ -102,38 +110,24 @@ class _OrderDBState extends State<OrderDB> {
                                             DateFormat('dd-MM-yyyy เวลา HH:mm')
                                                 .format(DateTime.parse(
                                                     '${data[i]['order_getdate']}')),
-                                        style: const TextStyle(fontSize: 17),
+                                        style: const TextStyle(fontSize: 16),
                                       ),
                                       const SizedBox(
                                         height: 2,
                                       ),
                                       Text(
-                                        'เส้นเล็ก : ${data[i]['order_small']}'
-                                        '  '
-                                        'เส้นใหญ่ : ${data[i]['order_big']}'
-                                        '  '
-                                        'เส้นม้วน : ${data[i]['order_roll']}',
-                                        style: const TextStyle(fontSize: 15),
+                                        'สถานะ : ' +
+                                            ColorStatus(
+                                                data[i]["order_status"]),
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
                                       ),
+
                                       const SizedBox(
                                         height: 2,
                                       ),
                                       // ignore: prefer_const_constructors
-                                      Text(
-                                        'ที่อยู่ในการจัดส่ง : ',
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      Text(
-                                        '${dataadd['user_address']}',
-                                        style: const TextStyle(
-                                          fontSize: 15,
-                                        ),
-                                      ),
                                     ],
                                   ),
                                 ),

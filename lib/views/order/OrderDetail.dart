@@ -4,6 +4,8 @@ import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/order/CancleOrders.dart';
 import 'package:intl/intl.dart';
 
+import '../../model/ColorCard.dart';
+
 class OrderDetail extends StatefulWidget {
   OrderDetail({
     Key? key,
@@ -36,16 +38,29 @@ class _OrderDetailState extends State<OrderDetail> {
                 const SizedBox(
                   height: 25,
                 ),
+                IconStatus(widget.data["order_status"]),
+                Text(
+                  'สถานะ : ' + ColorStatus(widget.data["order_status"]),
+                  style: const TextStyle(
+                    fontSize: 17,
+                    color: Color.fromARGB(255, 0, 0, 0),
+
+                    // backgroundColor: Color.fromARGB(255, 255, 31, 61)
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
                 Text(
                   'วันที่สั่ง : ' +
-                      DateFormat('dd-MM-yyyy เวลา HH:mmน. ')
+                      DateFormat('dd-MM-yyyy เวลา HH:mm น. ')
                           .format(DateTime.parse(widget.data['order_date'])),
                   style: const TextStyle(fontSize: 17),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   'วันที่รับ :' +
-                      DateFormat('dd-MM-yyyy เวลา HH:mm')
+                      DateFormat('dd-MM-yyyy เวลา HH:mm น. ')
                           .format(DateTime.parse(widget.data['order_getdate'])),
                   style: const TextStyle(fontSize: 17),
                 ),
@@ -53,11 +68,24 @@ class _OrderDetailState extends State<OrderDetail> {
                   height: 10,
                 ),
                 Text(
-                  'เส้นเล็ก : ${widget.data['order_small']}'
-                  '  '
-                  'เส้นใหญ่ : ${widget.data['order_big']}'
-                  '  '
-                  'เส้นม้วน : ${widget.data['order_roll']}',
+                  'เส้นเล็ก :          ${widget.data['order_small']}' +
+                      '        กิโลกรัม',
+                  style: const TextStyle(fontSize: 18),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'เส้นใหญ่ :          ${widget.data['order_big']}' +
+                      '        กิโลกรัม',
+                  style: const TextStyle(fontSize: 18),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'เส้นม้วน :          ${widget.data['order_roll']}' +
+                      '        กิโลกรัม',
                   style: const TextStyle(fontSize: 18),
                 ),
                 const SizedBox(

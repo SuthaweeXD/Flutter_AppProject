@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/owner/EditOrderOwn.dart';
 import 'package:intl/intl.dart';
 
 import '../../config/api.dart';
@@ -57,7 +58,7 @@ class _OrderOwnState extends State<OrderOwn> {
                       context,
                       MaterialPageRoute<void>(
                           builder: (BuildContext context) =>
-                              EditOrders(data: data[i])));
+                              EditOrderOwn(data: data[i])));
                 },
                 child: Card(
                   elevation: 10,

@@ -60,8 +60,8 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                     elevation: 10,
                     color: data[i]["order_status"] != null
                         ? ColorCard(data[i]["order_status"])
-                        : Color.fromARGB(255, 255, 255, 255),
-                    shadowColor: Color.fromARGB(255, 114, 114, 114),
+                        : const Color.fromARGB(255, 255, 255, 255),
+                    shadowColor: const Color.fromARGB(255, 114, 114, 114),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -72,18 +72,10 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                           Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                const SizedBox(
+                                SizedBox(
                                   width: 10,
                                 ),
-                                const SizedBox(
-                                  width: 20.0,
-                                  height: 20.0,
-                                  // color: Color.fromARGB(255, 150, 217, 234),
-                                  // ignore: prefer_const_constructors
-                                ),
-                                const SizedBox(
-                                  width: 2,
-                                ),
+                                IconStatus1(data[i]["order_status"]),
                                 Container(
                                   padding: const EdgeInsets.all(22),
                                   child: Column(
@@ -91,14 +83,18 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
+                                        'ชื่อ : ${dataadd['user_fname']}'
+                                        '  '
+                                        'นามสกุล : ${dataadd['user_lname']}',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+
+                                      Text(
                                         'วันที่สั่ง : ' +
                                             DateFormat('dd-MM-yyyy เวลา HH:mm')
                                                 .format(DateTime.parse(
                                                     '${data[i]['order_date']}')),
-                                        style: const TextStyle(fontSize: 17),
-
-                                        // 'วันที่สั่ง : ${data[i]['order_date']}',
-                                        // style: const TextStyle(fontSize: 17),
+                                        style: const TextStyle(fontSize: 16),
                                       ),
                                       const SizedBox(height: 2),
                                       Text(
@@ -106,29 +102,24 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                                             DateFormat('dd-MM-yyyy เวลา HH:mm')
                                                 .format(DateTime.parse(
                                                     '${data[i]['order_getdate']}')),
-                                        style: const TextStyle(fontSize: 17),
+                                        style: const TextStyle(fontSize: 16),
                                       ),
                                       const SizedBox(
                                         height: 2,
                                       ),
                                       Text(
-                                        'เส้นเล็ก : ${data[i]['order_small']}'
-                                        '  '
-                                        'เส้นใหญ่ : ${data[i]['order_big']}'
-                                        '  '
-                                        'เส้นม้วน : ${data[i]['order_roll']}',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      Text(
-                                        'ที่อยู่ในการจัดส่ง : \n'
-                                        '${dataadd['user_address']}',
+                                        'สถานะ : ' +
+                                            ColorStatus(
+                                                data[i]["order_status"]),
                                         style: const TextStyle(
-                                          fontSize: 15,
+                                          fontSize: 16,
                                         ),
                                       ),
+
+                                      const SizedBox(
+                                        height: 2,
+                                      ),
+                                      // ignore: prefer_const_constructors
                                     ],
                                   ),
                                 ),

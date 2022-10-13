@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/views/owner/OrderOwn.dart';
 import 'package:flutter_application_project/views/owner/Report.dart';
+import 'package:flutter_application_project/views/owner/UserDBOwn.dart';
 
 import '../employee/OrderDBEmp.dart';
 import '../employee/Payment.dart';
@@ -25,7 +26,7 @@ class _HomepageOwnState extends State<HomepageOwn> {
 
   final screens = [
     OrderOwn(),
-    usersDB(),
+    UserDBOwn(),
     ReportOrder(),
     // checkpayment(),
   ];
@@ -55,7 +56,7 @@ class _HomepageOwnState extends State<HomepageOwn> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.all_inbox),
-            label: 'สรุปการขาย',
+            label: 'ข้อมูลคำสั่งซื้อ',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin),
@@ -66,8 +67,8 @@ class _HomepageOwnState extends State<HomepageOwn> {
           //   label: 'ปรับปรุงสถานะ',
           // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'ตรวจสอบการโอนชำระ',
+            icon: Icon(Icons.bar_chart_outlined),
+            label: 'สรุปการขาย',
           ),
         ],
         currentIndex: _selectedIndex,

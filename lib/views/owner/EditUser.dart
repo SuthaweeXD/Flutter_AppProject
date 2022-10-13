@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/model/SidemenuEmp.dart';
-import 'package:flutter_application_project/model/TextModel.dart';
-import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/Homepage.dart';
-import 'package:flutter_application_project/views/employee/MainEmp.dart';
+import 'package:flutter_application_project/config/api.dart';
 
-import '../../config/api.dart';
-import '../Map.dart';
+import '../../model/TextModel.dart';
 
-class EditCustomer extends StatefulWidget {
-  const EditCustomer({Key? key, required this.data}) : super(key: key);
+class EditUserOwn extends StatefulWidget {
+  EditUserOwn({Key? key, required this.data}) : super(key: key);
   final dynamic data;
+
   @override
-  State<EditCustomer> createState() => _EditCustomerState();
+  State<EditUserOwn> createState() => _EditUserOwnState();
 }
 
-class _EditCustomerState extends State<EditCustomer> {
+class _EditUserOwnState extends State<EditUserOwn> {
   TextEditingController fname = TextEditingController();
   TextEditingController lname = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController address = TextEditingController();
 
-  @override
   @override
   void initState() {
     super.initState();
@@ -47,9 +42,9 @@ class _EditCustomerState extends State<EditCustomer> {
                 height: 10,
               ),
               CircleAvatar(
-                // child: Image.asset('assets/images/ACE.png'),
+                child: Image.asset('assets/images/ACE.png'),
                 backgroundColor: Color.fromARGB(255, 255, 206, 121),
-                radius: 60,
+                radius: 30,
               ),
               SizedBox(
                 height: 20,
@@ -119,7 +114,7 @@ class _EditCustomerState extends State<EditCustomer> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  sendDataProfile2(fname.text, lname.text, phone.text,
+                  sendDataProfile3(fname.text, lname.text, phone.text,
                       address.text, widget.data['user_id'], context);
                 },
                 child: const Text('ยืนยัน',

@@ -1,28 +1,20 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/views/employee/MainEmp.dart';
-import 'package:flutter_application_project/views/ProflieUpdate.dart';
+import 'package:flutter_application_project/model/Sidemenu.dart';
 import 'package:flutter_application_project/views/Login.dart';
+import 'package:flutter_application_project/views/owner/Main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-import '../config/config.dart';
 
-class SideMenuEmp extends StatefulWidget {
-  SideMenuEmp({
+class SideMenuOwn extends StatefulWidget {
+  SideMenuOwn({
     Key? key,
     this.routeName,
   }) : super(key: key);
-
   final String? routeName;
-
   @override
-  State<SideMenuEmp> createState() => _SideMenuEmpState();
+  State<SideMenuOwn> createState() => _SideMenuOwnState();
 }
 
-class _SideMenuEmpState extends State<SideMenuEmp> {
+class _SideMenuOwnState extends State<SideMenuOwn> {
   dynamic data;
 
   @override
@@ -50,7 +42,7 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
           Container(
             padding: EdgeInsets.symmetric(vertical: 20),
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 129, 253, 28),
+              color: Color.fromARGB(255, 3, 87, 255),
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
@@ -114,7 +106,7 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MainEmployee(index: 0),
+                            builder: (context) => HomepageOwn(index: 0),
                           ),
                           (route) => false);
                     },
@@ -155,41 +147,4 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
       ),
     );
   }
-
-  ListTile routeItem(BuildContext context, Widget? leading, String name,
-      String routeItemName) {
-    return ListTile(
-      selected: widget.routeName == routeItemName,
-      selectedColor: Colors.lightGreen,
-      leading: leading,
-      title: Text(name),
-      onTap: () {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => MainEmployee(index: 0)),
-            (Route<dynamic> route) => false);
-      },
-    );
-  }
-}
-
-Future<dynamic> getdataprofile() async {
-  final prefs =
-      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
-  int? user_id = prefs.getInt('idm');
-  Uri url = Uri.parse('http://206.189.145.138:3700/api/users/$user_id');
-
-  return await http
-      .get(
-    url,
-    headers: headers,
-  )
-      .then((req) async {
-    print(req.statusCode);
-    if (req.statusCode == 200) {
-      var data = jsonDecode(req.body);
-      return data;
-    } else {
-      return null;
-    }
-  });
 }

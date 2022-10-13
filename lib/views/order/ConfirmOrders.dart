@@ -22,7 +22,7 @@ class ConfirmOrders extends StatefulWidget {
 
 class _ConfirmOrdersState extends State<ConfirmOrders> {
   dynamic data;
-
+  bool isSwitched = false;
   @override
   void initState() {
     super.initState();
@@ -126,18 +126,16 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                             ),
                                           ]));
                             },
-                            child: const Text('แก้ไขที่อยู่สำหรับจัดส่ง',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold)),
-                            style: ElevatedButton.styleFrom(
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30))),
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 30),
-                              primary: Color.fromARGB(255, 202, 108, 21),
+                            child: Switch(
+                              value: isSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  isSwitched = value;
+                                  print(isSwitched);
+                                });
+                              },
+                              activeTrackColor: Colors.lightGreenAccent,
+                              activeColor: Colors.green,
                             ),
                           ),
                           SizedBox(height: 20),

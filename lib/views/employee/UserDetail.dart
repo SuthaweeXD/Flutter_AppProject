@@ -14,7 +14,6 @@ class UserDetail extends StatefulWidget {
 }
 
 class _UserDetailState extends State<UserDetail> {
-  dynamic data;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +35,7 @@ class _UserDetailState extends State<UserDetail> {
                 const SizedBox(
                   height: 25,
                 ),
+                CircleAvatar(),
                 const SizedBox(
                   height: 10,
                 ),
@@ -45,7 +45,7 @@ class _UserDetailState extends State<UserDetail> {
                   'นามสกุล : ${widget.data['user_lname']}'
                   '  ',
                   style: const TextStyle(
-                      fontSize: 22, fontWeight: FontWeight.bold),
+                      fontSize: 21, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
                   height: 10,
@@ -54,7 +54,7 @@ class _UserDetailState extends State<UserDetail> {
                   'เบอร์โทรศัพท์ : '
                   '${widget.data['user_number']}',
                   style: const TextStyle(
-                      fontSize: 21, fontWeight: FontWeight.w600),
+                      fontSize: 21, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
                   height: 10,
@@ -74,11 +74,11 @@ class _UserDetailState extends State<UserDetail> {
                         context,
                         MaterialPageRoute<void>(
                             builder: (BuildContext context) =>
-                                EditCustomer(data: data)));
+                                EditCustomer(data: widget.data)));
                   },
                   child: const Text('แก้ไขข้อมูล',
                       style: TextStyle(
-                          color: Color.fromARGB(255, 74, 74, 74),
+                          color: Color.fromARGB(255, 248, 248, 248),
                           fontSize: 27,
                           fontWeight: FontWeight.bold)),
                   style: ElevatedButton.styleFrom(

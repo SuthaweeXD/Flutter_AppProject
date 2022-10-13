@@ -7,6 +7,7 @@ import 'package:flutter_application_project/model/TextModel.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/Homepage.dart';
 import 'package:flutter_application_project/views/Map.dart';
+import 'package:flutter_application_project/views/MapPage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -62,7 +63,6 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 height: 10,
               ),
               CircleAvatar(
-                // child: Image.asset('assets/images/ACE.png'),
                 backgroundColor: Color.fromARGB(255, 255, 206, 121),
                 radius: 60,
               ),
@@ -84,6 +84,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 height: 30,
               ),
               TextFormFieldProfile(
+                keytype: true,
                 labelText: 'เบอร์โทรศัพท์',
                 controller: phone,
               ),
@@ -98,7 +99,15 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 height: 40,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                          builder: (BuildContext context) => MapPage(
+                                lat: data['lat'].toDouble(),
+                                lng: data['lng'].toDouble(),
+                              )));
+                },
                 child: const Text('เลือกที่อยู่',
                     style: TextStyle(
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -125,8 +134,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0)),
                           child: AddressMap(
-                            lat: data['lat'],
-                            lng: data['lng'],
+                            lat: data['lat'].toDouble(),
+                            lng: data['lng'].toDouble(),
                           ),
                         )
                       : Text('ไม่มีข้อมูล')),

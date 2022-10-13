@@ -8,6 +8,7 @@ class TextFormFieldModel extends StatelessWidget {
     @required this.controller,
     this.textError,
     this.helperText,
+    this.keytype,
   }) : super(key: key);
 
   final String? labelText;
@@ -15,10 +16,12 @@ class TextFormFieldModel extends StatelessWidget {
   final String? textError;
   final String? helperText;
   final TextEditingController? controller;
+  final bool? keytype;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keytype != true ? null : TextInputType.number,
       controller: controller,
       validator: (value) {
         if (value!.isEmpty) {
@@ -59,15 +62,18 @@ class TextFormFieldModel extends StatelessWidget {
 }
 
 class TextFormFieldProfile extends StatelessWidget {
-  const TextFormFieldProfile({Key? key, this.controller, this.labelText})
+  const TextFormFieldProfile(
+      {Key? key, this.controller, this.labelText, this.keytype})
       : super(key: key);
 
   final TextEditingController? controller;
   final String? labelText;
+  final bool? keytype;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keytype != true ? null : TextInputType.number,
       style: TextStyle(
         color: Colors.black,
         fontSize: 18,

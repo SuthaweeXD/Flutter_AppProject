@@ -61,7 +61,7 @@ class _State extends State<MainEmployee> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_business_sharp),
-            label: 'ปรับปรุงสถานะ',
+            label: 'ประชาสัมพันธ์',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.payments_sharp),

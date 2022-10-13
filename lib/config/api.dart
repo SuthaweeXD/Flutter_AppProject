@@ -146,6 +146,50 @@ Future sendDataProfile1(fname, lname, phone, address, context) async {
   });
 }
 
+Future sendDataProfile2(fname, lname, phone, address, userid, context) async {
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/users/$userid');
+  http
+      .put(
+    url,
+    headers: headers,
+    body: jsonEncode(
+        {"fname": fname, "lname": lname, "number": phone, "address": address}),
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 204) {
+      EasyLoading.showSuccess('Great Success!');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => MainEmployee(index: 0)),
+          (Route<dynamic> route) => false);
+    } else {
+      EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
+Future sendDataProfile3(fname, lname, phone, address, userid, context) async {
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/users/$userid');
+  http
+      .put(
+    url,
+    headers: headers,
+    body: jsonEncode(
+        {"fname": fname, "lname": lname, "number": phone, "address": address}),
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 204) {
+      EasyLoading.showSuccess('Great Success!');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomepageOwn(index: 0)),
+          (Route<dynamic> route) => false);
+    } else {
+      EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
 Future<dynamic> getOrders() async {
   Uri url = Uri.parse('http://206.189.145.138:3700/api/orders');
   return await http
@@ -343,6 +387,73 @@ Future sendstatusOrder(statusOrder, orderid, context) async {
                   )),
           (Route<dynamic> route) => false);
     } else {
+      EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
+Future sendstatusOrder1(statusOrder, orderid, context) async {
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/status/$orderid');
+  http
+      .put(
+    url,
+    headers: headers,
+    body: jsonEncode({"statusOrder": statusOrder}),
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 204) {
+      EasyLoading.showSuccess('Great Success!');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => MainEmployee(
+                    index: 0,
+                  )),
+          (Route<dynamic> route) => false);
+    } else {
+      EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
+Future CreateUser(
+    fname, lname, phone, address, username, password, context) async {
+  EasyLoading.show(status: 'loading...');
+
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/users');
+  http
+      .post(
+    url,
+    headers: headers,
+    body: jsonEncode({
+      "fname": fname,
+      "lname": lname,
+      "number": phone,
+      "address": address,
+      "username": username,
+      "password": password,
+    }),
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 201) {
+      final prefs = await SharedPreferences.getInstance();
+      var data = jsonDecode(req.body);
+      prefs.setString('token', data['token']);
+      headers?['Authorization'] = "bearer ${data['token']}";
+      EasyLoading.showSuccess('Great Success!');
+      // data['user_role'] == "C"
+      //     ? Navigator.of(context).pushAndRemoveUntil(
+      //         MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
+      //         (Route<dynamic> route) => false)
+      //     : Navigator.of(context).pushAndRemoveUntil(
+      //         MaterialPageRoute(
+      //             builder: (context) => MainEmployee(
+      //                   index: 0,
+      //                 )),
+      //         (Route<dynamic> route) => false);
+    } else {
+      print('error');
       EasyLoading.showError('Failed with Error');
     }
   });

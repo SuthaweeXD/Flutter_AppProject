@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
-import 'package:flutter_application_project/model/TextModel.dart';
 
-class RegisterScreen extends StatefulWidget {
-  RegisterScreen({Key? key}) : super(key: key);
+import '../../model/TextModel.dart';
+
+class CreateUsers extends StatefulWidget {
+  CreateUsers({Key? key}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<CreateUsers> createState() => _CreateUsersState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _CreateUsersState extends State<CreateUsers> {
   final _formkey = GlobalKey<FormState>();
   TextEditingController fname = TextEditingController();
   TextEditingController lname = TextEditingController();
@@ -68,7 +69,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 15,
                   ),
                   TextFormFieldModel(
-                    keytype: true,
                     controller: phone,
                     labelText: 'เบอร์โทรศัพท์',
                     hintText: 'เบอร์โทรศัพท์',
@@ -78,16 +78,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 15,
                   ),
-                  // TextFormFieldModel(
-                  //   controller: role,
-                  //   labelText: 'ประเภทผู้ใช้งาน',
-                  //   hintText: 'ประเภทผู้ใช้งาน',
-                  //   textError: 'กรุณากรอก',
-                  //   helperText: 'กรอกประเภทผู้ใช้งาน ลูกค้า: C ,พนักงาน: S  ',
-                  // ),
-                  // const SizedBox(
-                  //   height: 15,
-                  // ),
                   TextFormFieldModel(
                     controller: address,
                     labelText: 'ที่อยู่',
@@ -112,7 +102,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 5,
                   ),
-
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromARGB(255, 77, 158, 88),
@@ -122,7 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () async {
                       if (_formkey.currentState!.validate()) {
                         _formkey.currentState?.save();
-                        await checkRegister(
+                        await CreateUser(
                             fname.text,
                             lname.text,
                             phone.text,

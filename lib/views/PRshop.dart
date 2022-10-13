@@ -10,6 +10,13 @@ class PRshop extends StatefulWidget {
 class _PRshopState extends State<PRshop> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('หน้าแรก'),
+      ),
+      body: Column(
+        children: [],
+      ),
+    );
   }
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/PRshop.dart';
 import 'package:flutter_application_project/views/ProflieUpdate.dart';
 import 'package:flutter_application_project/views/HistoryOrder.dart';
 import 'package:flutter_application_project/views/order/Orders.dart';
@@ -20,8 +21,8 @@ class CustomerHome extends State<Customerhome> {
   }
 
   final screens = [
+    PRshop(),
     Orders(),
-    OrderDB(),
     HistoryOrders(),
     ProfileUpdate(),
   ];
@@ -44,12 +45,12 @@ class CustomerHome extends State<Customerhome> {
         showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_shopping_cart),
-            label: 'สั่งซื้อ',
+            icon: Icon(Icons.home_outlined),
+            label: 'หน้าแรก',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shop),
-            label: 'รายการสั่งซื้อ',
+            icon: Icon(Icons.add_shopping_cart),
+            label: 'สั่งซื้อ',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.history),
