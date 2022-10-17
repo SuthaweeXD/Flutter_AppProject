@@ -47,7 +47,7 @@ class _OrderOwnState extends State<OrderOwn> {
             startApi();
           },
           child: ListView.builder(
-            reverse: true,
+            // reverse: true,
             itemCount: data?.length ?? 0,
             itemBuilder: (context, i) => Container(
               height: 180,
@@ -87,48 +87,41 @@ class _OrderOwnState extends State<OrderOwn> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
+                                      'ชื่อ : ${data[i]['user_fname']}',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      'นามสกุล : ${data[i]['user_fname']}',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
                                       'วันที่สั่ง : ' +
-                                          DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                          DateFormat(
+                                                  'dd-MM-yyyy เวลา HH:mm น. ')
                                               .format(DateTime.parse(
                                                   '${data[i]['order_date']}')),
-                                      style: const TextStyle(fontSize: 17),
+                                      style: const TextStyle(fontSize: 16),
                                     ),
                                     const SizedBox(height: 2),
                                     Text(
                                       'วันที่รับ :' +
-                                          DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                          DateFormat(
+                                                  'dd-MM-yyyy เวลา HH:mm น. ')
                                               .format(DateTime.parse(
                                                   '${data[i]['order_getdate']}')),
-                                      style: const TextStyle(fontSize: 17),
+                                      style: const TextStyle(fontSize: 16),
                                     ),
                                     const SizedBox(
                                       height: 2,
                                     ),
-                                    Text(
-                                      'เส้นเล็ก : ${data[i]['order_small']}'
-                                      '  '
-                                      'เส้นใหญ่ : ${data[i]['order_big']}'
-                                      '  '
-                                      'เส้นม้วน : ${data[i]['order_roll']}',
-                                      style: const TextStyle(fontSize: 15),
-                                    ),
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-                                    // ignore: prefer_const_constructors
-                                    Text(
-                                      'ที่อยู่ในการจัดส่ง : ',
-                                      style: const TextStyle(
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-                                    Text(
-                                      '${dataadd['user_address']}',
-                                      style: const TextStyle(
-                                        fontSize: 17,
+                                    Expanded(
+                                      child: Text(
+                                        'สถานะ : ' +
+                                            ColorStatus(
+                                                data[i]["order_status"]),
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
                                   ],

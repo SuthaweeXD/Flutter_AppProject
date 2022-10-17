@@ -51,7 +51,7 @@ class _ListOrdersState extends State<ListOrders> {
             // reverse: true,
             itemCount: data?.length ?? 0,
             itemBuilder: (context, i) => Container(
-              height: 180,
+              height: 210,
               width: 20,
               child: InkWell(
                 onTap: () {
@@ -61,74 +61,83 @@ class _ListOrdersState extends State<ListOrders> {
                           builder: (BuildContext context) =>
                               EditOrders(data: data[i])));
                 },
-                child: Card(
-                  elevation: 10,
-                  color: data[i]["order_status"] != null
-                      ? ColorCard(data[i]["order_status"])
-                      : const Color.fromARGB(255, 255, 255, 255),
-                  shadowColor: const Color.fromARGB(255, 114, 114, 114),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              SizedBox(
-                                width: 10,
-                              ),
-                              IconStatus1(data[i]["order_status"]),
-                              Container(
-                                padding: const EdgeInsets.all(22),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'ชื่อ : ${data[i]['user_fname']}'
-                                      '  '
-                                      'นามสกุล : ${data[i]['user_fname']}',
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-
-                                    Text(
-                                      'วันที่สั่ง : ' +
-                                          DateFormat('dd-MM-yyyy เวลา HH:mm')
-                                              .format(DateTime.parse(
-                                                  '${data[i]['order_date']}')),
-                                      style: const TextStyle(fontSize: 16),
-                                    ),
-                                    const SizedBox(height: 2),
-                                    Text(
-                                      'วันที่รับ :' +
-                                          DateFormat('dd-MM-yyyy เวลา HH:mm')
-                                              .format(DateTime.parse(
-                                                  '${data[i]['order_getdate']}')),
-                                      style: const TextStyle(fontSize: 16),
-                                    ),
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-                                    Text(
-                                      'สถานะ : ' +
-                                          ColorStatus(data[i]["order_status"]),
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-
-                                    // ignore: prefer_const_constructors
-                                  ],
+                child: Expanded(
+                  child: Card(
+                    elevation: 10,
+                    color: data[i]["order_status"] != null
+                        ? ColorCard(data[i]["order_status"])
+                        : const Color.fromARGB(255, 255, 255, 255),
+                    shadowColor: const Color.fromARGB(255, 114, 114, 114),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 10,
                                 ),
-                              ),
-                            ])
-                      ]),
+                                IconStatus1(data[i]["order_status"]),
+                                Container(
+                                  padding: const EdgeInsets.all(22),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'ชื่อ : ${data[i]['user_fname']}',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                      Text(
+                                        'นามสกุล : ${data[i]['user_fname']}',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+
+                                      Text(
+                                        'วันที่สั่ง : ' +
+                                            DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                                .format(DateTime.parse(
+                                                    '${data[i]['order_date']}')),
+                                        style: const TextStyle(fontSize: 16),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        'วันที่รับ :' +
+                                            DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                                .format(DateTime.parse(
+                                                    '${data[i]['order_getdate']}')),
+                                        style: const TextStyle(fontSize: 16),
+                                      ),
+                                      const SizedBox(
+                                        height: 2,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'สถานะ : ' +
+                                              ColorStatus(
+                                                  data[i]["order_status"]),
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+
+                                      const SizedBox(
+                                        height: 2,
+                                      ),
+
+                                      // ignore: prefer_const_constructors
+                                    ],
+                                  ),
+                                ),
+                              ])
+                        ]),
+                  ),
                 ),
               ),
             ),

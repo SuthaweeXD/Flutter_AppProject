@@ -66,11 +66,15 @@ class _UserDBOwnState extends State<UserDBOwn> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               const SizedBox(
-                                width: 10,
+                                width: 20,
+                              ),
+                              CircleAvatar(
+                                child: Image.asset('assets/images/user.png'),
+                                backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                                radius: 30,
                               ),
                               const SizedBox(
-                                width: 20.0,
-                                height: 20.0,
+                                width: 2,
                               ),
                               const SizedBox(
                                 width: 2,
@@ -84,20 +88,15 @@ class _UserDBOwnState extends State<UserDBOwn> {
                                       height: 2,
                                     ),
                                     Text(
-                                      'ชื่อ : ${data[i]['user_fname']}'
-                                      '  '
+                                      'ชื่อ : ${data[i]['user_fname']}',
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    Text(
                                       'นามสกุล : ${data[i]['user_lname']}',
                                       style: TextStyle(fontSize: 20),
                                     ),
                                     const SizedBox(
                                       height: 2,
-                                    ),
-                                    Text(
-                                      'ที่อยู่ในการจัดส่ง : \n'
-                                      '${data[i]['user_address']}',
-                                      style: const TextStyle(
-                                        fontSize: 15,
-                                      ),
                                     ),
                                     const SizedBox(
                                       height: 2,

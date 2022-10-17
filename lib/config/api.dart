@@ -38,6 +38,7 @@ Future checkRegister(
       final prefs = await SharedPreferences.getInstance();
       var data = jsonDecode(req.body);
       prefs.setString('token', data['token']);
+
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       data['user_role'] == "C"
@@ -59,7 +60,8 @@ Future checkRegister(
 
 Future checkLogin(String username, String password, context) async {
   EasyLoading.init();
-
+  print(username);
+  print(password);
   Uri url = Uri.parse('http://206.189.145.138:3700/api/users/login');
   http
       .post(
@@ -68,6 +70,7 @@ Future checkLogin(String username, String password, context) async {
     body: jsonEncode({"username": username, "password": password}),
   )
       .then((req) async {
+    print(req.statusCode);
     if (req.statusCode == 200) {
       final prefs = await SharedPreferences.getInstance();
       var data = jsonDecode(req.body);
@@ -191,7 +194,7 @@ Future sendDataProfile3(fname, lname, phone, address, userid, context) async {
 }
 
 Future<dynamic> getOrders() async {
-  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders');
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/forder');
   return await http
       .get(
     url,
@@ -233,7 +236,10 @@ Future sendorders(small, big, roll, picdate, pictime, now, context) async {
     if (req.statusCode == 201) {
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => OrderDB()),
+          MaterialPageRoute(
+              builder: (context) => Customerhome(
+                    index: 2,
+                  )),
           (Route<dynamic> route) => false);
     } else {
       normalDialog(context, ('มีช่องว่าง'));
@@ -245,7 +251,7 @@ Future<dynamic> gethistoryod() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? user_id = prefs.getInt('idm');
-  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/$user_id');
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/f/$user_id');
   return await http
       .get(
     url,
@@ -368,6 +374,30 @@ Future deleteprofile(userid, context) async {
   });
 }
 
+Future sendstatusOrder0(statusOrder, orderid, context) async {
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/status/$orderid');
+  http
+      .put(
+    url,
+    headers: headers,
+    body: jsonEncode({"statusOrder": statusOrder}),
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 204) {
+      EasyLoading.showSuccess('Great Success!');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => Customerhome(
+                    index: 2,
+                  )),
+          (Route<dynamic> route) => false);
+    } else {
+      EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
 Future sendstatusOrder(statusOrder, orderid, context) async {
   Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/status/$orderid');
   http
@@ -455,6 +485,34 @@ Future CreateUser(
     } else {
       print('error');
       EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
+Future sendlocation(lat, lng, usersid, context) async {
+  Uri url =
+      Uri.parse('http://206.189.145.138:3700/api/users/location/$usersid');
+  http
+      .put(
+    url,
+    headers: headers,
+    body: jsonEncode({"lat": lat, "lng": lng}),
+  )
+      .then((req) async {
+    print(req.statusCode);
+    print(lat);
+    print(lng);
+
+    if (req.statusCode == 204) {
+      EasyLoading.showSuccess('Great Success!');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => Customerhome(
+                    index: 3,
+                  )),
+          (Route<dynamic> route) => false);
+    } else {
+      normalDialog(context, ('มีช่องว่าง'));
     }
   });
 }

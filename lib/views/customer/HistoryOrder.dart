@@ -47,7 +47,7 @@ class _HistoryOrdersState extends State<HistoryOrders> {
             child: ListView.builder(
               itemCount: data?.length ?? 0,
               itemBuilder: (context, i) => Container(
-                height: 180,
+                height: 200,
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
@@ -83,23 +83,27 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'ชื่อ : ${dataadd['user_fname']}'
-                                        '  '
+                                        'ชื่อ : ${dataadd['user_fname']}',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                      Text(
                                         'นามสกุล : ${dataadd['user_lname']}',
                                         style: TextStyle(fontSize: 18),
                                       ),
 
                                       Text(
                                         'วันที่สั่ง : ' +
-                                            DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                            DateFormat(
+                                                    'dd-MM-yyyy เวลา HH:mm น.')
                                                 .format(DateTime.parse(
                                                     '${data[i]['order_date']}')),
                                         style: const TextStyle(fontSize: 16),
                                       ),
                                       const SizedBox(height: 2),
                                       Text(
-                                        'วันที่รับ :' +
-                                            DateFormat('dd-MM-yyyy เวลา HH:mm')
+                                        'วันที่รับ : ' +
+                                            DateFormat(
+                                                    'dd-MM-yyyy เวลา HH:mm น.')
                                                 .format(DateTime.parse(
                                                     '${data[i]['order_getdate']}')),
                                         style: const TextStyle(fontSize: 16),
@@ -108,7 +112,7 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                                         height: 2,
                                       ),
                                       Text(
-                                        'สถานะ : ' +
+                                        'สถานะ : \n' +
                                             ColorStatus(
                                                 data[i]["order_status"]),
                                         style: const TextStyle(

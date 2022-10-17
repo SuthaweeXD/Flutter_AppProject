@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/views/PRshop.dart';
-import 'package:flutter_application_project/views/ProflieUpdate.dart';
-import 'package:flutter_application_project/views/HistoryOrder.dart';
+import 'package:flutter_application_project/views/employee/PRshop.dart';
+import 'package:flutter_application_project/views/customer/ProflieUpdate.dart';
 import 'package:flutter_application_project/views/order/Orders.dart';
 import 'package:flutter_application_project/views/order/OrdersDB.dart';
+
+import 'customer/HistoryOrder.dart';
 
 class Customerhome extends StatefulWidget {
   Customerhome({Key? key, required this.index}) : super(key: key);

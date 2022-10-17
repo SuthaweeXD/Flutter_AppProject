@@ -29,7 +29,7 @@ ColorStatus(int orderstatus) {
     case 4:
       return "รอยืนยันการโอนชำระค่ามัดจำ";
     case 5:
-      return "ชำระเรียบร้อย กำลังดำเนินการ";
+      return "ชำระเงินเรียบร้อย กำลังดำเนินการ";
     case 6:
       return "ยกเลิกคำสั่งซื้อ";
   }

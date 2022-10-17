@@ -16,8 +16,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController phone = TextEditingController();
-  TextEditingController role = TextEditingController(text: 'C');
   TextEditingController address = TextEditingController();
+  bool hidepassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,16 +79,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 15,
                   ),
-                  // TextFormFieldModel(
-                  //   controller: role,
-                  //   labelText: 'ประเภทผู้ใช้งาน',
-                  //   hintText: 'ประเภทผู้ใช้งาน',
-                  //   textError: 'กรุณากรอก',
-                  //   helperText: 'กรอกประเภทผู้ใช้งาน ลูกค้า: C ,พนักงาน: S  ',
-                  // ),
-                  // const SizedBox(
-                  //   height: 15,
-                  // ),
                   TextFormFieldModel(
                     controller: address,
                     labelText: 'ที่อยู่',
@@ -112,7 +103,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 5,
                   ),
-
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromARGB(255, 77, 158, 88),
@@ -132,7 +122,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             context);
                       }
                       print('สมัครสมาชิก');
-                      print(role);
                     },
                     child: Text(
                       'ยืนยัน',

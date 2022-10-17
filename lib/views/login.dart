@@ -176,7 +176,7 @@ class LoginScreenState extends State<LoginScreen> {
                             style: ElevatedButton.styleFrom(
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(30))),
+                                      BorderRadius.all(Radius.circular(10))),
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 40),
                               primary: const Color.fromARGB(255, 255, 255, 255),
@@ -208,7 +208,7 @@ class LoginScreenState extends State<LoginScreen> {
                             style: ElevatedButton.styleFrom(
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(30))),
+                                      BorderRadius.all(Radius.circular(10))),
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 40),
                               primary: const Color.fromARGB(255, 255, 255, 255),

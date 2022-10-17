@@ -133,7 +133,7 @@ class _ReportOrderState extends State<ReportOrder> {
                   ),
                 ),
                 SizedBox(
-                  width: 30,
+                  width: 20,
                 ),
                 ElevatedButton(
                   onPressed: () {},
@@ -146,7 +146,7 @@ class _ReportOrderState extends State<ReportOrder> {
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 40),
+                        vertical: 10, horizontal: 30),
                     primary: Color.fromARGB(255, 251, 255, 0),
                   ),
                 ),

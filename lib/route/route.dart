@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/views/Homepage.dart';
-import 'package:flutter_application_project/views/ProflieUpdate.dart';
+import 'package:flutter_application_project/views/customer/ProflieUpdate.dart';
 import 'package:flutter_application_project/views/register.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {

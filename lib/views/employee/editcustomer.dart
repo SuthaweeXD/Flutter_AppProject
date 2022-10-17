@@ -80,40 +80,6 @@ class _EditCustomerState extends State<EditCustomer> {
                 labelText: 'ที่อยู่',
                 controller: address,
               ),
-
-              // ElevatedButton(
-              //   onPressed: () {},
-              //   child: const Text('เลือกที่อยู่',
-              //       style: TextStyle(
-              //           color: Color.fromARGB(255, 255, 255, 255),
-              //           fontSize: 16,
-              //           fontWeight: FontWeight.w200)),
-              //   style: ElevatedButton.styleFrom(
-              //     shape: const RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.all(Radius.circular(10))),
-              //     padding:
-              //         const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-              //     primary: Color.fromARGB(255, 28, 122, 255),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // // SizedBox(
-              // //     height: 240,
-              // //     width: 500,
-              // //     child: widget.data != null
-              // //         ? Card(
-              // //             color: Color.fromARGB(255, 255, 236, 181),
-              // //             shadowColor: const Color.fromARGB(255, 114, 114, 114),
-              // //             shape: RoundedRectangleBorder(
-              // //                 borderRadius: BorderRadius.circular(0)),
-              // //             // child: AddressMap(
-              // //             //   lat: widget.data['lat'],
-              // //             //   lng: widget.data['lng'],
-              // //             // ),
-              // //           )
-              // //         : Text('ไม่มีข้อมูล')),
               SizedBox(
                 height: 40,
               ),

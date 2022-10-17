@@ -41,7 +41,7 @@ class _OrdersState extends State<Orders> {
       odate = await showDatePicker(
           context: context,
           initialDate: datenow!,
-          firstDate: DateTime(DateTime.now().year, DateTime.now().month),
+          firstDate: datenow!,
           lastDate: DateTime(DateTime.now().year, DateTime.now().month + 3));
       if (odate != null) {
         setState(() {

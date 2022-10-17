@@ -3,11 +3,11 @@
 import 'dart:convert';
 import 'package:flutter_application_project/views/Homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/views/ProflieUpdate.dart';
 import 'package:flutter_application_project/views/Login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../config/config.dart';
+import '../views/customer/ProflieUpdate.dart';
 
 class SideMenu extends StatefulWidget {
   SideMenu({
@@ -74,10 +74,9 @@ class _SideMenuState extends State<SideMenu> {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        // backgroundImage: NetworkImage(
-                        //     'https://github.com/SuthaweeXD/images/blob/main/ACE.jpg?raw=true'),
+                        child: Image.asset('assets/images/user.png'),
                         backgroundColor: Colors.white,
-                        radius: 40,
+                        radius: 50,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 15),

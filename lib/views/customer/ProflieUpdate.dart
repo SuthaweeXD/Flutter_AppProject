@@ -15,8 +15,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_application_project/config/config.dart';
 
 class ProfileUpdate extends StatefulWidget {
-  const ProfileUpdate({Key? key, data}) : super(key: key);
-
+  const ProfileUpdate({Key? key, this.data}) : super(key: key);
+  final dynamic data;
   @override
   State<ProfileUpdate> createState() => _ProfileUpdateState();
 }
@@ -63,7 +63,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 height: 10,
               ),
               CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 255, 206, 121),
+                child: Image.asset('assets/images/user.png'),
+                backgroundColor: Color.fromARGB(255, 5, 5, 5),
                 radius: 60,
               ),
               SizedBox(
@@ -106,6 +107,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                           builder: (BuildContext context) => MapPage(
                                 lat: data['lat'].toDouble(),
                                 lng: data['lng'].toDouble(),
+                                data: data['user_id'],
                               )));
                 },
                 child: const Text('เลือกที่อยู่',
@@ -154,9 +156,9 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                         fontWeight: FontWeight.bold)),
                 style: ElevatedButton.styleFrom(
                   shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(40))),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   primary: Color.fromARGB(255, 77, 158, 88),
                 ),
               )
