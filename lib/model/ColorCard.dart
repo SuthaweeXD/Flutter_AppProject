@@ -40,25 +40,25 @@ IconStatus(int orderstatus) {
     case 1:
       // ignore: prefer_const_constructors
       return Icon(Icons.watch_later_outlined,
-          size: 60, color: Color.fromARGB(255, 110, 110, 110));
+          size: 70, color: Color.fromARGB(255, 110, 110, 110));
     case 2:
       return Icon(Icons.verified_rounded,
-          size: 60, color: Color.fromARGB(255, 72, 255, 0));
+          size: 70, color: Color.fromARGB(255, 72, 255, 0));
     case 3:
       return Icon(
         Icons.cancel_presentation_rounded,
-        size: 60,
+        size: 70,
         color: Color.fromARGB(255, 255, 0, 0),
       );
     case 4:
       return Icon(Icons.hourglass_top_rounded,
-          size: 60, color: Color.fromARGB(255, 255, 196, 35));
+          size: 70, color: Color.fromARGB(255, 255, 196, 35));
     case 5:
       return Icon(Icons.offline_pin,
-          size: 60, color: Color.fromARGB(255, 86, 255, 19));
+          size: 70, color: Color.fromARGB(255, 86, 255, 19));
     case 6:
       return Icon(Icons.cancel,
-          size: 60, color: Color.fromARGB(255, 255, 0, 0));
+          size: 70, color: Color.fromARGB(255, 255, 0, 0));
   }
 }
 
@@ -73,7 +73,7 @@ IconStatus1(int orderstatus) {
           size: 45, color: Color.fromARGB(255, 72, 255, 0));
     case 3:
       return Icon(
-        Icons.cancel_presentation_rounded,
+        Icons.cancel_outlined,
         size: 45,
         color: Color.fromARGB(255, 255, 0, 0),
       );

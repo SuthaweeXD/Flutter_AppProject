@@ -7,11 +7,9 @@ import 'package:intl/intl.dart';
 import '../../model/ColorCard.dart';
 
 class OrderDetail extends StatefulWidget {
-  OrderDetail({
-    Key? key,
-    required this.data,
-  }) : super(key: key);
-  final dynamic data;
+  OrderDetail({Key? key, required this.data, required this.dataadd})
+      : super(key: key);
+  final dynamic data, dataadd;
   dynamic statusOrder;
 
   @override
@@ -33,7 +31,7 @@ class _OrderDetailState extends State<OrderDetail> {
             ),
             IconStatus(widget.data['order_status']),
             SizedBox(
-              width: 200,
+              width: 150,
               height: 45,
               child: Container(
                 child: Card(
@@ -60,7 +58,7 @@ class _OrderDetailState extends State<OrderDetail> {
               padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
               child: SizedBox(
                 width: 950,
-                height: 350,
+                height: 450,
                 child: Card(
                   color: Color.fromARGB(255, 255, 236, 181),
                   shadowColor: const Color.fromARGB(255, 114, 114, 114),
@@ -70,6 +68,14 @@ class _OrderDetailState extends State<OrderDetail> {
                     children: [
                       const SizedBox(
                         height: 25,
+                      ),
+                      Text(
+                        'ชื่อ : '
+                        '${widget.dataadd['user_fname']}'
+                        '     '
+                        '${widget.dataadd['user_lname']}',
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w400),
                       ),
                       const SizedBox(
                         height: 15,
@@ -82,7 +88,7 @@ class _OrderDetailState extends State<OrderDetail> {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        'วันที่รับ :' +
+                        'วันที่รับ : ' +
                             DateFormat('dd-MM-yyyy เวลา HH:mm น. ').format(
                                 DateTime.parse(widget.data['order_getdate'])),
                         style: const TextStyle(fontSize: 17),
@@ -124,10 +130,73 @@ class _OrderDetailState extends State<OrderDetail> {
                           ),
                         ),
                       ),
+                      Card(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        shadowColor: const Color.fromARGB(255, 114, 114, 114),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(15, 10, 15, 15),
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.home_rounded,
+                                size: 45,
+                                color: Colors.blueAccent,
+                              ),
+                              Text(
+                                'ที่อยู่ในการจัดส่ง : ',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w400),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                '${widget.dataadd['user_address']}',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.add_a_photo,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    const Text('อัปโหลดหลักฐานการชำระเงิน',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 34, 34, 34),
+                          fontSize: 16,
+                        )),
+                  ],
+                ),
+                style: ElevatedButton.styleFrom(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  primary: Color.fromARGB(255, 255, 255, 255),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
             ),
             ElevatedButton(
               onPressed: () {
@@ -166,6 +235,9 @@ class _OrderDetailState extends State<OrderDetail> {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                 primary: Color.fromARGB(255, 255, 31, 61),
               ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),

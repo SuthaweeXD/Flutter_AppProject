@@ -81,9 +81,15 @@ class _ListOrdersState extends State<ListOrders> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                IconStatus1(data[i]["order_status"]),
+                                Card(
+                                  child: Row(children: <Widget>[
+                                    IconStatus1(data[i]["order_status"]),
+                                  ]),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                ),
                                 Container(
-                                  padding: const EdgeInsets.all(22),
+                                  padding: const EdgeInsets.all(18),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -106,7 +112,7 @@ class _ListOrdersState extends State<ListOrders> {
                                       ),
                                       const SizedBox(height: 2),
                                       Text(
-                                        'วันที่รับ :' +
+                                        'วันที่รับ : ' +
                                             DateFormat('dd-MM-yyyy เวลา HH:mm')
                                                 .format(DateTime.parse(
                                                     '${data[i]['order_getdate']}')),
@@ -117,7 +123,7 @@ class _ListOrdersState extends State<ListOrders> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          'สถานะ : ' +
+                                          'สถานะ : \n' +
                                               ColorStatus(
                                                   data[i]["order_status"]),
                                           overflow: TextOverflow.ellipsis,

@@ -59,8 +59,10 @@ class _OrderDBState extends State<OrderDB> {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                          builder: (BuildContext context) =>
-                              OrderDetail(data: data[i])));
+                          builder: (BuildContext context) => OrderDetail(
+                                data: data[i],
+                                dataadd: data,
+                              )));
                 },
                 child: SizedBox(
                   height: 300,

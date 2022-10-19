@@ -60,9 +60,9 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("เข้าสู่ระบบ"),
-        ),
+        // appBar: AppBar(
+        //   title: const Text("เข้าสู่ระบบ"),
+        // ),
         backgroundColor: const Color.fromARGB(255, 225, 231, 234),
         body: SafeArea(
           child: SingleChildScrollView(

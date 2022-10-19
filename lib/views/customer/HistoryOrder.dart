@@ -53,8 +53,10 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                     Navigator.push(
                         context,
                         MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                OrderDetail(data: data[i])));
+                            builder: (BuildContext context) => OrderDetail(
+                                  data: data[i],
+                                  dataadd: dataadd,
+                                )));
                   },
                   child: Card(
                     elevation: 10,
@@ -75,7 +77,13 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                IconStatus1(data[i]["order_status"]),
+                                Card(
+                                  child: Row(children: <Widget>[
+                                    IconStatus1(data[i]["order_status"]),
+                                  ]),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                ),
                                 Container(
                                   padding: const EdgeInsets.all(22),
                                   child: Column(

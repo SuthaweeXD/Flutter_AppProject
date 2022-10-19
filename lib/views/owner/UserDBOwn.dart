@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/SideMenuOwn.dart';
+import 'package:flutter_application_project/views/owner/UserDetailO.dart';
 
 import '../../config/api.dart';
 import '../employee/UserDetail.dart';
@@ -49,7 +50,7 @@ class _UserDBOwnState extends State<UserDBOwn> {
                       context,
                       MaterialPageRoute<void>(
                           builder: (BuildContext context) =>
-                              UserDetail(data: data[i])));
+                              UserDetailO(data: data[i])));
                 },
                 child: Card(
                   elevation: 10,

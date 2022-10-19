@@ -29,6 +29,16 @@ class _PRshopState extends State<PRshop> {
           padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
           child: Column(
             children: [
+              Text(
+                'ประชาสัมพันธ์',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 28, 122, 255),
+                  fontSize: 25,
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
               CarouselSlider.builder(
                 options: CarouselOptions(height: 250),
                 itemCount: urlImages.length,

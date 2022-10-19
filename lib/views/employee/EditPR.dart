@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class statusDB extends StatefulWidget {
-  statusDB({Key? key}) : super(key: key);
+class EditPR extends StatefulWidget {
+  EditPR({Key? key}) : super(key: key);
 
   @override
-  State<statusDB> createState() => _statusDBState();
+  State<EditPR> createState() => _EditPRState();
 }
 
-class _statusDBState extends State<statusDB> {
+class _EditPRState extends State<EditPR> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

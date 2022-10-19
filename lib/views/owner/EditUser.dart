@@ -42,8 +42,8 @@ class _EditUserOwnState extends State<EditUserOwn> {
                 height: 10,
               ),
               CircleAvatar(
-                child: Image.asset('assets/images/ACE.png'),
-                backgroundColor: Color.fromARGB(255, 255, 206, 121),
+                child: Image.asset('assets/images/user.png'),
+                backgroundColor: Color.fromARGB(255, 0, 0, 0),
                 radius: 30,
               ),
               SizedBox(

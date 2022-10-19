@@ -10,6 +10,7 @@ import 'package:flutter_application_project/views/employee/UsersDB.dart';
 import 'package:flutter_application_project/views/order/ConfirmOrders.dart';
 import 'package:flutter_application_project/views/order/OrdersDB.dart';
 import 'package:flutter_application_project/views/owner/Main.dart';
+import 'package:flutter_application_project/views/owner/UserDBOwn.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -185,7 +186,7 @@ Future sendDataProfile3(fname, lname, phone, address, userid, context) async {
     if (req.statusCode == 204) {
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomepageOwn(index: 0)),
+          MaterialPageRoute(builder: (context) => UserDBOwn()),
           (Route<dynamic> route) => false);
     } else {
       EasyLoading.showError('Failed with Error');
@@ -366,7 +367,36 @@ Future deleteprofile(userid, context) async {
       EasyLoading.showSuccess('Great Success!');
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => usersDB()),
+        MaterialPageRoute(
+            builder: (context) => MainEmployee(
+                  index: 1,
+                )),
+      );
+    } else {
+      normalDialog(context, ('มีช่องว่าง'));
+    }
+  });
+}
+
+Future deleteprofile1(userid, context) async {
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/users/$userid');
+  http
+      .delete(
+    url,
+    headers: headers,
+    body: jsonEncode({}),
+  )
+      .then((req) async {
+    print(req.statusCode);
+
+    if (req.statusCode == 204) {
+      EasyLoading.showSuccess('Great Success!');
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => HomepageOwn(
+                  index: 1,
+                )),
       );
     } else {
       normalDialog(context, ('มีช่องว่าง'));

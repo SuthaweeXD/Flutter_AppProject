@@ -23,18 +23,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ลงทะเบียน'),
+        title: const Text('ลงทะเบียน'),
       ),
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      body: SafeArea(
-        child: SingleChildScrollView(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
             child: Form(
               key: _formkey,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                height: MediaQuery.of(context).size.height,
+                height: 750,
                 width: MediaQuery.of(context).size.width,
                 child: Column(children: [
                   Text(
@@ -70,6 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   TextFormFieldModel(
                     keytype: true,
+                    maxlength: 10,
                     controller: phone,
                     labelText: 'เบอร์โทรศัพท์',
                     hintText: 'เบอร์โทรศัพท์',
@@ -86,6 +87,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     textError: 'กรุณากรอก',
                     helperText: 'กรอกที่อยู่',
                   ),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   TextFormFieldModel(
                     controller: username,
                     labelText: 'ชื่อผู้ใช้',
@@ -93,20 +97,79 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     textError: 'กรุณากรอก',
                     helperText: 'กรอกชื่อผู้ใช้',
                   ),
-                  TextFormFieldModel(
-                    controller: password,
-                    labelText: 'รหัสผ่าน',
-                    hintText: 'รหัสผ่าน',
-                    textError: 'กรุณากรอก',
-                    helperText: 'กรอกรหัสผ่านอย่างน้อย 6 ตัว',
-                  ),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: password,
+                    obscureText: hidepassword,
+
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'กรุIากรอก';
+                      } else {
+                        return value.length < 6
+                            ? 'กรอกรหัสผ่านอย่างน้อย 6 ตัว'
+                            : null;
+                      }
+                    },
+                    // ignore: prefer_const_constructors
+                    style: TextStyle(color: Colors.black),
+                    decoration: InputDecoration(
+                      labelText: 'รหัสผ่าน',
+                      hintText: 'รหัสผ่าน',
+                      helperText: 'กรอกรหัสผ่านอย่างน้อย 6 ตัว',
+                      labelStyle: TextStyle(color: Colors.black),
+                      hintStyle: TextStyle(color: Colors.black),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.pink),
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      suffixIcon: IconButton(
+                          onPressed: (() {
+                            setState(() {
+                              hidepassword = !hidepassword;
+                            });
+                          }),
+                          icon: Icon(
+                            hidepassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            size: 30,
+                            color: Color.fromARGB(255, 70, 144, 255),
+                          )),
+                    ),
+                  ),
+                  // const SizedBox(
+                  //   height: 25,
+                  // ),
+                  // TextFormFieldModel(
+                  //   controller: password,
+                  //   labelText: 'รหัสผ่าน',
+                  //   hintText: 'รหัสผ่าน',
+                  //   textError: 'กรุณากรอก',
+                  //   helperText: 'กรอกรหัสผ่านอย่างน้อย 6 ตัว',
+                  // ),
+                  const SizedBox(
+                    height: 25,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 77, 158, 88),
-                        shape: RoundedRectangleBorder(
+                        primary: const Color.fromARGB(255, 77, 158, 88),
+                        shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10)))),
                     onPressed: () async {
@@ -123,7 +186,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       }
                       print('สมัครสมาชิก');
                     },
-                    child: Text(
+                    child: const Text(
                       'ยืนยัน',
                       style: TextStyle(
                           color: Color.fromARGB(255, 255, 255, 255),

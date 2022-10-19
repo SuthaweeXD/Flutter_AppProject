@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/config/api.dart';
-import 'package:flutter_application_project/views/employee/editcustomer.dart';
+import 'package:flutter_application_project/views/owner/EditUser.dart';
 
-class UserDetail extends StatefulWidget {
-  UserDetail({
-    Key? key,
-    required this.data,
-  }) : super(key: key);
+import '../../config/api.dart';
+
+class UserDetailO extends StatefulWidget {
+  UserDetailO({Key? key, required this.data}) : super(key: key);
   final dynamic data;
 
   @override
-  State<UserDetail> createState() => _UserDetailState();
+  State<UserDetailO> createState() => _UserDetailOState();
 }
 
-class _UserDetailState extends State<UserDetail> {
+class _UserDetailOState extends State<UserDetailO> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +123,7 @@ class _UserDetailState extends State<UserDetail> {
                             context,
                             MaterialPageRoute<void>(
                                 builder: (BuildContext context) =>
-                                    EditCustomer(data: widget.data)));
+                                    EditUserOwn(data: widget.data)));
                       },
                       child: Row(
                         // ignore: prefer_const_literals_to_create_immutables
@@ -171,10 +169,10 @@ class _UserDetailState extends State<UserDetail> {
                                         ),
                                       ),
                                       TextButton(
-                                        onPressed: () => deleteprofile(
+                                        onPressed: () => deleteprofile1(
                                             widget.data['user_id'], context),
                                         child: const Text('ตกลง'),
-                                      )
+                                      ),
                                     ]));
                       },
                       child: Row(

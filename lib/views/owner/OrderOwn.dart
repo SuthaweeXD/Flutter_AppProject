@@ -31,8 +31,12 @@ class _OrderOwnState extends State<OrderOwn> {
     });
   }
 
+  var size, height, width;
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 59, 115, 255),
@@ -50,8 +54,7 @@ class _OrderOwnState extends State<OrderOwn> {
             // reverse: true,
             itemCount: data?.length ?? 0,
             itemBuilder: (context, i) => Container(
-              height: 180,
-              width: 20,
+              height: 200,
               child: InkWell(
                 onTap: () {
                   Navigator.push(
@@ -76,13 +79,18 @@ class _OrderOwnState extends State<OrderOwn> {
                         Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              const SizedBox(
-                                width: 45,
-                                height: 10.0,
-                                child: ClipOval(),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Card(
+                                child: Row(children: <Widget>[
+                                  IconStatus1(data[i]["order_status"]),
+                                ]),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
                               ),
                               Container(
-                                padding: const EdgeInsets.all(22),
+                                padding: const EdgeInsets.all(8),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -116,7 +124,7 @@ class _OrderOwnState extends State<OrderOwn> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        'สถานะ : ' +
+                                        'สถานะ : \n' +
                                             ColorStatus(
                                                 data[i]["order_status"]),
                                         style: const TextStyle(

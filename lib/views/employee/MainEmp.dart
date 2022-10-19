@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/views/employee/OrderDBEmp.dart';
 import 'package:flutter_application_project/views/employee/Payment.dart';
-import 'package:flutter_application_project/views/employee/StatusDB.dart';
+import 'package:flutter_application_project/views/employee/EditPR.dart';
 import 'package:flutter_application_project/views/employee/UsersDB.dart';
 
 class MainEmployee extends StatefulWidget {
@@ -21,7 +21,7 @@ class _State extends State<MainEmployee> {
   final screens = [
     ListOrders(),
     usersDB(),
-    statusDB(),
+    EditPR(),
     checkpayment(),
   ];
 

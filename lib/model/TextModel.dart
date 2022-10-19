@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TextFormFieldModel extends StatelessWidget {
-  const TextFormFieldModel({
-    Key? key,
-    @required this.labelText,
-    this.hintText,
-    @required this.controller,
-    this.textError,
-    this.helperText,
-    this.keytype,
-  }) : super(key: key);
+  const TextFormFieldModel(
+      {Key? key,
+      @required this.labelText,
+      this.hintText,
+      @required this.controller,
+      this.textError,
+      this.helperText,
+      this.keytype,
+      this.maxlength})
+      : super(key: key);
 
   final String? labelText;
   final String? hintText;
@@ -17,12 +18,14 @@ class TextFormFieldModel extends StatelessWidget {
   final String? helperText;
   final TextEditingController? controller;
   final bool? keytype;
+  final int? maxlength;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: keytype != true ? null : TextInputType.number,
       controller: controller,
+      maxLength: maxlength,
       validator: (value) {
         if (value!.isEmpty) {
           return textError;
@@ -43,17 +46,17 @@ class TextFormFieldModel extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blue),
           borderRadius: BorderRadius.all(
-            Radius.circular(50),
+            Radius.circular(30),
           ),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.pink),
-          borderRadius: BorderRadius.all(Radius.circular(50)),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
           borderRadius: BorderRadius.all(
-            Radius.circular(50),
+            Radius.circular(30),
           ),
         ),
       ),
