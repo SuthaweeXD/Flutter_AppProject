@@ -74,8 +74,7 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        // backgroundImage: NetworkImage(
-                        //     'https://github.com/SuthaweeXD/images/blob/main/ACE.jpg?raw=true'),
+                        child: Image.asset('assets/images/user.png'),
                         backgroundColor: Colors.white,
                         radius: 40,
                       ),
@@ -89,7 +88,7 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                                 ? Text(
                                     ''' ${data['user_fname']}  ${data['user_lname']}''',
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Color.fromARGB(255, 0, 0, 0),
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   )
@@ -114,42 +113,85 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => MainEmployee(index: 0),
+                            //แก้ตรงนี้--------------------------------------------------------------------------------------
                           ),
                           (route) => false);
                     },
-                    child: Text(
-                      'หน้าหลัก',
-                      style: TextStyle(fontSize: 18),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Icon(
+                          Icons.home,
+                          size: 35,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'ข้อมูลการสั่งซื้อ',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainEmployee(index: 2),
+                          ),
+                          (route) => false);
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Icon(
+                          Icons.history,
+                          size: 35,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'ประชาสัมพันธ์',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
                     )),
               ],
             ),
           ),
           Align(
-            alignment: Alignment.bottomLeft,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  // leading: Icon(FontAwesomeIcons.rightFromBracket),
-                  title: Text(
-                    'ออกจากระบบ',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                  onTap: () async {
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    prefs.remove('token');
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                        ),
-                        (route) => false);
-                  },
+            alignment: Alignment.bottomCenter,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.fromLTRB(97, 20, 92, 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0),
                 ),
-              ],
+                backgroundColor: Color.fromARGB(255, 255, 0, 0),
+                primary: const Color.fromARGB(255, 255, 255, 255),
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.remove('token');
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                    (route) => false);
+              },
+              child: const Text(
+                'ออกจากระบบ',
+              ),
             ),
-          ),
+          )
         ],
       ),
     );

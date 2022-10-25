@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/Sidemenu.dart';
 import 'package:flutter_application_project/views/owner/MapShop.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../config/api.dart';
 
 class PRshop extends StatefulWidget {
@@ -13,6 +14,7 @@ class PRshop extends StatefulWidget {
 }
 
 class _PRshopState extends State<PRshop> {
+  int activeIndex = 0;
   dynamic data;
   void initState() {
     super.initState();
@@ -31,6 +33,7 @@ class _PRshopState extends State<PRshop> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 77, 158, 88),
         title: Text('หน้าแรก'),
       ),
       body: SingleChildScrollView(
@@ -50,17 +53,36 @@ class _PRshopState extends State<PRshop> {
               ),
               data != null
                   ? CarouselSlider.builder(
-                      options: CarouselOptions(height: 250),
+                      options: CarouselOptions(
+                          height: 250,
+                          autoPlay: true,
+                          enlargeCenterPage: true,
+                          onPageChanged: (index, reason) => setState(
+                                () => activeIndex = index,
+                              )),
                       itemCount: data?.length ?? 0,
                       itemBuilder: (context, index, realIndex) {
                         final urlImage = data[index]['pr_photo'];
-
+                        activeIndex = index;
                         return buildImage(urlImage, index);
                       },
                     )
-                  : Text('0'),
+                  : const Center(
+                      child: CupertinoActivityIndicator(),
+                    ),
               SizedBox(
-                height: 20,
+                height: 10,
+              ),
+              data != null
+                  ? buildIndicator(
+                      activeIndex,
+                      data?.length ?? 0,
+                    )
+                  : const Center(
+                      child: CupertinoActivityIndicator(),
+                    ), //
+              SizedBox(
+                height: 10,
               ),
               Column(
                 children: [
@@ -118,6 +140,12 @@ class _PRshopState extends State<PRshop> {
         color: Colors.grey,
         child: Image(
           image: NetworkImage(urlImage),
+          fit: BoxFit.cover,
         ),
       );
 }
+
+Widget buildIndicator(int activeIndex, int length) => AnimatedSmoothIndicator(
+      activeIndex: activeIndex,
+      count: length,
+    );
