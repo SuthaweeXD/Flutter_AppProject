@@ -127,7 +127,16 @@ class _HistoryOrdersState extends State<HistoryOrders> {
                                           fontSize: 16,
                                         ),
                                       ),
-
+                                      // ListTile(
+                                      //   subtitle: Text(
+                                      //     'สถานะ : ' +
+                                      //         ColorStatus(
+                                      //             data[i]["order_status"]),
+                                      //     style: const TextStyle(
+                                      //       fontSize: 16,
+                                      //     ),
+                                      //   ),
+                                      // ),
                                       const SizedBox(
                                         height: 2,
                                       ),

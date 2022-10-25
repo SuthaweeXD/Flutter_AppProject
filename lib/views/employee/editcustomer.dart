@@ -81,24 +81,39 @@ class _EditCustomerState extends State<EditCustomer> {
                 controller: address,
               ),
               SizedBox(
-                height: 40,
+                height: 30,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  sendDataProfile2(fname.text, lname.text, phone.text,
-                      address.text, widget.data['user_id'], context);
-                },
-                child: const Text('ยืนยัน',
-                    style: TextStyle(
+              Container(
+                padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    sendDataProfile2(fname.text, lname.text, phone.text,
+                        address.text, widget.data['user_id'], context);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.save,
+                        size: 30,
                         color: Color.fromARGB(255, 255, 255, 255),
-                        fontSize: 27,
-                        fontWeight: FontWeight.bold)),
-                style: ElevatedButton.styleFrom(
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(40))),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
-                  primary: Color.fromARGB(255, 77, 158, 88),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      const Text('ยืนยัน',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 27,
+                              fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 40),
+                    primary: Color.fromARGB(255, 77, 158, 88),
+                  ),
                 ),
               )
             ],

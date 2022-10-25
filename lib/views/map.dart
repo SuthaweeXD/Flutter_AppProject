@@ -19,23 +19,61 @@ class _AddressMapState extends State<AddressMap> {
     //
   }
 
-  // static final CameraPosition tr =
-  //     CameraPosition(target: LatLng(widget.lat, widget.lng), zoom: 15);
-  // List<Marker> mymarker = [
-  //   Marker(markerId: MarkerId("นายแดง"),
-  //   position: LatLng(lata, lngb))
-  // ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GoogleMap(
+        initialCameraPosition:
+            CameraPosition(target: LatLng(widget.lat, widget.lng), zoom: 15),
+        markers: {
+          Marker(
+              markerId: MarkerId("ที่อยู่จัดส่ง"),
+              position: LatLng(lata, lngb)),
+        },
+        // onTap: tounch,
+      ),
+    );
+  }
+
+  tounch(LatLng tappedPoint) {
+    setState(() {
+      lata = tappedPoint.latitude;
+      lngb = tappedPoint.longitude;
+    });
+  }
+}
+
+class MapWidget extends StatefulWidget {
+  MapWidget({Key? key, required this.lat, required this.lng}) : super(key: key);
+  double lat, lng;
+  @override
+  State<MapWidget> createState() => _MapWidgetState();
+}
+
+class _MapWidgetState extends State<MapWidget> {
+  late double lata, lngb;
+  @override
+  void initState() {
+    super.initState();
+    lata = widget.lat;
+    lngb = widget.lng;
+    //
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      initialCameraPosition:
-          CameraPosition(target: LatLng(widget.lat, widget.lng), zoom: 15),
-      markers: {
-        Marker(
-            markerId: MarkerId("ที่อยู่จัดส่ง"), position: LatLng(lata, lngb)),
-      },
-      onTap: tounch,
+    return Scaffold(
+      appBar: AppBar(),
+      body: GoogleMap(
+        initialCameraPosition:
+            CameraPosition(target: LatLng(widget.lat, widget.lng), zoom: 15),
+        markers: {
+          Marker(
+              markerId: MarkerId("ที่อยู่จัดส่ง"),
+              position: LatLng(lata, lngb)),
+        },
+        // onTap: tounch,
+      ),
     );
   }
 

@@ -95,7 +95,7 @@ class _OrdersState extends State<Orders> {
               const ModelOrders(
                 ImagesP: ('assets/images/roll.png'),
                 TextP: ('เส้นม้วน'),
-              )
+              ),
             ],
           ),
           const SizedBox(
@@ -129,6 +129,7 @@ class _OrdersState extends State<Orders> {
           SizedBox(
             height: 5,
           ),
+
           Padding(
             padding: const EdgeInsets.fromLTRB(30, 10, 30, 20),
             child: SizedBox(
@@ -204,8 +205,8 @@ class _OrdersState extends State<Orders> {
                           5 ||
                       picdate.text == "" ||
                       pictime.text == ""
-                  ? normalDialog(context,
-                      ('*กรุณากรอกให้ถูกต้อง สั่งขั้นต่ำทั้งหมด 5 กิโลกรัมขึ้นไป*'))
+                  ? normalDialogAlert(context,
+                      ('*กรุณากรอกให้ถูกต้อง สั่งขั้นต่ำทั้งหมด 5 กิโลกรัมขึ้นไป'))
                   : Navigator.push(
                       context,
                       MaterialPageRoute(

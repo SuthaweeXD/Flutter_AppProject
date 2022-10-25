@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/model/SideMenuOwn.dart';
 import 'package:flutter_application_project/views/owner/EditOrderOwn.dart';
 import 'package:intl/intl.dart';
 
@@ -124,7 +125,7 @@ class _OrderOwnState extends State<OrderOwn> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        'สถานะ : \n' +
+                                        'สถานะ : ' +
                                             ColorStatus(
                                                 data[i]["order_status"]),
                                         style: const TextStyle(
@@ -143,6 +144,7 @@ class _OrderOwnState extends State<OrderOwn> {
           ),
         )),
       ),
+      drawer: SideMenuOwn(),
     );
   }
 }

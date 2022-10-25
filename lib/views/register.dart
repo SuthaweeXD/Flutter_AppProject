@@ -153,16 +153,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           )),
                     ),
                   ),
-                  // const SizedBox(
-                  //   height: 25,
-                  // ),
-                  // TextFormFieldModel(
-                  //   controller: password,
-                  //   labelText: 'รหัสผ่าน',
-                  //   hintText: 'รหัสผ่าน',
-                  //   textError: 'กรุณากรอก',
-                  //   helperText: 'กรอกรหัสผ่านอย่างน้อย 6 ตัว',
-                  // ),
                   const SizedBox(
                     height: 25,
                   ),

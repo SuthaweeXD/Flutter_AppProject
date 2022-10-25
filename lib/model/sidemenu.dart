@@ -117,39 +117,82 @@ class _SideMenuState extends State<SideMenu> {
                           ),
                           (route) => false);
                     },
-                    child: Text(
-                      'หน้าหลัก',
-                      style: TextStyle(fontSize: 18),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Icon(
+                          Icons.home,
+                          size: 35,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'หน้าหลัก',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Customerhome(index: 2),
+                          ),
+                          (route) => false);
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Icon(
+                          Icons.history,
+                          size: 35,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'ประวัติการสั่งซื้อ',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
                     )),
               ],
             ),
           ),
           Align(
-            alignment: Alignment.bottomLeft,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  // leading: Icon(FontAwesomeIcons.rightFromBracket),
-                  title: Text(
-                    'ออกจากระบบ',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                  onTap: () async {
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    prefs.remove('token');
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                        ),
-                        (route) => false);
-                  },
+            alignment: Alignment.bottomCenter,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.fromLTRB(97, 20, 92, 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0),
                 ),
-              ],
+                backgroundColor: Color.fromARGB(255, 255, 0, 0),
+                primary: const Color.fromARGB(255, 255, 255, 255),
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.remove('token');
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                      //แก้ตรงนี้--------------------------------------------------------------------------------------
+                    ),
+                    (route) => false);
+              },
+              child: const Text(
+                'ออกจากระบบ',
+              ),
             ),
-          ),
+          )
         ],
       ),
     );

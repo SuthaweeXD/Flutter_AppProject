@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/config.dart';
@@ -14,6 +15,8 @@ import 'package:flutter_application_project/views/owner/UserDBOwn.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:path/path.dart';
+import 'package:http_parser/http_parser.dart';
 
 Future checkRegister(
     fname, lname, phone, address, username, password, context) async {
@@ -98,7 +101,10 @@ Future checkLogin(String username, String password, context) async {
                           )),
                   (Route<dynamic> route) => false);
     } else {
-      EasyLoading.showError('Failed with Error');
+      EasyLoading.showError(
+        'Failed with Error',
+        maskType: EasyLoadingMaskType.black,
+      );
     }
   });
 }
@@ -476,11 +482,11 @@ Future sendstatusOrder1(statusOrder, orderid, context) async {
   });
 }
 
-Future CreateUser(
+Future CreateEmp(
     fname, lname, phone, address, username, password, context) async {
   EasyLoading.show(status: 'loading...');
 
-  Uri url = Uri.parse('http://206.189.145.138:3700/api/users');
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/users/emp1');
   http
       .post(
     url,
@@ -543,6 +549,77 @@ Future sendlocation(lat, lng, usersid, context) async {
           (Route<dynamic> route) => false);
     } else {
       normalDialog(context, ('มีช่องว่าง'));
+    }
+  });
+}
+
+Future sendPR1(File _image, orderid, context) async {
+  var stream = http.ByteStream(_image.openRead());
+  Uri url =
+      Uri.parse('http://206.189.145.138:3700/api/orders/payment/$orderid');
+  var length = await _image.length();
+
+  http.MultipartRequest request = http.MultipartRequest('PUT', url)
+    ..headers.addAll(headers!)
+    ..files.add(
+      // replace file with your field name exampe: image
+      http.MultipartFile('photo', stream, length,
+          contentType: MediaType('image', 'jpeg'),
+          filename: basename(_image.path)),
+    );
+
+  var respons = await http.Response.fromStream(await request.send());
+  if (respons.statusCode == 204) {
+    EasyLoading.showSuccess('Great Success!');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Customerhome(index: 2)),
+    );
+  } else {
+    EasyLoading.showError('Failed with Error');
+  }
+}
+
+Future uploadPR(File _image, prid, context) async {
+  var stream = http.ByteStream(_image.openRead());
+  Uri url =
+      Uri.parse('http://206.189.145.138:3700/api/public_relations/pr1/$prid');
+  var length = await _image.length();
+
+  http.MultipartRequest request = http.MultipartRequest('PUT', url)
+    ..headers.addAll(headers!)
+    ..files.add(
+      // replace file with your field name exampe: image
+      http.MultipartFile('photo', stream, length,
+          contentType: MediaType('image', 'jpeg'),
+          filename: basename(_image.path)),
+    );
+
+  var respons = await http.Response.fromStream(await request.send());
+  if (respons.statusCode == 204) {
+    EasyLoading.showSuccess('Great Success!');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MainEmployee(index: 3)),
+    );
+  } else {
+    EasyLoading.showError('Failed with Error');
+  }
+}
+
+Future<dynamic> getPR() async {
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/public_relations');
+  return await http
+      .get(
+    url,
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 200) {
+      var data = jsonDecode(req.body);
+      return data;
+    } else {
+      return null;
     }
   });
 }

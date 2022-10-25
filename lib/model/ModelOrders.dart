@@ -6,6 +6,7 @@ import 'package:flutter_application_project/views/employee/UsersDB.dart';
 import 'package:flutter_application_project/views/order/ConfirmOrders.dart';
 import 'package:flutter_application_project/views/order/OrdersDB.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ModelOrders extends StatelessWidget {
   const ModelOrders({Key? key, this.ImagesP, this.TextP}) : super(key: key);
@@ -128,10 +129,30 @@ class TextOrders extends StatelessWidget {
 Future<void> normalDialog(BuildContext context, String message) async {
   showDialog(
       context: context,
-      builder: (context) => AlertDialog(title: Text(message), actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'OK'),
-              child: const Text('OK'),
-            )
-          ]));
+      builder: (context) => AlertDialog(
+              title: Text(
+                message,
+              ),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'OK'),
+                  child: const Text('OK'),
+                )
+              ]));
+}
+
+Future<void> normalDialogAlert(BuildContext context, String message) async {
+  showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+              title: Text(
+                message,
+                style: TextStyle(color: Colors.red),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'OK'),
+                  child: const Text('ตกลง'),
+                )
+              ]));
 }

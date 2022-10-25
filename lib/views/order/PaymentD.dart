@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:image_picker/image_picker.dart';
 
-class EditPR extends StatefulWidget {
-  EditPR({Key? key, required this.data}) : super(key: key);
+class PaymentD extends StatefulWidget {
+  PaymentD({Key? key, this.data}) : super(key: key);
   final dynamic data;
+
   @override
-  State<EditPR> createState() => _EditPRState();
+  State<PaymentD> createState() => _PaymentDState();
 }
 
-class _EditPRState extends State<EditPR> {
+class _PaymentDState extends State<PaymentD> {
   File? _image;
   bool isTapped = false;
   Future getImage(ImageSource imggallary) async {
@@ -28,7 +29,7 @@ class _EditPRState extends State<EditPR> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ประชาสัมพันธ์'),
+        title: Text('โอนชำระ'),
         backgroundColor: const Color.fromARGB(255, 45, 134, 156),
       ),
       body: SingleChildScrollView(
@@ -37,23 +38,18 @@ class _EditPRState extends State<EditPR> {
             children: [
               SizedBox(height: 80),
               _image != null
-                  ? ClipOval(
-                      child: SizedBox.fromSize(
-                        size: Size.fromRadius(150), // Image radius
-                        child: Image.file(_image!, fit: BoxFit.cover),
-                      ),
+                  ? SizedBox.fromSize(
+                      child: Image.file(_image!, fit: BoxFit.cover),
                     )
-                  : widget.data['pr_photo'] != null
-                      ? CircleAvatar(
-                          // backgroundImage: avatarUser(),
-                          backgroundImage:
-                              NetworkImage(widget.data['pr_photo']),
-                          radius: 150,
-                        )
-                      : CircleAvatar(
-                          // backgroundImage: avatarUser(),
-                          radius: 150,
+                  : SizedBox.fromSize(
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(25, 10, 25, 0),
+                        child: Image.asset(
+                          'assets/images/empty.png',
+                          fit: BoxFit.cover,
                         ),
+                      ),
+                    ),
               SizedBox(height: 60),
               SizedBox(
                 width: 350,
@@ -84,24 +80,22 @@ class _EditPRState extends State<EditPR> {
                       ],
                     )),
               ),
-              TextButton(
-                  onPressed: () {
-                    if (!isTapped) {
-                      isTapped = true;
-                      print(widget.data);
-                      uploadPR(_image!, widget.data['pr_id'], context);
-                    }
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.save,
-                        color: Colors.white,
-                      ),
-                      Text('บันทึก'),
-                    ],
-                  )),
-              Text('555'),
+              _image != null
+                  ? TextButton(
+                      onPressed: () {
+                        if (!isTapped) {
+                          isTapped = true;
+                          sendPR1(_image!, widget.data, context);
+                        }
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.photo_album),
+                          SizedBox(width: 20),
+                          Text('ยืนยัน'),
+                        ],
+                      ))
+                  : Text(''),
             ],
           ),
         ),

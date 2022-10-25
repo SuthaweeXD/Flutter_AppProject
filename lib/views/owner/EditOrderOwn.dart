@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/owner/Main.dart';
 import 'package:intl/intl.dart';
 
 import '../../config/api.dart';
@@ -55,7 +56,7 @@ class _EditOrderOwnState extends State<EditOrderOwn> {
               padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
               child: SizedBox(
                 width: 950,
-                height: 300,
+                height: 950,
                 child: Card(
                   color: Color.fromARGB(255, 204, 255, 172),
                   shadowColor: const Color.fromARGB(255, 114, 114, 114),
@@ -127,122 +128,288 @@ class _EditOrderOwnState extends State<EditOrderOwn> {
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                widget.statusOrder = "2";
-                print(widget.data['order_id']);
-                print(widget.statusOrder);
-                sendstatusOrder(
-                    widget.statusOrder, widget.data['order_id'], context);
-              },
-              child: const Text('ยืนยันรับคำสั่งซื้อ',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500)),
-              style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                primary: Color.fromARGB(255, 55, 255, 102),
-              ),
-            ),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
-            ElevatedButton(
-              onPressed: () {
-                widget.statusOrder = "3";
-                print(widget.data['order_id']);
-                print(widget.statusOrder);
-                sendstatusOrder(
-                    widget.statusOrder, widget.data['order_id'], context);
-              },
-              child: const Text('ปฏิเสธรับคำสั่งซื้อ',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500)),
-              style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                primary: Color.fromARGB(255, 251, 255, 0),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                widget.statusOrder = "4";
-                print(widget.data['order_id']);
-                print(widget.statusOrder);
-                sendstatusOrder(
-                    widget.statusOrder, widget.data['order_id'], context);
-              },
-              child: const Text('ยืนยันการโอนชำระ',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500)),
-              style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                primary: Color.fromARGB(255, 0, 143, 232),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                widget.statusOrder = "5";
-                print(widget.data['order_id']);
-                print(widget.statusOrder);
-                sendstatusOrder(
-                    widget.statusOrder, widget.data['order_id'], context);
-              },
-              child: const Text('จัดส่งสำเร็จ',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500)),
-              style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                primary: Color.fromARGB(255, 0, 193, 19),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                widget.statusOrder = "6";
-                print(widget.data['order_id']);
-                print(widget.statusOrder);
-                sendstatusOrder(
-                    widget.statusOrder, widget.data['order_id'], context);
-              },
-              child: const Text('ยกเลิกคำสั่งซื้อ',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500)),
-              style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                primary: Color.fromARGB(255, 255, 31, 61),
-              ),
+            widget.data['order_status'] == 1
+                ? Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.fromLTRB(45, 0, 45, 0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            sendstatusOrder1(
+                                "2", widget.data['order_id'], context);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.check_box,
+                                size: 30,
+                                color: Colors.black87,
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              const Text('ยืนยันรับคำสั่งซื้อ',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 40),
+                            primary: Color.fromARGB(255, 55, 255, 102),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          "3";
+
+                          sendstatusOrder1(
+                              "3", widget.data['order_id'], context);
+                        },
+                        child: const Text('ปฏิเสธรับคำสั่งซื้อ',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500)),
+                        style: ElevatedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 40),
+                          primary: Color.fromARGB(255, 255, 87, 87),
+                        ),
+                      )
+                    ],
+                  )
+                : widget.data['order_status'] == 2
+                    ? Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              "4";
+
+                              sendstatusOrder1(
+                                  "4", widget.data['order_id'], context);
+                            },
+                            child: const Text('ยืนยันการโอนชำระ',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500)),
+                            style: ElevatedButton.styleFrom(
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 30),
+                              primary: Color.fromARGB(255, 0, 143, 232),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                        ],
+                      )
+                    : widget.data['order_status'] == 3
+                        ? ElevatedButton(
+                            onPressed: () {
+                              "6";
+
+                              sendstatusOrder1(
+                                  "6", widget.data['order_id'], context);
+                            },
+                            child: const Text('ยกเลิกคำสั่งซื้อ',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500)),
+                            style: ElevatedButton.styleFrom(
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 30),
+                              primary: Color.fromARGB(255, 255, 31, 61),
+                            ),
+                          )
+                        : widget.data['order_status'] == 4
+                            ? ElevatedButton(
+                                onPressed: () {
+                                  "5";
+
+                                  sendstatusOrder1(
+                                      "5", widget.data['order_id'], context);
+                                },
+                                child: const Text('ยืนยันการโอนชำระ',
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 0, 0, 0),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500)),
+                                style: ElevatedButton.styleFrom(
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 30),
+                                  primary: Color.fromARGB(255, 0, 143, 232),
+                                ),
+                              )
+                            : widget.data['order_status'] == 5
+                                ? ElevatedButton(
+                                    onPressed: () {
+                                      "8";
+
+                                      sendstatusOrder1("8",
+                                          widget.data['order_id'], context);
+                                    },
+                                    child: const Text('กำลังจัดส่ง',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500)),
+                                    style: ElevatedButton.styleFrom(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10))),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 30),
+                                      primary: Color.fromARGB(255, 0, 193, 19),
+                                    ),
+                                  )
+                                : widget.data['order_status'] == 6
+                                    ? Text('คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว')
+                                    : widget.data['order_status'] == 7
+                                        ? ElevatedButton(
+                                            onPressed: () {
+                                              "10";
+                                              print(widget.data['order_id']);
+
+                                              sendstatusOrder1(
+                                                  "10",
+                                                  widget.data['order_id'],
+                                                  context);
+                                            },
+                                            child: const Text('จัดส่งสำเร็จ',
+                                                style: TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0),
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                            style: ElevatedButton.styleFrom(
+                                              shape:
+                                                  const RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10))),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 30),
+                                              primary: Color.fromARGB(
+                                                  255, 24, 255, 86),
+                                            ),
+                                          )
+                                        : widget.data['order_status'] == 8
+                                            ? ElevatedButton(
+                                                onPressed: () {
+                                                  "10";
+                                                  print(
+                                                      widget.data['order_id']);
+
+                                                  sendstatusOrder1(
+                                                      "10",
+                                                      widget.data['order_id'],
+                                                      context);
+                                                },
+                                                child: const Text(
+                                                    'จัดส่งสำเร็จ',
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 0, 0, 0),
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                                style: ElevatedButton.styleFrom(
+                                                  shape:
+                                                      const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          10))),
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 30),
+                                                  primary: Color.fromARGB(
+                                                      255, 92, 255, 33),
+                                                ),
+                                              )
+                                            : widget.data['order_status'] == 9
+                                                ? ElevatedButton(
+                                                    onPressed: () {
+                                                      "10";
+                                                      print(widget
+                                                          .data['order_id']);
+
+                                                      sendstatusOrder1(
+                                                          "10",
+                                                          widget
+                                                              .data['order_id'],
+                                                          context);
+                                                    },
+                                                    child: const Text(
+                                                        'จัดส่งสำเร็จ',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    0,
+                                                                    0,
+                                                                    0),
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500)),
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      shape: const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          10))),
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 10,
+                                                          horizontal: 30),
+                                                      primary: Color.fromARGB(
+                                                          255, 92, 255, 33),
+                                                    ),
+                                                  )
+                                                : widget.data['order_status'] ==
+                                                        10
+                                                    ? Text(
+                                                        'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว')
+                                                    : Text('Error'),
+            SizedBox(
+              height: 20,
             ),
           ],
         ),

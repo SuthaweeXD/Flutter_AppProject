@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/ModelOrders.dart';
@@ -24,10 +25,12 @@ class ConfirmOrders extends StatefulWidget {
 class _ConfirmOrdersState extends State<ConfirmOrders> {
   dynamic data;
   bool isSwitched = false;
+  double result = 0, deposit = 0;
   @override
   void initState() {
     super.initState();
     startApi();
+    calculator();
   }
 
   startApi() async {
@@ -37,66 +40,116 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
     });
   }
 
+  calculator() {
+    double total = double.parse(widget.small) +
+        double.parse(widget.big) +
+        double.parse(widget.roll);
+
+    result = (double.parse(widget.small) * 20) +
+        (double.parse(widget.big) * 20) +
+        (double.parse(widget.roll) * 20);
+
+    if (total >= 100) {
+      deposit = result / 10;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('ยืนยันคำสั่งซื้อ'),
-        ),
-        body: data != null
-            ? SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
-                  child: SizedBox(
-                    width: 950,
-                    height: 750,
-                    child: Card(
-                      color: Color.fromARGB(255, 203, 255, 170),
-                      shadowColor: const Color.fromARGB(255, 114, 114, 114),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+      appBar: AppBar(
+        title: Text('ยืนยันคำสั่งซื้อ'),
+      ),
+      body: data != null
+          ? SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
+                child: SizedBox(
+                  width: 950,
+                  height: 950,
+                  child: Card(
+                    color: Color.fromARGB(255, 203, 255, 170),
+                    shadowColor: const Color.fromARGB(255, 114, 114, 114),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Container(
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             SizedBox(
                               height: 50,
                             ),
-                            Text(
-                              'เส้นเล็ก: ' + widget.small + ' กิโลกรัม',
-                              style: const TextStyle(fontSize: 18),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'ชื่อ :  ${data['user_fname']}'
+                                  '   '
+                                  ' ${data['user_lname']}',
+                                  style: TextStyle(fontSize: 22),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               height: 10,
                             ),
-                            Text(
-                              'เส้นใหญ่ : ' + widget.big + ' กิโลกรัม',
-                              style: const TextStyle(fontSize: 18),
-                            ),
                             SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'เส้นม้วน: ' + widget.roll + ' กิโลกรัม',
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'วันที่รับ: ' +
-                                  DateFormat('dd-MM-yyyy')
-                                      .format(DateTime.parse(widget.picdate)),
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'เวลาที่รับ: ' + widget.pictime + ' น.',
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                            SizedBox(
-                              height: 20,
+                              width: 300,
+                              height: 250,
+                              child: Card(
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      'เส้นเล็ก :     ' +
+                                          widget.small +
+                                          '      กิโลกรัม',
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      'เส้นใหญ่ :    ' +
+                                          widget.big +
+                                          '      กิโลกรัม',
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      'เส้นม้วน :     ' +
+                                          widget.roll +
+                                          '      กิโลกรัม',
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      'วันที่รับ :  ' +
+                                          DateFormat('dd-MM-yyyy').format(
+                                              DateTime.parse(widget.picdate)),
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      'เวลาที่รับ :  ' + widget.pictime + ' น.',
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text('ราคา  ' + result.toString()),
+                                    Text('มัดจำ  ' + deposit.toString()),
+                                  ],
+                                ),
+                              ),
                             ),
                             Container(
                               padding: EdgeInsets.fromLTRB(25, 10, 25, 5),
@@ -164,6 +217,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                 onChanged: (value) {
                                   setState(() {
                                     isSwitched = value;
+                                    print(data['order_id']);
                                     print(isSwitched);
                                   });
                                 },
@@ -201,7 +255,11 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                     ),
                   ),
                 ),
-              )
-            : Text('error'));
+              ),
+            )
+          : const Center(
+              child: CupertinoActivityIndicator(),
+            ),
+    );
   }
 }

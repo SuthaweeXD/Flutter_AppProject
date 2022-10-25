@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
 import 'package:flutter_application_project/views/order/CancleOrders.dart';
+import 'package:flutter_application_project/views/order/PaymentD.dart';
 import 'package:intl/intl.dart';
 
 import '../../model/ColorCard.dart';
@@ -17,6 +18,27 @@ class OrderDetail extends StatefulWidget {
 }
 
 class _OrderDetailState extends State<OrderDetail> {
+  bool? checkC = true;
+
+  checkCancleOrder() {
+    DateTime? checkCancle;
+    DateTime? datenow = DateTime.now();
+    checkCancle = DateTime.parse(widget.data['order_getdate']);
+    final difget = checkCancle.difference(datenow);
+    print(difget.inDays.toString());
+    if (difget.inDays < 3) {
+      setState(() {
+        checkC = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    checkCancleOrder();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,79 +188,238 @@ class _OrderDetailState extends State<OrderDetail> {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.add_a_photo,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    const Text('อัปโหลดหลักฐานการชำระเงิน',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 34, 34, 34),
-                          fontSize: 16,
-                        )),
-                  ],
-                ),
-                style: ElevatedButton.styleFrom(
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                  primary: Color.fromARGB(255, 255, 255, 255),
-                ),
-              ),
-            ),
             const SizedBox(
               height: 10,
             ),
-            ElevatedButton(
-              onPressed: () {
-                widget.statusOrder = "6";
-                print(widget.data['order_id']);
-                print(widget.statusOrder);
-                showDialog<String>(
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                            title: const Text('ยกเลิกคำสั่งซื้อ'),
-                            content: const Text('ข้อมูลคำสั่งซื้อจะถูกยกเลิก'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(context, 'Cancel'),
-                                child: const Text('ยกเลิก'),
+            widget.data['order_status'] == 1
+                ? Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PaymentD()));
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.add_a_photo,
+                                color: Colors.grey,
                               ),
-                              TextButton(
-                                onPressed: () => sendstatusOrder0(
-                                    widget.statusOrder,
-                                    widget.data['order_id'],
-                                    context),
-                                child: const Text('ตกลง'),
+                              SizedBox(
+                                width: 10,
                               ),
-                            ]));
-              },
-              child: const Text('ยกเลิกคำสั่งซื้อ',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 254, 254),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700)),
-              style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                primary: Color.fromARGB(255, 255, 31, 61),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
+                              const Text('อัปโหลดหลักฐานการชำระเงิน',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 34, 34, 34),
+                                    fontSize: 16,
+                                  )),
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 30),
+                            primary: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      checkC != false
+                          ? Container(
+                              padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  "6";
+                                  print(widget.data['order_id']);
+                                  showDialog<String>(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          AlertDialog(
+                                              title: const Text(
+                                                  'ยกเลิกคำสั่งซื้อ'),
+                                              content: const Text(
+                                                  'ข้อมูลคำสั่งซื้อจะถูกยกเลิก'),
+                                              actions: <Widget>[
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          context, 'Cancel'),
+                                                  child: const Text('ยกเลิก'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      sendstatusOrder0(
+                                                          widget.statusOrder,
+                                                          widget
+                                                              .data['order_id'],
+                                                          context),
+                                                  child: const Text('ตกลง'),
+                                                ),
+                                              ]));
+                                },
+                                child: const Text('ยกเลิกคำสั่งซื้อ',
+                                    style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 255, 254, 254),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700)),
+                                style: ElevatedButton.styleFrom(
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 30),
+                                  primary: Color.fromARGB(255, 255, 31, 61),
+                                ),
+                              ),
+                            )
+                          : Text('ยกเลิกบ่ได้'),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                    ],
+                  )
+                : widget.data['order_status'] == 2
+                    ? Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.add_a_photo,
+                                    color: Colors.grey,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Text('อัปโหลดหลักฐานการชำระเงิน',
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 34, 34, 34),
+                                        fontSize: 16,
+                                      )),
+                                ],
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 30),
+                                primary: Color.fromARGB(255, 255, 255, 255),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          checkC != false
+                              ? Container(
+                                  padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      "6";
+                                      print(widget.data['order_id']);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              AlertDialog(
+                                                  title: const Text(
+                                                      'ยกเลิกคำสั่งซื้อ'),
+                                                  content: const Text(
+                                                      'ข้อมูลคำสั่งซื้อจะถูกยกเลิก'),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(context,
+                                                              'Cancel'),
+                                                      child:
+                                                          const Text('ยกเลิก'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          sendstatusOrder0(
+                                                              widget
+                                                                  .statusOrder,
+                                                              widget.data[
+                                                                  'order_id'],
+                                                              context),
+                                                      child: const Text('ตกลง'),
+                                                    ),
+                                                  ]));
+                                    },
+                                    child: const Text('ยกเลิกคำสั่งซื้อ',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 254, 254),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w700)),
+                                    style: ElevatedButton.styleFrom(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10))),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 30),
+                                      primary: Color.fromARGB(255, 255, 31, 61),
+                                    ),
+                                  ),
+                                )
+                              : Text('ยกเลิกบ่ได้'),
+                        ],
+                      )
+                    : widget.data['order_status'] == 3
+                        ? Text('คำสั่งซื้อนี้ได้ถูกปฏิเสธแล้ว')
+                        : widget.data['order_status'] == 4
+                            ? Text('กำลังรอยืนยันการโอนชำระค่ามัดจำ')
+                            : widget.data['order_status'] == 5
+                                ? ElevatedButton(
+                                    onPressed: () {
+                                      "7";
+
+                                      sendstatusOrder0("7",
+                                          widget.data['order_id'], context);
+                                    },
+                                    child: const Text('ยกเลิกการจัดส่งสินค้า',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500)),
+                                    style: ElevatedButton.styleFrom(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10))),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 30),
+                                      primary: Color.fromARGB(255, 255, 1, 1),
+                                    ),
+                                  )
+                                : widget.data['order_status'] == 6
+                                    ? Text('คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว')
+                                    : widget.data['order_status'] == 7
+                                        ? Text(
+                                            'คุณได้ยกเลิกการจัดส่งสินค้า สามารถรับสินค้าได้ที่ร้าน')
+                                        : widget.data['order_status'] == 8
+                                            ? Text(
+                                                'คำสั่งซื้อของคุณกำลังจัดส่ง')
+                                            : widget.data['order_status'] == 9
+                                                ? Text(
+                                                    'คุณได้ชำระยอดคงเหลือเรียบร้อย \n คำสั่งซื้อของคุณกำลังจัดส่ง')
+                                                : widget.data['order_status'] ==
+                                                        10
+                                                    ? Text(
+                                                        'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว')
+                                                    : Text('error')
           ],
         ),
       ),

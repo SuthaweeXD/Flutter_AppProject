@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/Sidemenu.dart';
 import 'package:flutter_application_project/views/Login.dart';
+import 'package:flutter_application_project/views/owner/CreateUser.dart';
 import 'package:flutter_application_project/views/owner/Main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -113,6 +114,34 @@ class _SideMenuOwnState extends State<SideMenuOwn> {
                     child: Text(
                       'หน้าหลัก',
                       style: TextStyle(fontSize: 18),
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreateUsers(),
+                            //แก้ตรงนี้--------------------------------------------------------------------------------------
+                          ),
+                          (route) => false);
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Icon(
+                          Icons.person_add,
+                          size: 35,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'เพิ่มพนักงาน',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
                     )),
               ],
             ),

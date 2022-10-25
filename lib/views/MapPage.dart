@@ -24,6 +24,7 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: GoogleMap(
         initialCameraPosition:
             CameraPosition(target: LatLng(widget.lat, widget.lng), zoom: 15),

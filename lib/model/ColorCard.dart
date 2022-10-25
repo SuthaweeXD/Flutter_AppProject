@@ -6,15 +6,23 @@ ColorCard(int orderstatus) {
     case 1:
       return Color.fromARGB(255, 255, 255, 255);
     case 2:
-      return Color.fromARGB(202, 121, 255, 204);
+      return Color.fromARGB(201, 166, 255, 221);
     case 3:
-      return Color.fromARGB(255, 255, 134, 134);
+      return Color.fromARGB(255, 255, 162, 162);
     case 4:
-      return Color.fromARGB(255, 255, 196, 162);
+      return Color.fromARGB(255, 255, 209, 183);
     case 5:
-      return Color.fromARGB(237, 199, 255, 176);
+      return Color.fromARGB(236, 216, 255, 200);
     case 6:
-      return Color.fromARGB(243, 255, 120, 120);
+      return Color.fromARGB(222, 255, 185, 185);
+    case 7:
+      return Color.fromARGB(243, 255, 147, 147);
+    case 8:
+      return Color.fromARGB(243, 224, 255, 186);
+    case 9:
+      return Color.fromARGB(243, 196, 255, 250);
+    case 10:
+      return Color.fromARGB(243, 206, 255, 190);
   }
 }
 
@@ -29,9 +37,17 @@ ColorStatus(int orderstatus) {
     case 4:
       return "รอยืนยันการโอนชำระค่ามัดจำ";
     case 5:
-      return "ชำระเงินเรียบร้อย กำลังดำเนินการ";
+      return "กำลังดำเนินการ";
     case 6:
       return "ยกเลิกคำสั่งซื้อ";
+    case 7:
+      return "ยกเลิกการจัดส่งสินค้า";
+    case 8:
+      return "กำลังจัดส่ง";
+    case 9:
+      return "ชำระเงินคงเหลือเรียบร้อยแล้ว";
+    case 10:
+      return "จัดส่งสำเร็จ";
   }
 }
 
@@ -59,13 +75,24 @@ IconStatus(int orderstatus) {
     case 6:
       return Icon(Icons.cancel,
           size: 70, color: Color.fromARGB(255, 255, 0, 0));
+    case 7:
+      return Icon(Icons.cancel_schedule_send,
+          size: 70, color: Color.fromARGB(255, 255, 25, 25));
+    case 8:
+      return Icon(Icons.delivery_dining_sharp,
+          size: 70, color: Color.fromARGB(255, 255, 204, 64));
+    case 9:
+      return Icon(Icons.price_check,
+          size: 70, color: Color.fromARGB(255, 0, 208, 3));
+    case 10:
+      return Icon(Icons.check_circle_rounded,
+          size: 70, color: Color.fromARGB(255, 30, 255, 0));
   }
 }
 
 IconStatus1(int orderstatus) {
   switch (orderstatus) {
     case 1:
-      // ignore: prefer_const_constructors
       return Icon(Icons.watch_later_outlined,
           size: 45, color: Color.fromARGB(255, 110, 110, 110));
     case 2:
@@ -79,12 +106,24 @@ IconStatus1(int orderstatus) {
       );
     case 4:
       return Icon(Icons.hourglass_top_rounded,
-          size: 45, color: Color.fromARGB(255, 255, 196, 35));
+          size: 45, color: Color.fromARGB(255, 255, 199, 44));
     case 5:
       return Icon(Icons.offline_pin,
           size: 45, color: Color.fromARGB(255, 86, 255, 19));
     case 6:
       return Icon(Icons.cancel,
           size: 45, color: Color.fromARGB(255, 255, 0, 0));
+    case 7:
+      return Icon(Icons.cancel_schedule_send,
+          size: 45, color: Color.fromARGB(255, 255, 25, 25));
+    case 8:
+      return Icon(Icons.delivery_dining_sharp,
+          size: 45, color: Color.fromARGB(255, 255, 204, 64));
+    case 9:
+      return Icon(Icons.price_check,
+          size: 45, color: Color.fromARGB(255, 0, 208, 3));
+    case 10:
+      return Icon(Icons.check_circle_rounded,
+          size: 45, color: Color.fromARGB(255, 30, 255, 0));
   }
 }

@@ -17,14 +17,13 @@ class _CreateUsersState extends State<CreateUsers> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController phone = TextEditingController();
-  TextEditingController role = TextEditingController(text: 'C');
   TextEditingController address = TextEditingController();
+  bool hidepassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ลงทะเบียน'),
-      ),
+      appBar: AppBar(),
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -69,6 +68,8 @@ class _CreateUsersState extends State<CreateUsers> {
                     height: 15,
                   ),
                   TextFormFieldModel(
+                    keytype: true,
+                    maxlength: 10,
                     controller: phone,
                     labelText: 'เบอร์โทรศัพท์',
                     hintText: 'เบอร์โทรศัพท์',
@@ -85,6 +86,9 @@ class _CreateUsersState extends State<CreateUsers> {
                     textError: 'กรุณากรอก',
                     helperText: 'กรอกที่อยู่',
                   ),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   TextFormFieldModel(
                     controller: username,
                     labelText: 'ชื่อผู้ใช้',
@@ -92,15 +96,64 @@ class _CreateUsersState extends State<CreateUsers> {
                     textError: 'กรุณากรอก',
                     helperText: 'กรอกชื่อผู้ใช้',
                   ),
-                  TextFormFieldModel(
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
                     controller: password,
-                    labelText: 'รหัสผ่าน',
-                    hintText: 'รหัสผ่าน',
-                    textError: 'กรุณากรอก',
-                    helperText: 'กรอกรหัสผ่านอย่างน้อย 6 ตัว',
+                    obscureText: hidepassword,
+
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'กรุIากรอก';
+                      } else {
+                        return value.length < 6
+                            ? 'กรอกรหัสผ่านอย่างน้อย 6 ตัว'
+                            : null;
+                      }
+                    },
+                    // ignore: prefer_const_constructors
+                    style: TextStyle(color: Colors.black),
+                    decoration: InputDecoration(
+                      labelText: 'รหัสผ่าน',
+                      hintText: 'รหัสผ่าน',
+                      helperText: 'กรอกรหัสผ่านอย่างน้อย 6 ตัว',
+                      labelStyle: TextStyle(color: Colors.black),
+                      hintStyle: TextStyle(color: Colors.black),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.pink),
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      suffixIcon: IconButton(
+                          onPressed: (() {
+                            setState(() {
+                              hidepassword = !hidepassword;
+                            });
+                          }),
+                          icon: Icon(
+                            hidepassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            size: 30,
+                            color: Color.fromARGB(255, 70, 144, 255),
+                          )),
+                    ),
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -111,7 +164,7 @@ class _CreateUsersState extends State<CreateUsers> {
                     onPressed: () async {
                       if (_formkey.currentState!.validate()) {
                         _formkey.currentState?.save();
-                        await CreateUser(
+                        await CreateEmp(
                             fname.text,
                             lname.text,
                             phone.text,
@@ -121,7 +174,6 @@ class _CreateUsersState extends State<CreateUsers> {
                             context);
                       }
                       print('สมัครสมาชิก');
-                      print(role);
                     },
                     child: Text(
                       'ยืนยัน',
