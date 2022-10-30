@@ -6,7 +6,6 @@ class BarChartSample7 extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
   const BarChartSample7({Key? key});
 
-  static const shadowColor = Color(0xFFCCCCCC);
   static const dataList = [
     _BarData(Color(0xFFecb206), 18, 18),
     _BarData(Color(0xFFa8bd1a), 17, 8),
@@ -35,11 +34,11 @@ class _BarChartSample7State extends State<BarChartSample7> {
           color: color,
           width: 6,
         ),
-        BarChartRodData(
-          toY: shadowValue,
-          color: BarChartSample7.shadowColor,
-          width: 6,
-        ),
+        // BarChartRodData(
+        //   toY: shadowValue,
+        //   color: BarChartSample7.shadowColor,
+        //   width: 6,
+        // ),
       ],
       showingTooltipIndicators: touchedGroupIndex == x ? [0] : [],
     );

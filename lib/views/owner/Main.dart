@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/owner/ChartDayRT.dart';
 import 'package:flutter_application_project/views/owner/ChartReport.dart';
 import 'package:flutter_application_project/views/owner/CreateUser.dart';
 import 'package:flutter_application_project/views/owner/OrderOwn.dart';
@@ -28,7 +29,7 @@ class _HomepageOwnState extends State<HomepageOwn> {
 
   final screens = [
     UserDBOwn(),
-    CreateUsers(),
+    ChartRealtime(),
     ReportOrder(),
   ];
 

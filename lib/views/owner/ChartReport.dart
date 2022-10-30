@@ -16,74 +16,98 @@ class _ChartReportState extends State<ChartReport> {
         appBar: AppBar(),
         body: SingleChildScrollView(
             child: Container(
-                child: AspectRatio(
-          aspectRatio: 1.3,
-          child: Card(
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                const SizedBox(
-                  height: 18,
-                ),
-                Expanded(
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: PieChart(
-                      PieChartData(
-                        pieTouchData: PieTouchData(
-                          touchCallback:
-                              (FlTouchEvent event, pieTouchResponse) {
-                            setState(() {
-                              if (!event.isInterestedForInteractions ||
-                                  pieTouchResponse == null ||
-                                  pieTouchResponse.touchedSection == null) {
-                                touchedIndex = -1;
-                                return;
-                              }
-                              touchedIndex = pieTouchResponse
-                                  .touchedSection!.touchedSectionIndex;
-                            });
-                          },
-                        ),
-                        borderData: FlBorderData(
-                          show: false,
-                        ),
-                        sectionsSpace: 0,
-                        centerSpaceRadius: 40,
-                        sections: showingSections(),
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 1.3,
+                child: Card(
+                  color: Colors.white,
+                  child: PieChart(
+                    PieChartData(
+                      pieTouchData: PieTouchData(
+                        touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                          setState(() {
+                            if (!event.isInterestedForInteractions ||
+                                pieTouchResponse == null ||
+                                pieTouchResponse.touchedSection == null) {
+                              touchedIndex = -1;
+                              return;
+                            }
+                            touchedIndex = pieTouchResponse
+                                .touchedSection!.touchedSectionIndex;
+                          });
+                        },
                       ),
+                      borderData: FlBorderData(
+                        show: false,
+                      ),
+                      sectionsSpace: 0,
+                      centerSpaceRadius: 0,
+                      sections: showingSections(),
                     ),
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
-                    SizedBox(
-                      height: 18,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 28,
-                ),
-              ],
-            ),
+              ),
+              Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 95,
+                      ),
+                      SizedBox(
+                        width: 60,
+                        height: 30,
+                        child: Card(
+                            color: const Color(0xfff8b250),
+                            child: Text(
+                              'เส้นเล็ก',
+                              style: TextStyle(),
+                            )),
+                      ),
+                      SizedBox(
+                        width: 60,
+                        height: 30,
+                        child: Card(
+                            color: const Color(0xff845bef),
+                            child: Text('เส้นใหญ่')),
+                      ),
+                      SizedBox(
+                        width: 60,
+                        height: 30,
+                        child: Card(
+                            color: const Color(0xff13d38e),
+                            child: Text('เส้นม้วน')),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text('คำสั่งซื้อทั้งหมด : ' + "${widget.data['totalorder']}"),
+                ],
+              )
+            ],
           ),
-        ))));
+        )));
   }
 
   List<PieChartSectionData> showingSections() {
-    return List.generate(4, (i) {
+    return List.generate(3, (i) {
       final isTouched = i == touchedIndex;
-      final fontSize = isTouched ? 25.0 : 16.0;
-      final radius = isTouched ? 60.0 : 50.0;
+      final fontSize = isTouched ? 20.0 : 16.0;
+      final radius = isTouched ? 110.0 : 100.0;
+      final widgetSize = isTouched ? 55.0 : 40.0;
+
       switch (i) {
         case 0:
           return PieChartSectionData(
-            color: const Color(0xff0293ee),
-            value: double.parse("${widget.data['totalorder']}"),
-            title: 'ทั้งหมด',
+            color: const Color(0xfff8b250),
+            value: double.parse("${widget.data['allordersmall']}"),
+            title: "${widget.data['allordersmall']}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -93,9 +117,9 @@ class _ChartReportState extends State<ChartReport> {
           );
         case 1:
           return PieChartSectionData(
-            color: const Color(0xfff8b250),
-            value: double.parse("${widget.data['allordersmall']}"),
-            title: 'เส้นเล็ก',
+            color: const Color(0xff845bef),
+            value: double.parse("${widget.data['allorderbig']}"),
+            title: "${widget.data['allorderbig']}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -105,21 +129,9 @@ class _ChartReportState extends State<ChartReport> {
           );
         case 2:
           return PieChartSectionData(
-            color: const Color(0xff845bef),
-            value: double.parse("${widget.data['allorderbig']}"),
-            title: 'เส้นใหญ่',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff),
-            ),
-          );
-        case 3:
-          return PieChartSectionData(
             color: const Color(0xff13d38e),
             value: double.parse("${widget.data['allorderroll']}"),
-            title: 'เส้นม้วน',
+            title: "${widget.data['allorderroll']}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -128,7 +140,7 @@ class _ChartReportState extends State<ChartReport> {
             ),
           );
         default:
-          throw Error();
+          throw Exception('Oh no');
       }
     });
   }

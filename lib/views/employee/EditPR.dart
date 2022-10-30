@@ -15,6 +15,16 @@ class EditPR extends StatefulWidget {
 class _EditPRState extends State<EditPR> {
   File? _image;
   bool isTapped = false;
+  TextEditingController description = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      description.text = widget.data['pr_description'];
+      print(description);
+    });
+  }
+
   Future getImage(ImageSource imggallary) async {
     final image = await ImagePicker().pickImage(source: imggallary);
     if (image == null) return;
@@ -36,7 +46,19 @@ class _EditPRState extends State<EditPR> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 80),
+              SizedBox(height: 20),
+              TextFormField(
+                controller: description,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0))),
+              ),
+              SizedBox(height: 20),
+
               _image != null
                   ? SizedBox.fromSize(
                       child: Container(
@@ -117,7 +139,12 @@ class _EditPRState extends State<EditPR> {
                         onPressed: () {
                           if (!isTapped) {
                             isTapped = true;
-                            uploadPR(_image!, widget.data['pr_id'], context);
+                            uploadPR(
+                                _image!,
+                                widget.data['pr_id'],
+                                description.text,
+                                DateTime.now().toString(),
+                                context);
                           }
                         },
                         child: Row(

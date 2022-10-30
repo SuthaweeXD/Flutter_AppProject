@@ -656,20 +656,21 @@ Future uploadPayment(File _image, orderid, context) async {
   }
 }
 
-Future uploadPR(File _image, prid, context) async {
+Future uploadPR(File _image, prid, description, prdate, context) async {
   var stream = http.ByteStream(_image.openRead());
   Uri url =
       Uri.parse('http://206.189.145.138:3700/api/public_relations/pr1/$prid');
   var length = await _image.length();
 
-  http.MultipartRequest request = http.MultipartRequest('PUT', url)
-    ..headers.addAll(headers!)
-    ..files.add(
-      // replace file with your field name exampe: image
-      http.MultipartFile('photo', stream, length,
-          contentType: MediaType('image', 'jpeg'),
-          filename: basename(_image.path)),
-    );
+  http.MultipartRequest request = http.MultipartRequest('PUT', url);
+  request.fields.addAll({"prdate": prdate, "descrip": description});
+  request.headers.addAll(headers!);
+  request.files.add(
+    // replace file with your field name exampe: image
+    http.MultipartFile('photo', stream, length,
+        contentType: MediaType('image', 'jpeg'),
+        filename: basename(_image.path)),
+  );
 
   var respons = await http.Response.fromStream(await request.send());
   if (respons.statusCode == 204) {
