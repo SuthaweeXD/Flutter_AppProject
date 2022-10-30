@@ -252,11 +252,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                 ),
                               ),
                             )
-                          : Text(
-                              '*ไม่สามารถยกเลิกได้ กรุณายกเลิกล่วงหน้า 2 วัน',
-                              style: TextStyle(color: Colors.red),
-                            ),
-                      SizedBox(height: 25),
+                          : Text('ยกเลิกบ่ได้'),
                       const SizedBox(
                         height: 15,
                       ),
@@ -268,13 +264,7 @@ class _OrderDetailState extends State<OrderDetail> {
                           Container(
                             padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
                             child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            PaymentD(data: widget.data)));
-                              },
+                              onPressed: () {},
                               child: Row(
                                 children: [
                                   Icon(
@@ -355,16 +345,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                     ),
                                   ),
                                 )
-                              : SizedBox(
-                                  height: 15,
-                                ),
-                          Text(
-                            '*ไม่สามารถยกเลิกได้ กรุณายกเลิกล่วงหน้า 2 วัน',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          )
+                              : Text('ยกเลิกบ่ได้'),
                         ],
                       )
                     : widget.data['order_status'] == 3

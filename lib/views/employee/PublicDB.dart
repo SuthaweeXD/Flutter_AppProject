@@ -37,7 +37,7 @@ class _PRdataState extends State<PRdata> {
               // reverse: true,
               itemCount: data?.length ?? 0,
               itemBuilder: (context, i) => Container(
-                  height: 250,
+                  height: 210,
                   width: 20,
                   child: InkWell(
                       onTap: () {
@@ -50,7 +50,7 @@ class _PRdataState extends State<PRdata> {
                       },
                       child: Card(
                         elevation: 10,
-                        color: Color.fromARGB(255, 247, 247, 247),
+                        color: Color.fromARGB(255, 177, 29, 29),
                         shadowColor: const Color.fromARGB(255, 114, 114, 114),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
