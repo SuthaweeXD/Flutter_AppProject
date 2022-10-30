@@ -13,10 +13,12 @@ class ConfirmOrders extends StatefulWidget {
       this.picdate,
       this.pictime,
       this.now,
+      this.dep,
+      this.total,
       context})
       : super(key: key);
 
-  dynamic small, big, roll, picdate, pictime, now;
+  dynamic small, big, roll, picdate, pictime, now, dep, total;
 
   @override
   State<ConfirmOrders> createState() => _ConfirmOrdersState();
@@ -193,43 +195,6 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                               ),
                             ),
                             SizedBox(height: 75),
-                            // TextButton(
-                            //   onPressed: () {
-                            //     showDialog<String>(
-                            //         context: context,
-                            //         builder: (BuildContext context) =>
-                            //             AlertDialog(
-                            //                 title: const Text(
-                            //                     'แก้ไขที่อยู่การจัดส่ง'),
-                            //                 content: const Text(
-                            //                     '*หากต้องการแก้ไขให้ไปที่ข้อมูลส่วนตัว*'),
-                            //                 actions: <Widget>[
-                            //                   TextButton(
-                            //                     onPressed: () => Navigator.pop(
-                            //                         context, 'Cancel'),
-                            //                     child: const Text('ยกเลิก'),
-                            //                   ),
-                            //                   TextButton(
-                            //                     onPressed: () => Navigator.pop(
-                            //                         context, 'OK'),
-                            //                     child: const Text('ตกลง'),
-                            //                   ),
-                            //                 ]));
-                            //   },
-                            //   child: Switch(
-                            //     value: isSwitched,
-                            //     onChanged: (value) {
-                            //       setState(() {
-                            //         isSwitched = value;
-                            //         print(data['order_id']);
-                            //         print(isSwitched);
-                            //       });
-                            //     },
-                            //     activeTrackColor: Colors.lightGreenAccent,
-                            //     activeColor: Colors.green,
-                            //   ),
-                            // ),
-                            // SizedBox(height: 20),
                             TextButton(
                               onPressed: () {
                                 sendorders(
@@ -239,6 +204,8 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                     widget.picdate,
                                     widget.pictime,
                                     widget.now,
+                                    result,
+                                    deposit,
                                     context);
                               },
                               child: const Text('ยืนยันคำสั่งซื้อ',

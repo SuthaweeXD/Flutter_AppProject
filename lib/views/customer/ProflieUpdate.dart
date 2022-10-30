@@ -48,6 +48,11 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

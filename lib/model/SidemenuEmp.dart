@@ -8,6 +8,7 @@ import 'package:flutter_application_project/views/Login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../config/config.dart';
+import '../views/employee/ReportEmp.dart';
 
 class SideMenuEmp extends StatefulWidget {
   SideMenuEmp({
@@ -158,6 +159,32 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                         ),
                         Text(
                           'ประชาสัมพันธ์',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BarChartSample7(),
+                          ));
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Icon(
+                          Icons.history,
+                          size: 35,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'รายงาน',
                           style: TextStyle(fontSize: 20),
                         ),
                       ],

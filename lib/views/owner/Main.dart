@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/owner/ChartReport.dart';
+import 'package:flutter_application_project/views/owner/CreateUser.dart';
 import 'package:flutter_application_project/views/owner/OrderOwn.dart';
 import 'package:flutter_application_project/views/owner/Report.dart';
 import 'package:flutter_application_project/views/owner/UserDBOwn.dart';
@@ -25,10 +27,9 @@ class _HomepageOwnState extends State<HomepageOwn> {
   }
 
   final screens = [
-    OrderOwn(),
     UserDBOwn(),
+    CreateUsers(),
     ReportOrder(),
-    // checkpayment(),
   ];
 
   void _onItemTapped(int index) {
@@ -55,17 +56,13 @@ class _HomepageOwnState extends State<HomepageOwn> {
         showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.all_inbox),
-            label: 'ข้อมูลคำสั่งซื้อ',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.person_pin),
             label: 'ข้อมูลผู้ใช้งาน',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.history),
-          //   label: 'ปรับปรุงสถานะ',
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pie_chart),
+            label: 'แผนภูมิ',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart_outlined),
             label: 'สรุปการขาย',

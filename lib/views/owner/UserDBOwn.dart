@@ -32,7 +32,7 @@ class _UserDBOwnState extends State<UserDBOwn> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 59, 115, 255),
-        title: const Text("ข้อมูลคำสั่งซื้อ"),
+        title: const Text("ข้อมูลผู้ใช้งาน"),
       ),
       backgroundColor: const Color.fromARGB(255, 227, 227, 227),
       body: SizedBox(

@@ -12,6 +12,7 @@ class usersDB extends StatefulWidget {
 
 class _usersDBState extends State<usersDB> {
   dynamic data;
+
   @override
   void initState() {
     super.initState();
@@ -30,7 +31,7 @@ class _usersDBState extends State<usersDB> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 59, 115, 255),
-        title: const Text("ข้อมูลคำสั่งซื้อ"),
+        title: const Text("ข้อมูลผู้ใช้งาน"),
       ),
       backgroundColor: const Color.fromARGB(255, 227, 227, 227),
       body: SizedBox(

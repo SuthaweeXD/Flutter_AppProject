@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/config/api.dart';
+import 'package:flutter_application_project/views/owner/ChartReport.dart';
 import 'package:intl/intl.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class ReportOrder extends StatefulWidget {
-  ReportOrder({Key? key}) : super(key: key);
+  ReportOrder({Key? key, this.data}) : super(key: key);
+  final dynamic data;
 
   @override
   State<ReportOrder> createState() => _ReportOrderState();
@@ -11,7 +15,7 @@ class ReportOrder extends StatefulWidget {
 class _ReportOrderState extends State<ReportOrder> {
   TextEditingController startdate = TextEditingController();
   TextEditingController enddate = TextEditingController();
-
+  dynamic datareport;
   DateTime? odate;
   DateTime? datenow = DateTime.now();
 
@@ -32,6 +36,7 @@ class _ReportOrderState extends State<ReportOrder> {
           datenow = odate;
           startdate.text = DateFormat("yyyy-MM-dd").format(odate!);
           DateFormat("dd-MM-yyyy").format(odate!);
+          print(datenow);
         });
       }
     }
@@ -40,7 +45,7 @@ class _ReportOrderState extends State<ReportOrder> {
       odate = await showDatePicker(
           context: context,
           initialDate: datenow!,
-          firstDate: DateTime(DateTime.now().year, DateTime.now().month, 1),
+          firstDate: datenow!,
           lastDate: DateTime(DateTime.now().year, DateTime.now().month, 90));
       if (odate != null) {
         setState(() {
@@ -95,7 +100,7 @@ class _ReportOrderState extends State<ReportOrder> {
               controller: enddate,
               readOnly: true,
               onTap: () {
-                startDate();
+                endDate();
               },
               decoration: const InputDecoration(
                 labelText: 'สิ้นสุด',
@@ -118,7 +123,22 @@ class _ReportOrderState extends State<ReportOrder> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    var data =
+                        await getReportOrders(startdate.text, enddate.text);
+                    setState(() {
+                      datareport = data;
+                      //ใช้ datareportได้แล้ว
+                      print(datareport);
+                      print(datareport['totalorder']);
+                    });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                            builder: (BuildContext context) => ChartReport(
+                                  data: datareport,
+                                )));
+                  },
                   child: const Text('ค้นหา',
                       style: TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0),

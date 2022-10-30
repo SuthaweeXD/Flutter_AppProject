@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/employee/HomePR.dart';
 import 'package:flutter_application_project/views/employee/OrderDBEmp.dart';
 import 'package:flutter_application_project/views/employee/Payment.dart';
 import 'package:flutter_application_project/views/employee/EditPR.dart';
@@ -22,7 +23,7 @@ class _State extends State<MainEmployee> {
   final screens = [
     ListOrders(),
     usersDB(),
-    PRdata(),
+    HomePR(),
     checkpayment(),
   ];
 

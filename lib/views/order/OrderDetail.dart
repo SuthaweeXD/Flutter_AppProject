@@ -26,6 +26,7 @@ class _OrderDetailState extends State<OrderDetail> {
     checkCancle = DateTime.parse(widget.data['order_getdate']);
     final difget = checkCancle.difference(datenow);
     print(difget.inDays.toString());
+    print(widget.data);
     if (difget.inDays < 3) {
       setState(() {
         checkC = false;
@@ -80,7 +81,7 @@ class _OrderDetailState extends State<OrderDetail> {
               padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
               child: SizedBox(
                 width: 950,
-                height: 450,
+                height: 550,
                 child: Card(
                   color: Color.fromARGB(255, 255, 236, 181),
                   shadowColor: const Color.fromARGB(255, 114, 114, 114),
@@ -118,6 +119,11 @@ class _OrderDetailState extends State<OrderDetail> {
                       const SizedBox(
                         height: 10,
                       ),
+                      Text(
+                        'ค่ามัดจำ :          ${widget.data['order_dep']}' +
+                            '        บาท',
+                        style: const TextStyle(fontSize: 18),
+                      ),
                       SizedBox(
                         width: 300,
                         height: 150,
@@ -147,6 +153,9 @@ class _OrderDetailState extends State<OrderDetail> {
                                 'เส้นม้วน :          ${widget.data['order_roll']}' +
                                     '        กิโลกรัม',
                                 style: const TextStyle(fontSize: 18),
+                              ),
+                              const SizedBox(
+                                height: 10,
                               ),
                             ],
                           ),
@@ -263,7 +272,8 @@ class _OrderDetailState extends State<OrderDetail> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => PaymentD()));
+                                        builder: (context) =>
+                                            PaymentD(data: widget.data)));
                               },
                               child: Row(
                                 children: [

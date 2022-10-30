@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/views/employee/EditPR.dart';
+import 'package:intl/intl.dart';
 
 import '../../config/api.dart';
 
@@ -36,7 +37,7 @@ class _PRdataState extends State<PRdata> {
               // reverse: true,
               itemCount: data?.length ?? 0,
               itemBuilder: (context, i) => Container(
-                  height: 150,
+                  height: 250,
                   width: 20,
                   child: InkWell(
                       onTap: () {
@@ -74,10 +75,31 @@ class _PRdataState extends State<PRdata> {
                                             'ชื่อ : ${data[i]['pr_description']}',
                                             style: TextStyle(fontSize: 18),
                                           ),
-
                                           const SizedBox(
                                             height: 2,
                                           ),
+                                          Text(
+                                            'วันที่ : ' +
+                                                DateFormat('dd-MM-yyyy ')
+                                                    .format(DateTime.parse(
+                                                        '${data[i]['pr_date']}')),
+                                            style:
+                                                const TextStyle(fontSize: 16),
+                                          ),
+                                          const SizedBox(
+                                            height: 2,
+                                          ),
+                                          SizedBox(
+                                            child: Container(
+                                                child: Image(
+                                              width: 200,
+                                              height: 150,
+                                              image: NetworkImage(
+                                                data[i]['pr_photo'],
+                                              ),
+                                              fit: BoxFit.cover,
+                                            )),
+                                          )
 
                                           // ignore: prefer_const_constructors
                                         ],

@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
+import 'package:flutter_application_project/views/Homepage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PaymentD extends StatefulWidget {
-  PaymentD({Key? key, this.data}) : super(key: key);
+  PaymentD({Key? key, required this.data}) : super(key: key);
   final dynamic data;
 
   @override
@@ -22,6 +23,7 @@ class _PaymentDState extends State<PaymentD> {
     final imageTemporary = File(image.path);
     setState(() {
       this._image = imageTemporary;
+      print(widget.data);
     });
   }
 
@@ -35,7 +37,7 @@ class _PaymentDState extends State<PaymentD> {
         body: SingleChildScrollView(
             child: Center(
           child: Column(children: [
-            SizedBox(height: 50),
+            SizedBox(height: 80),
             _image != null
                 ? SizedBox.fromSize(
                     child: Container(
@@ -44,15 +46,25 @@ class _PaymentDState extends State<PaymentD> {
                           _image!,
                         )),
                   )
-                : SizedBox.fromSize(
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(25, 10, 25, 0),
-                      child: Image.asset(
-                        'assets/images/empty.png',
-                        fit: BoxFit.cover,
+                : widget.data['order_payment'] != null
+                    ? SizedBox.fromSize(
+                        child: Container(
+                            padding: EdgeInsets.fromLTRB(25, 10, 25, 0),
+                            child: Image(
+                                image: NetworkImage(
+                                  widget.data['order_payment'],
+                                ),
+                                fit: BoxFit.cover)),
+                      )
+                    : SizedBox.fromSize(
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(25, 10, 25, 0),
+                          child: Image.asset(
+                            'assets/images/empty.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
             SizedBox(
               width: 350,
               height: 80,
@@ -103,7 +115,8 @@ class _PaymentDState extends State<PaymentD> {
                       onPressed: () {
                         if (!isTapped) {
                           isTapped = true;
-                          sendPR1(_image!, widget.data, context);
+                          uploadPayment(
+                              _image!, widget.data['order_id'], context);
                         }
                       },
                       child: Row(

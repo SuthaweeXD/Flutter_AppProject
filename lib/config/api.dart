@@ -217,7 +217,23 @@ Future<dynamic> getOrders() async {
   });
 }
 
-Future sendorders(small, big, roll, picdate, pictime, now, context) async {
+Future<dynamic> getReportOrders(startdate, enddate) async {
+  Uri url = Uri.parse(
+      'http://206.189.145.138:3700/api/orders/reportOrder/$startdate/$enddate');
+  return await http.get(url).then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 200) {
+      var data = jsonDecode(req.body);
+
+      return data;
+    } else {
+      return null;
+    }
+  });
+}
+
+Future sendorders(
+    small, big, roll, picdate, pictime, now, result, deposit, context) async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? userid = prefs.getInt('idm');
@@ -232,7 +248,9 @@ Future sendorders(small, big, roll, picdate, pictime, now, context) async {
       "big": big,
       "roll": roll,
       "ogetdate": picdate + ' ' + pictime,
-      "odate": now
+      "odate": now,
+      "total": result,
+      "odep": deposit
     }),
   )
       .then((req) async {
@@ -258,7 +276,7 @@ Future<dynamic> gethistoryod() async {
   final prefs =
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? user_id = prefs.getInt('idm');
-  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/f/$user_id');
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/f1/$user_id');
   return await http
       .get(
     url,
@@ -434,6 +452,23 @@ Future sendstatusOrder0(statusOrder, orderid, context) async {
   });
 }
 
+Future sendstatusOrder4(statusOrder, orderid, context) async {
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/status/$orderid');
+  http
+      .put(
+    url,
+    headers: headers,
+    body: jsonEncode({"statusOrder": statusOrder}),
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 204) {
+    } else {
+      EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
 Future sendstatusOrder(statusOrder, orderid, context) async {
   Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/status/$orderid');
   http
@@ -540,20 +575,20 @@ Future sendlocation(lat, lng, usersid, context) async {
     print(lng);
 
     if (req.statusCode == 204) {
-      EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
               builder: (context) => Customerhome(
                     index: 3,
                   )),
           (Route<dynamic> route) => false);
+      EasyLoading.showSuccess('Great Success!');
     } else {
       normalDialog(context, ('มีช่องว่าง'));
     }
   });
 }
 
-Future sendPR1(File _image, orderid, context) async {
+Future uploadPayment(File _image, orderid, context) async {
   var stream = http.ByteStream(_image.openRead());
   Uri url =
       Uri.parse('http://206.189.145.138:3700/api/orders/payment/$orderid');
@@ -570,11 +605,14 @@ Future sendPR1(File _image, orderid, context) async {
 
   var respons = await http.Response.fromStream(await request.send());
   if (respons.statusCode == 204) {
+    sendstatusOrder4("4", orderid, context);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+            builder: (context) => Customerhome(
+                  index: 2,
+                )),
+        (Route<dynamic> route) => false);
     EasyLoading.showSuccess('Great Success!');
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Customerhome(index: 2)),
-    );
   } else {
     EasyLoading.showError('Failed with Error');
   }
@@ -597,11 +635,11 @@ Future uploadPR(File _image, prid, context) async {
 
   var respons = await http.Response.fromStream(await request.send());
   if (respons.statusCode == 204) {
-    EasyLoading.showSuccess('Great Success!');
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => MainEmployee(index: 2)),
     );
+    EasyLoading.showSuccess('Great Success!');
   } else {
     EasyLoading.showError('Failed with Error');
   }

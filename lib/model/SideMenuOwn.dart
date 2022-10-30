@@ -117,13 +117,12 @@ class _SideMenuOwnState extends State<SideMenuOwn> {
                     )),
                 TextButton(
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil(
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => CreateUsers(),
                             //แก้ตรงนี้--------------------------------------------------------------------------------------
-                          ),
-                          (route) => false);
+                          ));
                     },
                     child: Row(
                       children: [
