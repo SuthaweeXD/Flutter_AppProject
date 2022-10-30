@@ -600,7 +600,7 @@ Future uploadPR(File _image, prid, context) async {
     EasyLoading.showSuccess('Great Success!');
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MainEmployee(index: 3)),
+      MaterialPageRoute(builder: (context) => MainEmployee(index: 2)),
     );
   } else {
     EasyLoading.showError('Failed with Error');

@@ -89,7 +89,25 @@ class _EditOrdersState extends State<EditOrders> {
                       style: const TextStyle(fontSize: 17),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(50, 0, 25, 0),
+                      child: Row(
+                        children: [
+                          Icon(Icons.phone),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'เบอร์ : ${widget.data['user_number']} ',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
                     ),
                     SizedBox(
                       width: 300,
@@ -125,11 +143,6 @@ class _EditOrdersState extends State<EditOrders> {
                         ),
                       ),
                     ),
-                    Text(
-                      'ชื่อ : ${widget.data['user_number']} ',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Text('map'),
                     const SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {

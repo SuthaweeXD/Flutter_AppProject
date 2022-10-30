@@ -33,6 +33,11 @@ class _ListOrdersState extends State<ListOrders> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
