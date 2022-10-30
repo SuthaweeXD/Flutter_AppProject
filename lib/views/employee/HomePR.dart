@@ -18,7 +18,7 @@ class _HomePRState extends State<HomePR> {
         title: Text('ประชาสัมพันธ์'),
       ),
       body: Container(
-        padding: EdgeInsets.all(22),
+        padding: EdgeInsets.fromLTRB(30, 2, 25, 0),
         child: Column(children: [
           const SizedBox(height: 80),
           SizedBox(
@@ -32,6 +32,10 @@ class _HomePRState extends State<HomePR> {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
+                    const Icon(
+                      Icons.post_add_sharp,
+                      size: 80,
+                    ),
                     const SizedBox(height: 10),
                     Container(
                       padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
@@ -41,7 +45,7 @@ class _HomePRState extends State<HomePR> {
                             Radius.circular(20),
                           )),
                       child: Text(
-                        'สร้าง',
+                        'สร้างประชาสัมพันธ์',
                         style: const TextStyle(fontSize: 25),
                       ),
                     ),

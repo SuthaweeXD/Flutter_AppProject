@@ -130,7 +130,6 @@ class _ReportOrderState extends State<ReportOrder> {
                       datareport = data;
                       //ใช้ datareportได้แล้ว
                       print(datareport);
-                      print(datareport['totalorder']);
                     });
                     Navigator.push(
                         context,

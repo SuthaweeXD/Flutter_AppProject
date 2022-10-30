@@ -183,50 +183,6 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                 ),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.fromLTRB(15, 2, 15, 15),
-                              child: Text(
-                                '*หมายเหตุ หากต้องการเปลี่ยนที่อยู่การจัดส่งให้แก้ไขที่หน้าข้อมูลส่วนตัว',
-                                style: TextStyle(color: Colors.red),
-                              ),
-                            ),
-                            SizedBox(height: 75),
-                            TextButton(
-                              onPressed: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        AlertDialog(
-                                            title: const Text(
-                                                'แก้ไขที่อยู่การจัดส่ง'),
-                                            content: const Text(
-                                                '*หากต้องการแก้ไขให้ไปที่ข้อมูลส่วนตัว*'),
-                                            actions: <Widget>[
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    context, 'Cancel'),
-                                                child: const Text('ยกเลิก'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    context, 'OK'),
-                                                child: const Text('ตกลง'),
-                                              ),
-                                            ]));
-                              },
-                              child: Switch(
-                                value: isSwitched,
-                                onChanged: (value) {
-                                  setState(() {
-                                    isSwitched = value;
-                                    print(data['order_id']);
-                                    print(isSwitched);
-                                  });
-                                },
-                                activeTrackColor: Colors.lightGreenAccent,
-                                activeColor: Colors.green,
-                              ),
-                            ),
                             SizedBox(height: 20),
                             TextButton(
                               onPressed: () {

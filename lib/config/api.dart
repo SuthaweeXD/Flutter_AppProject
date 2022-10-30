@@ -217,6 +217,24 @@ Future<dynamic> getOrders() async {
   });
 }
 
+Future<dynamic> getOrdersPayment(status, startDate, endDate) async {
+  Uri url = Uri.parse(
+      'http://206.189.145.138:3700/api/orders/reportAllOrder/$status/$startDate/$endDate');
+  return await http
+      .get(
+    url,
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 200) {
+      var data = jsonDecode(req.body);
+      return data;
+    } else {
+      return null;
+    }
+  });
+}
+
 Future<dynamic> getReportOrders(startdate, enddate) async {
   Uri url = Uri.parse(
       'http://206.189.145.138:3700/api/orders/reportOrder/$startdate/$enddate');
@@ -277,6 +295,26 @@ Future<dynamic> gethistoryod() async {
       await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
   int? user_id = prefs.getInt('idm');
   Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/f1/$user_id');
+  return await http
+      .get(
+    url,
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 200) {
+      var data = jsonDecode(req.body);
+      return data;
+    } else {
+      return null;
+    }
+  });
+}
+
+Future<dynamic> getPayment() async {
+  final prefs =
+      await SharedPreferences.getInstance(); //เพิ่มตัวแชร์จากหน้าlogin
+  int? user_id = prefs.getInt('idm');
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/findpayment');
   return await http
       .get(
     url,

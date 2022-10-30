@@ -84,6 +84,15 @@ class _PaymentDState extends State<PaymentD> {
               ),
               _image != null
                   ? TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(70, 15, 70, 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        backgroundColor: Color.fromARGB(255, 96, 192, 224),
+                        primary: const Color.fromARGB(255, 255, 255, 255),
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
                       onPressed: () {
                         if (!isTapped) {
                           isTapped = true;
@@ -95,7 +104,7 @@ class _PaymentDState extends State<PaymentD> {
                         children: [
                           Icon(Icons.photo_album),
                           SizedBox(width: 20),
-                          Text('ยืนยัน'),
+                          Text('[บันทึกการโอนชำระ'),
                         ],
                       ))
                   : Text(''),

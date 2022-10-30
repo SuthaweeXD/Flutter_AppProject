@@ -264,7 +264,14 @@ class _OrderDetailState extends State<OrderDetail> {
                           Container(
                             padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          PaymentD(data: widget.data)),
+                                );
+                              },
                               child: Row(
                                 children: [
                                   Icon(
@@ -345,7 +352,8 @@ class _OrderDetailState extends State<OrderDetail> {
                                     ),
                                   ),
                                 )
-                              : Text('ยกเลิกบ่ได้'),
+                              : Text(
+                                  '*ไม่สามารถยกเลิกได้ กรุณายกเลิกล่วงหน้า 2 วัน'),
                         ],
                       )
                     : widget.data['order_status'] == 3

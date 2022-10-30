@@ -23,12 +23,11 @@ class _checkpaymentState extends State<checkpayment> {
   }
 
   startApi() async {
-    var item = await getOrders();
-    var itemadd = await getdataprofile1();
+    var item = await getPayment();
 
     setState(() {
       data = item;
-      dataadd = itemadd;
+      print(data);
     });
   }
 

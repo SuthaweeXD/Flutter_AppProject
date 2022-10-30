@@ -53,7 +53,7 @@ class _CheckPayment1State extends State<CheckPayment1> {
             padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
             child: SizedBox(
               width: 950,
-              height: 350,
+              height: 450,
               child: Card(
                 color: Color.fromARGB(255, 204, 255, 172),
                 shadowColor: const Color.fromARGB(255, 114, 114, 114),
@@ -101,9 +101,6 @@ class _CheckPayment1State extends State<CheckPayment1> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
                     SizedBox(
                       width: 300,
                       height: 150,
@@ -137,6 +134,23 @@ class _CheckPayment1State extends State<CheckPayment1> {
                           ],
                         ),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      'ค่ามัดจำ : ${widget.data['order_dep']} ' + ' บาท',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'ราคาทั้งหมด : ${widget.data['order_total']} ' + ' บาท',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 15,
                     ),
                   ],
                 ),
