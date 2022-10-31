@@ -244,7 +244,12 @@ class _OrderDetailState extends State<OrderDetail> {
                                 ),
                               ),
                             )
-                          : Text('ยกเลิกบ่ได้'),
+                          : Text(
+                              '*ไม่สามารถยกเลิกได้ กรุณายกเลิกล่วงหน้า 2 วัน',
+                              style: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
                       const SizedBox(
                         height: 15,
                       ),
@@ -345,20 +350,99 @@ class _OrderDetailState extends State<OrderDetail> {
                                   ),
                                 )
                               : Text(
-                                  '*ไม่สามารถยกเลิกได้ กรุณายกเลิกล่วงหน้า 2 วัน'),
+                                  '*ไม่สามารถยกเลิกได้ กรุณายกเลิกล่วงหน้า 2 วัน',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                  ),
+                                )
                         ],
                       )
                     : widget.data['order_status'] == 3
                         ? Text('คำสั่งซื้อนี้ได้ถูกปฏิเสธแล้ว')
                         : widget.data['order_status'] == 4
-                            ? Text('กำลังรอยืนยันการโอนชำระค่ามัดจำ')
+                            ? Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PaymentD(data: widget.data)),
+                                        );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.add_a_photo,
+                                            color: Colors.grey,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          const Text(
+                                              'อัปโหลดหลักฐานการชำระเงิน',
+                                              style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 34, 34, 34),
+                                                fontSize: 16,
+                                              )),
+                                        ],
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 30),
+                                        primary:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'กำลังรอยืนยันการโอนชำระค่ามัดจำ',
+                                    style: TextStyle(
+                                      color: Colors.orange,
+                                    ),
+                                  )
+                                ],
+                              )
                             : widget.data['order_status'] == 5
                                 ? ElevatedButton(
                                     onPressed: () {
                                       "7";
-
-                                      sendstatusOrder0("7",
-                                          widget.data['order_id'], context);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              AlertDialog(
+                                                  title: const Text(
+                                                      'ยกเลิกคำสั่งซื้อ'),
+                                                  content: const Text(
+                                                      'ข้อมูลคำสั่งซื้อจะถูกยกเลิก'),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(context,
+                                                              'Cancel'),
+                                                      child:
+                                                          const Text('ยกเลิก'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          sendstatusOrder0(
+                                                              "7",
+                                                              widget.data[
+                                                                  'order_id'],
+                                                              context),
+                                                      child: const Text('ตกลง'),
+                                                    ),
+                                                  ]));
                                     },
                                     child: const Text('ยกเลิกการจัดส่งสินค้า',
                                         style: TextStyle(
@@ -376,20 +460,37 @@ class _OrderDetailState extends State<OrderDetail> {
                                     ),
                                   )
                                 : widget.data['order_status'] == 6
-                                    ? Text('คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว')
+                                    ? Text(
+                                        'คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                        ),
+                                      )
                                     : widget.data['order_status'] == 7
                                         ? Text(
                                             'คุณได้ยกเลิกการจัดส่งสินค้า สามารถรับสินค้าได้ที่ร้าน')
                                         : widget.data['order_status'] == 8
                                             ? Text(
-                                                'คำสั่งซื้อของคุณกำลังจัดส่ง')
+                                                'คำสั่งซื้อของคุณกำลังจัดส่ง',
+                                                style: TextStyle(
+                                                  color: Colors.orange,
+                                                ),
+                                              )
                                             : widget.data['order_status'] == 9
                                                 ? Text(
-                                                    'คุณได้ชำระยอดคงเหลือเรียบร้อย \n คำสั่งซื้อของคุณกำลังจัดส่ง')
+                                                    'คุณได้ชำระยอดคงเหลือเรียบร้อย \n คำสั่งซื้อของคุณกำลังจัดส่ง',
+                                                    style: TextStyle(
+                                                      color: Colors.greenAccent,
+                                                    ),
+                                                  )
                                                 : widget.data['order_status'] ==
                                                         10
                                                     ? Text(
-                                                        'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว')
+                                                        'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว',
+                                                        style: TextStyle(
+                                                          color: Colors.green,
+                                                        ),
+                                                      )
                                                     : Text('error')
           ],
         ),

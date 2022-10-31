@@ -96,7 +96,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                             ),
                             SizedBox(
                               width: 300,
-                              height: 250,
+                              height: 280,
                               child: Card(
                                 child: Column(
                                   children: [
@@ -146,8 +146,15 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                     SizedBox(
                                       height: 20,
                                     ),
-                                    Text('ราคา  ' + result.toString()),
-                                    Text('มัดจำ  ' + deposit.toString()),
+                                    Text(
+                                      'ราคา  ' + result.toString() + '  บาท',
+                                      style: TextStyle(fontSize: 21),
+                                    ),
+                                    Text(
+                                        'มัดจำ  ' +
+                                            deposit.toString() +
+                                            '  บาท',
+                                        style: TextStyle(fontSize: 21)),
                                   ],
                                 ),
                               ),

@@ -83,6 +83,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
               ),
               TextFormFieldProfile(
                 keytype: true,
+                maxlength: 10,
                 labelText: 'เบอร์โทรศัพท์',
                 controller: phone,
               ),

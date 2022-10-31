@@ -66,17 +66,19 @@ class TextFormFieldModel extends StatelessWidget {
 
 class TextFormFieldProfile extends StatelessWidget {
   const TextFormFieldProfile(
-      {Key? key, this.controller, this.labelText, this.keytype})
+      {Key? key, this.controller, this.labelText, this.keytype, this.maxlength})
       : super(key: key);
 
   final TextEditingController? controller;
   final String? labelText;
   final bool? keytype;
+  final int? maxlength;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: keytype != true ? null : TextInputType.number,
+      maxLength: maxlength,
       style: TextStyle(
         color: Colors.black,
         fontSize: 18,

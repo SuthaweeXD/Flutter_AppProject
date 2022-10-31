@@ -49,7 +49,7 @@ class _OrderDBState extends State<OrderDB> {
             startApi();
           },
           child: ListView.builder(
-            // reverse: true,
+            reverse: true,
             itemCount: data?.length ?? 0,
             itemBuilder: (context, i) => Container(
               height: 150,

@@ -64,12 +64,12 @@ class _SideMenuState extends State<SideMenu> {
                 padding: const EdgeInsets.only(left: 15),
                 child: GestureDetector(
                   onTap: (() {
-                    Navigator.push(
+                    Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute<void>(
-                            builder: (BuildContext context) => ProfileUpdate(
-                                  data: null,
-                                )));
+                        MaterialPageRoute(
+                          builder: (context) => Customerhome(index: 3),
+                        ),
+                        (route) => false);
                   }),
                   child: Row(
                     children: [
@@ -113,7 +113,6 @@ class _SideMenuState extends State<SideMenu> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => Customerhome(index: 0),
-                            //แก้ตรงนี้--------------------------------------------------------------------------------------
                           ),
                           (route) => false);
                     },
