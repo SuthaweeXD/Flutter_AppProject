@@ -566,6 +566,29 @@ Future sendstatusOrder1(statusOrder, orderid, context) async {
   });
 }
 
+Future sendstatusOrder11(statusOrder, orderid, context) async {
+  Uri url = Uri.parse('http://206.189.145.138:3700/api/orders/status/$orderid');
+  http
+      .put(
+    url,
+    headers: headers,
+    body: jsonEncode({"statusOrder": statusOrder}),
+  )
+      .then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 204) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => MainEmployee(
+                    index: 3,
+                  )),
+          (Route<dynamic> route) => false);
+    } else {
+      EasyLoading.showError('Failed with Error');
+    }
+  });
+}
+
 Future CreateEmp(
     fname, lname, phone, address, username, password, context) async {
   EasyLoading.show(status: 'loading...');

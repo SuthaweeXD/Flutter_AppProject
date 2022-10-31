@@ -184,7 +184,7 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                           width: 10,
                         ),
                         Text(
-                          'รายงาน',
+                          'สรุปการขาย',
                           style: TextStyle(fontSize: 20),
                         ),
                       ],
@@ -203,7 +203,7 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                           width: 25,
                         ),
                         Icon(
-                          Icons.bar_chart,
+                          Icons.pie_chart_outline,
                           size: 35,
                         ),
                         SizedBox(

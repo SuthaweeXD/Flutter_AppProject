@@ -285,7 +285,7 @@ class _EditOrdersState extends State<EditOrders> {
                             onPressed: () {
                               "4";
 
-                              sendstatusOrder1(
+                              sendstatusOrder11(
                                   "4", widget.data['order_id'], context);
                             },
                             child: Row(
