@@ -51,26 +51,20 @@ class _OrderDetailState extends State<OrderDetail> {
               height: 15,
             ),
             IconStatus(widget.data['order_status']),
-            SizedBox(
-              width: 150,
-              height: 45,
-              child: Container(
-                child: Card(
-                  color: widget.data["order_status"] != null
-                      ? ColorCard(widget.data["order_status"])
-                      : const Color.fromARGB(255, 255, 255, 255),
-                  shadowColor: const Color.fromARGB(255, 114, 114, 114),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'สถานะ : ' + ColorStatus(widget.data["order_status"]),
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
+            Card(
+              color: widget.data["order_status"] != null
+                  ? ColorCard(widget.data["order_status"])
+                  : const Color.fromARGB(255, 255, 255, 255),
+              shadowColor: const Color.fromARGB(255, 114, 114, 114),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Text(
+                  'สถานะ : ' + ColorStatus(widget.data["order_status"]),
+                  style: const TextStyle(
+                    fontSize: 16,
                   ),
                 ),
               ),

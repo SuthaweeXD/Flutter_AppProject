@@ -38,19 +38,27 @@ Future checkRegister(
       final prefs = await SharedPreferences.getInstance();
       var data = jsonDecode(req.body);
       prefs.setString('token', data['token']);
-
+      prefs.setInt('idm', data['id']);
+      prefs.setString('role', data['user_role']);
       headers?['Authorization'] = "bearer ${data['token']}";
       EasyLoading.showSuccess('Great Success!');
       data['user_role'] == "C"
           ? Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
               (Route<dynamic> route) => false)
-          : Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                  builder: (context) => MainEmployee(
-                        index: 0,
-                      )),
-              (Route<dynamic> route) => false);
+          : data['user_role'] == "S"
+              ? Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => MainEmployee(
+                            index: 0,
+                          )),
+                  (Route<dynamic> route) => false)
+              : Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => HomepageOwn(
+                            index: 0,
+                          )),
+                  (Route<dynamic> route) => false);
     } else {
       print('error');
       EasyLoading.showError('Failed with Error');
@@ -144,7 +152,7 @@ Future sendDataProfile1(fname, lname, phone, address, context) async {
     if (req.statusCode == 204) {
       EasyLoading.showSuccess('Great Success!');
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Customerhome(index: 0)),
+          MaterialPageRoute(builder: (context) => Customerhome(index: 3)),
           (Route<dynamic> route) => false);
     } else {
       EasyLoading.showError('Failed with Error');

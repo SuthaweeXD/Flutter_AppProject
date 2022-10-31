@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/Sidemenu.dart';
+import 'package:flutter_application_project/views/employee/MapOS.dart';
 import 'package:flutter_application_project/views/owner/MapShop.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -38,7 +39,7 @@ class _PRshopState extends State<PRshop> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
+          padding: const EdgeInsets.fromLTRB(35, 20, 35, 10),
           child: Column(
             children: [
               Text(
@@ -123,7 +124,7 @@ class _PRshopState extends State<PRshop> {
                   SizedBox(
                     height: 200,
                     width: 350,
-                    child: MapShop(),
+                    child: MapShopOS(),
                   ),
                 ],
               ),
@@ -148,4 +149,5 @@ class _PRshopState extends State<PRshop> {
 Widget buildIndicator(int activeIndex, int length) => AnimatedSmoothIndicator(
       activeIndex: activeIndex,
       count: length,
+      effect: SwapEffect(dotWidth: 20, dotHeight: 20),
     );

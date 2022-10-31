@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapShop extends StatefulWidget {
-  MapShop({Key? key}) : super(key: key);
+class MapShopOS extends StatefulWidget {
+  MapShopOS({Key? key}) : super(key: key);
 
   @override
-  State<MapShop> createState() => _MapShopState();
+  State<MapShopOS> createState() => _MapShopOSState();
 }
 
-class _MapShopState extends State<MapShop> {
+class _MapShopOSState extends State<MapShopOS> {
   static const double hueGreen = 120.0;
   static final CameraPosition tr = CameraPosition(
       target: LatLng(6.0266777111162755, 101.95937632021678), zoom: 15);
@@ -22,9 +22,6 @@ class _MapShopState extends State<MapShop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ที่อยู่ของร้าน'),
-      ),
       body: Container(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

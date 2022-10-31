@@ -184,7 +184,6 @@ class _SideMenuState extends State<SideMenu> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => const LoginScreen(),
-                      //แก้ตรงนี้--------------------------------------------------------------------------------------
                     ),
                     (route) => false);
               },
