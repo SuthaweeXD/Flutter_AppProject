@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
-import 'package:flutter_application_project/model/SideMenuOwn.dart';
 import 'package:flutter_application_project/views/owner/ChartReport.dart';
 import 'package:intl/intl.dart';
 
-class ReportOrder extends StatefulWidget {
-  ReportOrder({Key? key, this.data}) : super(key: key);
+class ReportOrderEmp extends StatefulWidget {
+  ReportOrderEmp({Key? key, this.data}) : super(key: key);
   final dynamic data;
 
   @override
-  State<ReportOrder> createState() => _ReportOrderState();
+  State<ReportOrderEmp> createState() => _ReportOrderEmpState();
 }
 
-class _ReportOrderState extends State<ReportOrder> {
+class _ReportOrderEmpState extends State<ReportOrderEmp> {
   TextEditingController startdate = TextEditingController();
   TextEditingController enddate = TextEditingController();
   dynamic datareport;
@@ -125,7 +124,7 @@ class _ReportOrderState extends State<ReportOrder> {
                 ElevatedButton(
                   onPressed: () async {
                     var data =
-                        await getReportOrders(startdate.text, enddate.text);
+                        await getOrdersPayment(2, startdate.text, enddate.text);
                     setState(() {
                       datareport = data;
                       //ใช้ datareportได้แล้ว
@@ -155,12 +154,7 @@ class _ReportOrderState extends State<ReportOrder> {
                   width: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      startdate.text = "";
-                      enddate.text = "";
-                    });
-                  },
+                  onPressed: () {},
                   child: const Text('เคลียร์ข้อมูล',
                       style: TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0),
@@ -179,7 +173,6 @@ class _ReportOrderState extends State<ReportOrder> {
           ]),
         ),
       ),
-      drawer: SideMenuOwn(),
     );
   }
 }

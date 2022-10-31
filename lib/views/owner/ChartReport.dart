@@ -13,7 +13,9 @@ class _ChartReportState extends State<ChartReport> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text('สรุปการขาย'),
+        ),
         body: SingleChildScrollView(
             child: Container(
           child: Column(
@@ -87,7 +89,12 @@ class _ChartReportState extends State<ChartReport> {
                   SizedBox(
                     height: 20,
                   ),
-                  Text('คำสั่งซื้อทั้งหมด : ' + "${widget.data['totalorder']}"),
+                  Text(
+                    'คำสั่งซื้อทั้งหมด :  ' +
+                        "${widget.data['totalorder']}" +
+                        '  คำสั่งซื้อ',
+                    style: TextStyle(fontSize: 22),
+                  ),
                 ],
               )
             ],

@@ -6,10 +6,6 @@ import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/model/ModelOrders.dart';
 import 'package:flutter_application_project/views/employee/MainEmp.dart';
 import 'package:flutter_application_project/views/Homepage.dart';
-import 'package:flutter_application_project/views/employee/OrderDBEmp.dart';
-import 'package:flutter_application_project/views/employee/UsersDB.dart';
-import 'package:flutter_application_project/views/order/ConfirmOrders.dart';
-import 'package:flutter_application_project/views/order/OrdersDB.dart';
 import 'package:flutter_application_project/views/owner/Main.dart';
 import 'package:flutter_application_project/views/owner/UserDBOwn.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -238,6 +234,21 @@ Future<dynamic> getOrdersPayment(status, startDate, endDate) async {
 Future<dynamic> getReportOrders(startdate, enddate) async {
   Uri url = Uri.parse(
       'http://206.189.145.138:3700/api/orders/reportOrder/$startdate/$enddate');
+  return await http.get(url).then((req) async {
+    print(req.statusCode);
+    if (req.statusCode == 200) {
+      var data = jsonDecode(req.body);
+
+      return data;
+    } else {
+      return null;
+    }
+  });
+}
+
+Future<dynamic> getReportOrdersAccept(startdate, enddate) async {
+  Uri url = Uri.parse(
+      'http://206.189.145.138:3700/api/orders/reportOrderAccept/$startdate/$enddate');
   return await http.get(url).then((req) async {
     print(req.statusCode);
     if (req.statusCode == 200) {

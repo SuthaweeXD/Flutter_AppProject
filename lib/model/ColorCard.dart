@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 ColorCard(int orderstatus) {
@@ -23,6 +22,8 @@ ColorCard(int orderstatus) {
       return Color.fromARGB(243, 196, 255, 250);
     case 10:
       return Color.fromARGB(243, 206, 255, 190);
+    case 11:
+      return Color.fromARGB(243, 255, 191, 191);
   }
 }
 
@@ -48,6 +49,8 @@ ColorStatus(int orderstatus) {
       return "ชำระเงินคงเหลือเรียบร้อยแล้ว";
     case 10:
       return "จัดส่งสำเร็จ";
+    case 11:
+      return "หลักฐานการโอนไม่ต้องถูกต้อง";
   }
 }
 
@@ -87,6 +90,9 @@ IconStatus(int orderstatus) {
     case 10:
       return Icon(Icons.check_circle_rounded,
           size: 70, color: Color.fromARGB(255, 30, 255, 0));
+    case 11:
+      return Icon(Icons.refresh_outlined,
+          size: 70, color: Color.fromARGB(255, 255, 0, 0));
   }
 }
 
@@ -125,5 +131,8 @@ IconStatus1(int orderstatus) {
     case 10:
       return Icon(Icons.check_circle_rounded,
           size: 45, color: Color.fromARGB(255, 30, 255, 0));
+    case 11:
+      return Icon(Icons.refresh_outlined,
+          size: 45, color: Color.fromARGB(255, 255, 0, 0));
   }
 }

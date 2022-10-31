@@ -3,17 +3,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/config/api.dart';
-import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/model/ModelOrders.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/Map.dart';
 import 'package:flutter_application_project/views/order/ConfirmOrders.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Orders extends StatefulWidget {
   const Orders({Key? key}) : super(key: key);
@@ -73,30 +67,111 @@ class _OrdersState extends State<Orders> {
           const SizedBox(
             height: 10,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Container(
+            padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
 
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              const ModelOrders(
-                ImagesP: ('assets/images/small.png'),
-                TextP: ('เส้นเล็ก'),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              const ModelOrders(
-                ImagesP: ('assets/images/big.png'),
-                TextP: ('เส้นใหญ่'),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              const ModelOrders(
-                ImagesP: ('assets/images/roll.png'),
-                TextP: ('เส้นม้วน'),
-              ),
-            ],
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        color: const Color.fromARGB(255, 77, 158, 88),
+                        padding: const EdgeInsets.fromLTRB(7, 7, 7, 13),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            ('assets/images/small.png'),
+                            width: 99,
+                            height: 99,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'เส้นเล็ก',
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+
+                Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        color: const Color.fromARGB(255, 77, 158, 88),
+                        padding: const EdgeInsets.fromLTRB(7, 7, 7, 13),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            ('assets/images/big.png'),
+                            width: 99,
+                            height: 99,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'เส้นใหญ่',
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+
+                Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        color: const Color.fromARGB(255, 77, 158, 88),
+                        padding: const EdgeInsets.fromLTRB(7, 7, 7, 13),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            ('assets/images/roll.png'),
+                            width: 99,
+                            height: 99,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'เส้นม้วน',
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+
+                // const ModelOrders(
+                //   ImagesP: ('assets/images/small.png'),
+                //   TextP: ('เส้นเล็ก'),
+                // ),
+                // const SizedBox(
+                //   width: 5,
+                // ),
+                // const ModelOrders(
+                //   ImagesP: ('assets/images/big.png'),
+                //   TextP: ('เส้นใหญ่'),
+                // ),
+                // const SizedBox(
+                //   width: 5,
+                // ),
+                // const ModelOrders(
+                //   ImagesP: ('assets/images/roll.png'),
+                //   TextP: ('เส้นม้วน'),
+                // ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 20,

@@ -3,12 +3,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/employee/ChartDaily.dart';
 import 'package:flutter_application_project/views/employee/MainEmp.dart';
 import 'package:flutter_application_project/views/Login.dart';
+import 'package:flutter_application_project/views/employee/ReportOrder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../config/config.dart';
-import '../views/employee/ReportEmp.dart';
 
 class SideMenuEmp extends StatefulWidget {
   SideMenuEmp({
@@ -114,7 +115,6 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => MainEmployee(index: 0),
-                            //แก้ตรงนี้--------------------------------------------------------------------------------------
                           ),
                           (route) => false);
                     },
@@ -168,7 +168,7 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BarChartSample7(),
+                            builder: (context) => ReportOrderEmp(),
                           ));
                     },
                     child: Row(
@@ -177,7 +177,7 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                           width: 25,
                         ),
                         Icon(
-                          Icons.history,
+                          Icons.bar_chart,
                           size: 35,
                         ),
                         SizedBox(
@@ -185,6 +185,32 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                         ),
                         Text(
                           'รายงาน',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChartDaily(),
+                          ));
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Icon(
+                          Icons.bar_chart,
+                          size: 35,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'แผนภูมิประจำวัน',
                           style: TextStyle(fontSize: 20),
                         ),
                       ],

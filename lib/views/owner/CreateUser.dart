@@ -37,7 +37,7 @@ class _CreateUsersState extends State<CreateUsers> {
                 width: MediaQuery.of(context).size.width,
                 child: Column(children: [
                   Text(
-                    'ลงทะเบียน',
+                    'เพิ่มพนักงาน',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.blue[300],

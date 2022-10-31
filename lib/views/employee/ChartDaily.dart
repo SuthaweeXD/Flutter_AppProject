@@ -2,17 +2,17 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
-import 'package:flutter_application_project/model/SideMenuOwn.dart';
+import 'package:flutter_application_project/model/SidemenuEmp.dart';
 import 'package:intl/intl.dart';
 
-class ChartRealtime extends StatefulWidget {
-  ChartRealtime({Key? key}) : super(key: key);
+class ChartDaily extends StatefulWidget {
+  ChartDaily({Key? key}) : super(key: key);
 
   @override
-  State<ChartRealtime> createState() => _ChartRealtimeState();
+  State<ChartDaily> createState() => _ChartDailyState();
 }
 
-class _ChartRealtimeState extends State<ChartRealtime> {
+class _ChartDailyState extends State<ChartDaily> {
   DateTime? now = DateTime.now();
   dynamic data;
   int touchedIndex = -1;
@@ -27,7 +27,7 @@ class _ChartRealtimeState extends State<ChartRealtime> {
     String startDate, endDate;
     startDate = DateFormat("yyyy-MM-dd 00.00").format(now!);
     endDate = DateFormat("yyyy-MM-dd 23.59").format(now!);
-    var item = await getReportOrders(startDate, endDate);
+    var item = await getReportOrdersAccept(startDate, endDate);
     setState(() {
       data = item;
       print(data);
@@ -130,10 +130,19 @@ class _ChartRealtimeState extends State<ChartRealtime> {
                 )
               ],
             )))
-          : const Center(
-              child: CupertinoActivityIndicator(),
+          : Column(
+              children: [
+                SizedBox(height: 150),
+                const Center(
+                  child: CupertinoActivityIndicator(),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text('ไม่มีคำสั่งซื้อ')
+              ],
             ),
-      drawer: SideMenuOwn(),
+      drawer: SideMenuEmp(),
     );
   }
 

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/model/SidemenuEmp.dart';
 import 'package:flutter_application_project/model/TextModel.dart';
-import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/Homepage.dart';
-import 'package:flutter_application_project/views/employee/MainEmp.dart';
 
 import '../../config/api.dart';
-import '../Map.dart';
 
 class EditCustomer extends StatefulWidget {
   const EditCustomer({Key? key, required this.data}) : super(key: key);

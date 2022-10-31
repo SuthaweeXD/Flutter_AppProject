@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_project/views/employee/HomePR.dart';
 import 'package:flutter_application_project/views/employee/OrderDBEmp.dart';
 import 'package:flutter_application_project/views/employee/Payment.dart';
-import 'package:flutter_application_project/views/employee/EditPR.dart';
-import 'package:flutter_application_project/views/employee/PublicDB.dart';
 import 'package:flutter_application_project/views/employee/UsersDB.dart';
 
 class MainEmployee extends StatefulWidget {

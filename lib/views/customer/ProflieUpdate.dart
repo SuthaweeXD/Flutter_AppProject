@@ -1,18 +1,10 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
-
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/TextModel.dart';
 import 'package:flutter_application_project/model/sidemenu.dart';
-import 'package:flutter_application_project/views/Homepage.dart';
 import 'package:flutter_application_project/views/Map.dart';
 import 'package:flutter_application_project/views/MapPage.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_application_project/config/config.dart';
 
 class ProfileUpdate extends StatefulWidget {
   const ProfileUpdate({Key? key, this.data}) : super(key: key);

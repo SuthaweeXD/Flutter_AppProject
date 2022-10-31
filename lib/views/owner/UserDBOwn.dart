@@ -3,7 +3,6 @@ import 'package:flutter_application_project/model/SideMenuOwn.dart';
 import 'package:flutter_application_project/views/owner/UserDetailO.dart';
 
 import '../../config/api.dart';
-import '../employee/UserDetail.dart';
 
 class UserDBOwn extends StatefulWidget {
   UserDBOwn({Key? key}) : super(key: key);

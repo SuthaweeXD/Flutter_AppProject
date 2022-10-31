@@ -1,12 +1,5 @@
-// ignore_for_file: non_constant_identifier_names
-
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_project/views/employee/UsersDB.dart';
-import 'package:flutter_application_project/views/order/ConfirmOrders.dart';
-import 'package:flutter_application_project/views/order/OrdersDB.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ModelOrders extends StatelessWidget {
   const ModelOrders({Key? key, this.ImagesP, this.TextP}) : super(key: key);

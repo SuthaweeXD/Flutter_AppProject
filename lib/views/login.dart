@@ -1,15 +1,12 @@
 // ignore_for_file: implementation_imports
 
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/config/config.dart';
 import 'package:flutter_application_project/views/Homepage.dart';
 import 'package:flutter_application_project/views/register.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_easyloading/src/easy_loading.dart';
 
 import 'employee/MainEmp.dart';
 import 'owner/Main.dart';
