@@ -21,7 +21,7 @@ class _EditOrdersState extends State<EditOrders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('รายละเอียดการสั่งซื้อ'),
+        title: const Text('รายละเอียดการสั่งซื้อ'),
       ),
       body: SingleChildScrollView(
         child: Column(children: [
@@ -38,7 +38,7 @@ class _EditOrdersState extends State<EditOrders> {
               borderRadius: BorderRadius.circular(5),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text(
                 'สถานะ : ' + ColorStatus(widget.data["order_status"]),
                 style: const TextStyle(
@@ -48,12 +48,12 @@ class _EditOrdersState extends State<EditOrders> {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
+            padding: const EdgeInsets.fromLTRB(25, 10, 25, 15),
             child: SizedBox(
               width: 950,
               height: 750,
               child: Card(
-                color: Color.fromARGB(255, 204, 255, 172),
+                color: const Color.fromARGB(255, 204, 255, 172),
                 shadowColor: const Color.fromARGB(255, 114, 114, 114),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
@@ -65,7 +65,7 @@ class _EditOrdersState extends State<EditOrders> {
                     Text(
                       'ชื่อ : ${widget.data['user_fname']} '
                       ' ${widget.data['user_lname']}',
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
                     const SizedBox(height: 10),
                     Text(
@@ -85,16 +85,16 @@ class _EditOrdersState extends State<EditOrders> {
                       height: 5,
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(50, 0, 25, 0),
+                      padding: const EdgeInsets.fromLTRB(50, 0, 25, 0),
                       child: Row(
                         children: [
-                          Icon(Icons.phone),
+                          const Icon(Icons.phone),
                           const SizedBox(
                             width: 10,
                           ),
                           Text(
                             'เบอร์ : ${widget.data['user_number']} ',
-                            style: TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 18),
                           ),
                         ],
                       ),
@@ -108,7 +108,7 @@ class _EditOrdersState extends State<EditOrders> {
                       child: Card(
                         child: Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Text(
@@ -158,18 +158,19 @@ class _EditOrdersState extends State<EditOrders> {
                                 BorderRadius.all(Radius.circular(10))),
                         padding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 40),
-                        primary: Color.fromARGB(255, 28, 122, 255),
+                        primary: const Color.fromARGB(255, 28, 122, 255),
                       ),
                     ),
                     const SizedBox(height: 15),
                     Container(
-                      padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                      padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
                       child: SizedBox(
                           height: 240,
                           width: 450,
                           child: widget.data != null
                               ? Card(
-                                  color: Color.fromARGB(255, 255, 236, 181),
+                                  color:
+                                      const Color.fromARGB(255, 255, 236, 181),
                                   shadowColor:
                                       const Color.fromARGB(255, 114, 114, 114),
                                   shape: RoundedRectangleBorder(
@@ -179,9 +180,9 @@ class _EditOrdersState extends State<EditOrders> {
                                     lng: widget.data['lng'].toDouble(),
                                   ),
                                 )
-                              : Text('ไม่มีข้อมูล')),
+                              : const Text('ไม่มีข้อมูล')),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                   ],
@@ -196,25 +197,26 @@ class _EditOrdersState extends State<EditOrders> {
               ? Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: ElevatedButton(
                         onPressed: () {
                           sendstatusOrder1(
                               "2", widget.data['order_id'], context);
                         },
                         child: Row(
+                          // ignore: prefer_const_literals_to_create_immutables
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.check_box,
                               size: 30,
                               color: Colors.black,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 15,
                             ),
                             const Text('ยืนยันรับคำสั่งซื้อ',
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    color: Colors.black,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500)),
                           ],
@@ -225,7 +227,7 @@ class _EditOrdersState extends State<EditOrders> {
                                   BorderRadius.all(Radius.circular(10))),
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 40),
-                          primary: Color.fromARGB(255, 55, 255, 102),
+                          primary: const Color.fromARGB(255, 55, 255, 102),
                         ),
                       ),
                     ),
@@ -233,7 +235,7 @@ class _EditOrdersState extends State<EditOrders> {
                       height: 15,
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: ElevatedButton(
                         onPressed: () {
                           "3";
@@ -242,18 +244,19 @@ class _EditOrdersState extends State<EditOrders> {
                               "3", widget.data['order_id'], context);
                         },
                         child: Row(
+                          // ignore: prefer_const_literals_to_create_immutables
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.cancel_presentation,
                               size: 30,
                               color: Colors.black,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 15,
                             ),
                             const Text('ปฏิเสธรับคำสั่งซื้อ',
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    color: Colors.black,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500)),
                           ],
@@ -264,7 +267,7 @@ class _EditOrdersState extends State<EditOrders> {
                                   BorderRadius.all(Radius.circular(10))),
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 40),
-                          primary: Color.fromARGB(255, 255, 87, 87),
+                          primary: const Color.fromARGB(255, 255, 87, 87),
                         ),
                       ),
                     )
@@ -274,7 +277,7 @@ class _EditOrdersState extends State<EditOrders> {
                   ? Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.fromLTRB(35, 0, 30, 0),
+                          padding: const EdgeInsets.fromLTRB(35, 0, 30, 0),
                           child: ElevatedButton(
                             onPressed: () {
                               "4";
@@ -283,18 +286,19 @@ class _EditOrdersState extends State<EditOrders> {
                                   "4", widget.data['order_id'], context);
                             },
                             child: Row(
+                              // ignore: prefer_const_literals_to_create_immutables
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.search,
                                   size: 30,
                                   color: Colors.black,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                                 const Text('ตรวจสอบการโอนชำระ',
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 0, 0, 0),
+                                        color: Colors.black,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500)),
                               ],
@@ -305,7 +309,7 @@ class _EditOrdersState extends State<EditOrders> {
                                       BorderRadius.all(Radius.circular(10))),
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 30),
-                              primary: Color.fromARGB(255, 255, 220, 94),
+                              primary: const Color.fromARGB(255, 255, 220, 94),
                             ),
                           ),
                         ),
@@ -316,7 +320,7 @@ class _EditOrdersState extends State<EditOrders> {
                     )
                   : widget.data['order_status'] == 3
                       ? Container(
-                          padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
+                          padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
                           child: ElevatedButton(
                             onPressed: () {
                               "6";
@@ -325,18 +329,19 @@ class _EditOrdersState extends State<EditOrders> {
                                   "6", widget.data['order_id'], context);
                             },
                             child: Row(
+                              // ignore: prefer_const_literals_to_create_immutables
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.cancel,
                                   size: 30,
                                   color: Colors.black,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                                 const Text('ยกเลิกคำสั่งซื้อ',
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 0, 0, 0),
+                                        color: Colors.black,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500)),
                               ],
@@ -347,13 +352,13 @@ class _EditOrdersState extends State<EditOrders> {
                                       BorderRadius.all(Radius.circular(10))),
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 30),
-                              primary: Color.fromARGB(255, 255, 91, 113),
+                              primary: const Color.fromARGB(255, 255, 91, 113),
                             ),
                           ),
                         )
                       : widget.data['order_status'] == 4
                           ? Container(
-                              padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
+                              padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
                               child: ElevatedButton(
                                 onPressed: () {
                                   "5";
@@ -362,18 +367,19 @@ class _EditOrdersState extends State<EditOrders> {
                                       "5", widget.data['order_id'], context);
                                 },
                                 child: Row(
+                                  // ignore: prefer_const_literals_to_create_immutables
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.check_box,
                                       size: 30,
                                       color: Colors.black,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 15,
                                     ),
                                     const Text('ยืนยันการโอนชำระ',
                                         style: TextStyle(
-                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            color: Colors.black,
                                             fontSize: 20,
                                             fontWeight: FontWeight.w500)),
                                   ],
@@ -384,13 +390,15 @@ class _EditOrdersState extends State<EditOrders> {
                                           Radius.circular(10))),
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 30),
-                                  primary: Color.fromARGB(255, 80, 255, 92),
+                                  primary:
+                                      const Color.fromARGB(255, 80, 255, 92),
                                 ),
                               ),
                             )
                           : widget.data['order_status'] == 5
                               ? Container(
-                                  padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(35, 0, 35, 0),
                                   child: ElevatedButton(
                                     onPressed: () {
                                       "8";
@@ -399,19 +407,19 @@ class _EditOrdersState extends State<EditOrders> {
                                           widget.data['order_id'], context);
                                     },
                                     child: Row(
+                                      // ignore: prefer_const_literals_to_create_immutables
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.delivery_dining,
                                           size: 30,
                                           color: Colors.black,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 15,
                                         ),
                                         const Text('กำลังจัดส่ง',
                                             style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 0, 0, 0),
+                                                color: Colors.black,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w500)),
                                       ],
@@ -422,17 +430,17 @@ class _EditOrdersState extends State<EditOrders> {
                                               Radius.circular(10))),
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 10, horizontal: 60),
-                                      primary:
-                                          Color.fromARGB(255, 255, 218, 98),
+                                      primary: const Color.fromARGB(
+                                          255, 255, 218, 98),
                                     ),
                                   ),
                                 )
                               : widget.data['order_status'] == 6
-                                  ? Text('คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว')
+                                  ? const Text('คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว')
                                   : widget.data['order_status'] == 7
                                       ? Container(
-                                          padding:
-                                              EdgeInsets.fromLTRB(35, 0, 35, 0),
+                                          padding: const EdgeInsets.fromLTRB(
+                                              35, 0, 35, 0),
                                           child: ElevatedButton(
                                             onPressed: () {
                                               "10";
@@ -444,20 +452,20 @@ class _EditOrdersState extends State<EditOrders> {
                                                   context);
                                             },
                                             child: Row(
+                                              // ignore: prefer_const_literals_to_create_immutables
                                               children: [
-                                                Icon(
+                                                const Icon(
                                                   Icons
                                                       .check_circle_outline_rounded,
                                                   size: 30,
                                                   color: Colors.black,
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 15,
                                                 ),
                                                 const Text('จัดส่งสำเร็จ',
                                                     style: TextStyle(
-                                                        color: Color.fromARGB(
-                                                            255, 0, 0, 0),
+                                                        color: Colors.black,
                                                         fontSize: 20,
                                                         fontWeight:
                                                             FontWeight.w500)),
@@ -474,15 +482,16 @@ class _EditOrdersState extends State<EditOrders> {
                                                   const EdgeInsets.symmetric(
                                                       vertical: 10,
                                                       horizontal: 60),
-                                              primary: Color.fromARGB(
+                                              primary: const Color.fromARGB(
                                                   255, 24, 255, 86),
                                             ),
                                           ),
                                         )
                                       : widget.data['order_status'] == 8
                                           ? Container(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  35, 0, 35, 0),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      35, 0, 35, 0),
                                               child: ElevatedButton(
                                                 onPressed: () {
                                                   "10";
@@ -495,24 +504,20 @@ class _EditOrdersState extends State<EditOrders> {
                                                       context);
                                                 },
                                                 child: Row(
+                                                  // ignore: prefer_const_literals_to_create_immutables
                                                   children: [
-                                                    Icon(
+                                                    const Icon(
                                                       Icons
                                                           .check_circle_outline_rounded,
                                                       size: 30,
                                                       color: Colors.black,
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 15,
                                                     ),
                                                     const Text('จัดส่งสำเร็จ',
                                                         style: TextStyle(
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    0,
-                                                                    0,
-                                                                    0),
+                                                            color: Colors.black,
                                                             fontSize: 20,
                                                             fontWeight:
                                                                 FontWeight
@@ -531,7 +536,7 @@ class _EditOrdersState extends State<EditOrders> {
                                                           .symmetric(
                                                       vertical: 10,
                                                       horizontal: 60),
-                                                  primary: Color.fromARGB(
+                                                  primary: const Color.fromARGB(
                                                       255, 24, 255, 86),
                                                 ),
                                               ),
@@ -549,21 +554,21 @@ class _EditOrdersState extends State<EditOrders> {
                                                         context);
                                                   },
                                                   child: Row(
+                                                    // ignore: prefer_const_literals_to_create_immutables
                                                     children: [
-                                                      Icon(
+                                                      const Icon(
                                                         Icons
                                                             .check_circle_outline_rounded,
                                                         size: 30,
                                                         color: Colors.black,
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 15,
                                                       ),
                                                       const Text('จัดส่งสำเร็จ',
                                                           style: TextStyle(
-                                                              color: Color
-                                                                  .fromARGB(255,
-                                                                      0, 0, 0),
+                                                              color:
+                                                                  Colors.black,
                                                               fontSize: 20,
                                                               fontWeight:
                                                                   FontWeight
@@ -581,16 +586,92 @@ class _EditOrdersState extends State<EditOrders> {
                                                             .symmetric(
                                                         vertical: 10,
                                                         horizontal: 60),
-                                                    primary: Color.fromARGB(
-                                                        255, 24, 255, 86),
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 24, 255, 86),
                                                   ),
                                                 )
                                               : widget.data['order_status'] ==
                                                       10
-                                                  ? Text(
+                                                  ? const Text(
                                                       'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว')
-                                                  : Text('Error'),
-          SizedBox(
+                                                  : widget.data[
+                                                              'order_status'] ==
+                                                          11
+                                                      ? Column(
+                                                          children: [
+                                                            Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .fromLTRB(
+                                                                      35,
+                                                                      0,
+                                                                      30,
+                                                                      0),
+                                                              child:
+                                                                  ElevatedButton(
+                                                                onPressed: () {
+                                                                  "4";
+
+                                                                  sendstatusOrder11(
+                                                                      "4",
+                                                                      widget.data[
+                                                                          'order_id'],
+                                                                      context);
+                                                                },
+                                                                child: Row(
+                                                                  // ignore: prefer_const_literals_to_create_immutables
+                                                                  children: [
+                                                                    const Icon(
+                                                                      Icons
+                                                                          .search,
+                                                                      size: 30,
+                                                                      color: Colors
+                                                                          .black,
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 15,
+                                                                    ),
+                                                                    const Text(
+                                                                        'ตรวจสอบการโอนชำระ',
+                                                                        style: TextStyle(
+                                                                            color: Colors
+                                                                                .black,
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontWeight:
+                                                                                FontWeight.w500)),
+                                                                  ],
+                                                                ),
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
+                                                                  shape: const RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(10))),
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      vertical:
+                                                                          10,
+                                                                      horizontal:
+                                                                          30),
+                                                                  primary:
+                                                                      const Color
+                                                                              .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          220,
+                                                                          94),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                              height: 15,
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : const Text('Error'),
+          const SizedBox(
             height: 20,
           ),
         ]),

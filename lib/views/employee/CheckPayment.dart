@@ -194,39 +194,80 @@ class _CheckPayment1State extends State<CheckPayment1> {
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
-            child: ElevatedButton(
-              onPressed: () {
-                "5";
+          Column(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    "5";
 
-                sendstatusOrder1("5", widget.data['order_id'], context);
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.check_box,
-                    size: 30,
-                    color: Colors.black,
+                    sendstatusOrder1("5", widget.data['order_id'], context);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.check_box,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      const Text('ยืนยันการโอนชำระ',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500)),
+                    ],
                   ),
-                  SizedBox(
-                    width: 15,
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 30),
+                    primary: Color.fromARGB(255, 80, 255, 92),
                   ),
-                  const Text('ยืนยันการโอนชำระ',
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500)),
-                ],
+                ),
               ),
-              style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                primary: Color.fromARGB(255, 80, 255, 92),
+              SizedBox(
+                height: 30,
               ),
-            ),
+              Container(
+                padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    "11";
+
+                    sendstatusOrder1("11", widget.data['order_id'], context);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.cancel_presentation_sharp,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      const Text('ปฏิเสธการโอนชำระเงิน',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 19,
+                              fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 30),
+                    primary: Color.fromARGB(255, 255, 87, 87),
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 30,

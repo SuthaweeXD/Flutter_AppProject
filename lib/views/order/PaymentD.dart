@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/services.dart';
 
 class PaymentD extends StatefulWidget {
   PaymentD({Key? key, required this.data}) : super(key: key);
@@ -37,6 +38,15 @@ class _PaymentDState extends State<PaymentD> {
         child: Center(
           child: Column(
             children: [
+              SizedBox(height: 80),
+              ListTile(
+                title: Text('0634989907'),
+                trailing: Icon(Icons.access_alarm),
+                onTap: () async {
+                  await Clipboard.setData(ClipboardData(text: "presssssss"));
+                  // copied successfully
+                },
+              ),
               SizedBox(height: 80),
               _image != null
                   ? SizedBox.fromSize(
@@ -125,7 +135,7 @@ class _PaymentDState extends State<PaymentD> {
                             SizedBox(
                               width: 20,
                             ),
-                            const Text('บันทึกหลักฐานการโอนเงิน',
+                            const Text('บันทึกการโอนชำระเงิน',
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 0, 0, 0),
                                     fontSize: 20,

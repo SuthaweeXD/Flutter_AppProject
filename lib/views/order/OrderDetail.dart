@@ -42,7 +42,7 @@ class _OrderDetailState extends State<OrderDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('รายละเอียดการสั่งซื้อ'),
+        title: const Text('รายละเอียดการสั่งซื้อ'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -60,7 +60,8 @@ class _OrderDetailState extends State<OrderDetail> {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Text(
                   'สถานะ : ' + ColorStatus(widget.data["order_status"]),
                   style: const TextStyle(
@@ -70,12 +71,12 @@ class _OrderDetailState extends State<OrderDetail> {
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
+              padding: const EdgeInsets.fromLTRB(25, 10, 25, 15),
               child: SizedBox(
                 width: 950,
                 height: 550,
                 child: Card(
-                  color: Color.fromARGB(255, 255, 236, 181),
+                  color: const Color.fromARGB(255, 255, 236, 181),
                   shadowColor: const Color.fromARGB(255, 114, 114, 114),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
@@ -112,7 +113,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         height: 10,
                       ),
                       Text(
-                        'ค่ามัดจำ :          ${widget.data['order_dep']}' +
+                        'ค่ามัดจำ  :     ${widget.data['order_dep']}' +
                             '        บาท',
                         style: const TextStyle(fontSize: 18),
                       ),
@@ -122,7 +123,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         child: Card(
                           child: Column(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
                               Text(
@@ -154,22 +155,22 @@ class _OrderDetailState extends State<OrderDetail> {
                         ),
                       ),
                       Card(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: const Color.fromARGB(255, 255, 255, 255),
                         shadowColor: const Color.fromARGB(255, 114, 114, 114),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(15, 10, 15, 15),
+                          padding: const EdgeInsets.fromLTRB(15, 10, 15, 15),
                           child: Column(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.home_rounded,
                                 size: 45,
                                 color: Colors.blueAccent,
                               ),
-                              Text(
+                              const Text(
                                 'ที่อยู่ในการจัดส่ง : ',
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w400),
                               ),
                               const SizedBox(
@@ -197,7 +198,7 @@ class _OrderDetailState extends State<OrderDetail> {
                     children: [
                       checkC != false
                           ? Container(
-                              padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                               child: ElevatedButton(
                                 onPressed: () {
                                   "6";
@@ -220,7 +221,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                                 TextButton(
                                                   onPressed: () =>
                                                       sendstatusOrder0(
-                                                          widget.statusOrder,
+                                                          "6",
                                                           widget
                                                               .data['order_id'],
                                                           context),
@@ -240,13 +241,14 @@ class _OrderDetailState extends State<OrderDetail> {
                                           Radius.circular(10))),
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 30),
-                                  primary: Color.fromARGB(255, 255, 31, 61),
+                                  primary:
+                                      const Color.fromARGB(255, 255, 31, 61),
                                 ),
                               ),
                             )
-                          : Text(
+                          : const Text(
                               '*ไม่สามารถยกเลิกได้ กรุณายกเลิกล่วงหน้า 2 วัน',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.red,
                               ),
                             ),
@@ -259,7 +261,7 @@ class _OrderDetailState extends State<OrderDetail> {
                     ? Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+                            padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
                             child: ElevatedButton(
                               onPressed: () {
                                 Navigator.push(
@@ -270,11 +272,14 @@ class _OrderDetailState extends State<OrderDetail> {
                                 );
                               },
                               child: Row(
+                                // ignore: prefer_const_literals_to_create_immutables
                                 children: [
+                                  // ignore: prefer_const_constructors
                                   Icon(
                                     Icons.add_a_photo,
                                     color: Colors.grey,
                                   ),
+                                  // ignore: prefer_const_constructors
                                   SizedBox(
                                     width: 10,
                                   ),
@@ -291,16 +296,18 @@ class _OrderDetailState extends State<OrderDetail> {
                                         BorderRadius.all(Radius.circular(10))),
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 30),
-                                primary: Color.fromARGB(255, 255, 255, 255),
+                                primary:
+                                    const Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           checkC != false
                               ? Container(
-                                  padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(30, 0, 30, 0),
                                   child: ElevatedButton(
                                     onPressed: () {
                                       "6";
@@ -324,8 +331,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                                     TextButton(
                                                       onPressed: () =>
                                                           sendstatusOrder0(
-                                                              widget
-                                                                  .statusOrder,
+                                                              "6",
                                                               widget.data[
                                                                   'order_id'],
                                                               context),
@@ -345,25 +351,27 @@ class _OrderDetailState extends State<OrderDetail> {
                                               Radius.circular(10))),
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 10, horizontal: 30),
-                                      primary: Color.fromARGB(255, 255, 31, 61),
+                                      primary: const Color.fromARGB(
+                                          255, 255, 31, 61),
                                     ),
                                   ),
                                 )
-                              : Text(
+                              : const Text(
                                   '*ไม่สามารถยกเลิกได้ กรุณายกเลิกล่วงหน้า 2 วัน',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.red,
                                   ),
                                 )
                         ],
                       )
                     : widget.data['order_status'] == 3
-                        ? Text('คำสั่งซื้อนี้ได้ถูกปฏิเสธแล้ว')
+                        ? const Text('คำสั่งซื้อนี้ได้ถูกปฏิเสธแล้ว')
                         : widget.data['order_status'] == 4
                             ? Column(
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(25, 5, 25, 5),
                                     child: ElevatedButton(
                                       onPressed: () {
                                         Navigator.push(
@@ -375,11 +383,11 @@ class _OrderDetailState extends State<OrderDetail> {
                                       },
                                       child: Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.add_a_photo,
                                             color: Colors.grey,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           const Text(
@@ -397,15 +405,15 @@ class _OrderDetailState extends State<OrderDetail> {
                                                 Radius.circular(10))),
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 10, horizontal: 30),
-                                        primary:
-                                            Color.fromARGB(255, 255, 255, 255),
+                                        primary: const Color.fromARGB(
+                                            255, 255, 255, 255),
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
+                                  const Text(
                                     'กำลังรอยืนยันการโอนชำระค่ามัดจำ',
                                     style: TextStyle(
                                       color: Colors.orange,
@@ -456,42 +464,128 @@ class _OrderDetailState extends State<OrderDetail> {
                                               Radius.circular(10))),
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 10, horizontal: 30),
-                                      primary: Color.fromARGB(255, 255, 1, 1),
+                                      primary:
+                                          const Color.fromARGB(255, 255, 1, 1),
                                     ),
                                   )
                                 : widget.data['order_status'] == 6
-                                    ? Text(
+                                    ? const Text(
                                         'คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว',
                                         style: TextStyle(
                                           color: Colors.red,
                                         ),
                                       )
                                     : widget.data['order_status'] == 7
-                                        ? Text(
+                                        ? const Text(
                                             'คุณได้ยกเลิกการจัดส่งสินค้า สามารถรับสินค้าได้ที่ร้าน')
                                         : widget.data['order_status'] == 8
-                                            ? Text(
+                                            ? const Text(
                                                 'คำสั่งซื้อของคุณกำลังจัดส่ง',
                                                 style: TextStyle(
                                                   color: Colors.orange,
                                                 ),
                                               )
                                             : widget.data['order_status'] == 9
-                                                ? Text(
+                                                ? const Text(
                                                     'คุณได้ชำระยอดคงเหลือเรียบร้อย \n คำสั่งซื้อของคุณกำลังจัดส่ง',
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.greenAccent,
                                                     ),
                                                   )
                                                 : widget.data['order_status'] ==
                                                         10
-                                                    ? Text(
+                                                    ? const Text(
                                                         'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว',
                                                         style: TextStyle(
                                                           color: Colors.green,
                                                         ),
                                                       )
-                                                    : Text('error')
+                                                    : widget.data[
+                                                                'order_status'] ==
+                                                            11
+                                                        ? Column(
+                                                            children: [
+                                                              Container(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .fromLTRB(
+                                                                        25,
+                                                                        5,
+                                                                        25,
+                                                                        5),
+                                                                child:
+                                                                    ElevatedButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator
+                                                                        .push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                          builder: (context) =>
+                                                                              PaymentD(data: widget.data)),
+                                                                    );
+                                                                  },
+                                                                  child: Row(
+                                                                    // ignore: prefer_const_literals_to_create_immutables
+                                                                    children: [
+                                                                      const Icon(
+                                                                        Icons
+                                                                            .add_a_photo,
+                                                                        color: Colors
+                                                                            .grey,
+                                                                      ),
+                                                                      const SizedBox(
+                                                                        width:
+                                                                            10,
+                                                                      ),
+                                                                      const Text(
+                                                                          'อัปโหลดหลักฐานการชำระเงิน',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color: Color.fromARGB(
+                                                                                255,
+                                                                                34,
+                                                                                34,
+                                                                                34),
+                                                                            fontSize:
+                                                                                16,
+                                                                          )),
+                                                                    ],
+                                                                  ),
+                                                                  style: ElevatedButton
+                                                                      .styleFrom(
+                                                                    shape: const RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.all(Radius.circular(10))),
+                                                                    padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                        vertical:
+                                                                            10,
+                                                                        horizontal:
+                                                                            30),
+                                                                    primary:
+                                                                        const Color.fromARGB(
+                                                                            255,
+                                                                            255,
+                                                                            255,
+                                                                            255),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              const SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              const Text(
+                                                                'หลักฐานการโอนชำระเงินไม่ถูกต้อง',
+                                                                style:
+                                                                    const TextStyle(
+                                                                  color: Colors
+                                                                      .red,
+                                                                ),
+                                                              )
+                                                            ],
+                                                          )
+                                                        : const Text('error')
           ],
         ),
       ),
