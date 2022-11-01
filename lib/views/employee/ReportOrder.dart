@@ -154,7 +154,12 @@ class _ReportOrderEmpState extends State<ReportOrderEmp> {
                   width: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      startdate.text = "";
+                      enddate.text = "";
+                    });
+                  },
                   child: const Text('เคลียร์ข้อมูล',
                       style: TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0),

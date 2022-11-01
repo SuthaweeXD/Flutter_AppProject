@@ -223,7 +223,7 @@ Future<dynamic> getOrders() async {
 
 Future<dynamic> getOrdersPayment(status, startDate, endDate) async {
   Uri url = Uri.parse(
-      'http://206.189.145.138:3700/api/orders/reportAllOrder/$status/$startDate/$endDate');
+      'http://206.189.145.138:3700/api/orders/reportAllOrder/$startDate/$endDate');
   return await http
       .get(
     url,
