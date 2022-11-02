@@ -361,7 +361,10 @@ class _OrderDetailState extends State<OrderDetail> {
                                   style: const TextStyle(
                                     color: Colors.red,
                                   ),
-                                )
+                                ),
+                          const SizedBox(
+                            height: 15,
+                          ),
                         ],
                       )
                     : widget.data['order_status'] == 3
@@ -382,6 +385,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                         );
                                       },
                                       child: Row(
+                                        // ignore: prefer_const_literals_to_create_immutables
                                         children: [
                                           const Icon(
                                             Icons.add_a_photo,
@@ -418,7 +422,10 @@ class _OrderDetailState extends State<OrderDetail> {
                                     style: TextStyle(
                                       color: Colors.orange,
                                     ),
-                                  )
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
                                 ],
                               )
                             : widget.data['order_status'] == 5
@@ -469,36 +476,78 @@ class _OrderDetailState extends State<OrderDetail> {
                                     ),
                                   )
                                 : widget.data['order_status'] == 6
-                                    ? const Text(
-                                        'คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว',
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                        ),
+                                    ? Column(
+                                        // ignore: prefer_const_literals_to_create_immutables
+                                        children: [
+                                          const Text(
+                                            'คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว',
+                                            style: TextStyle(
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 15,
+                                          ),
+                                        ],
                                       )
                                     : widget.data['order_status'] == 7
-                                        ? const Text(
-                                            'คุณได้ยกเลิกการจัดส่งสินค้า สามารถรับสินค้าได้ที่ร้าน')
+                                        ? Column(
+                                            // ignore: prefer_const_literals_to_create_immutables
+                                            children: [
+                                              const Text(
+                                                  'คุณได้ยกเลิกการจัดส่งสินค้า สามารถรับสินค้าได้ที่ร้าน'),
+                                              const SizedBox(
+                                                height: 15,
+                                              ),
+                                            ],
+                                          )
                                         : widget.data['order_status'] == 8
-                                            ? const Text(
-                                                'คำสั่งซื้อของคุณกำลังจัดส่ง',
-                                                style: TextStyle(
-                                                  color: Colors.orange,
-                                                ),
+                                            ? Column(
+                                                // ignore: prefer_const_literals_to_create_immutables
+                                                children: [
+                                                  const Text(
+                                                    'คำสั่งซื้อของคุณกำลังจัดส่ง',
+                                                    style: TextStyle(
+                                                      color: Colors.orange,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 15,
+                                                  ),
+                                                ],
                                               )
                                             : widget.data['order_status'] == 9
-                                                ? const Text(
-                                                    'คุณได้ชำระยอดคงเหลือเรียบร้อย \n คำสั่งซื้อของคุณกำลังจัดส่ง',
-                                                    style: const TextStyle(
-                                                      color: Colors.greenAccent,
-                                                    ),
+                                                ? Column(
+                                                    // ignore: prefer_const_literals_to_create_immutables
+                                                    children: [
+                                                      const Text(
+                                                        'คุณได้ชำระยอดคงเหลือเรียบร้อย \n คำสั่งซื้อของคุณกำลังจัดส่ง',
+                                                        style: const TextStyle(
+                                                          color: Colors
+                                                              .greenAccent,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 15,
+                                                      ),
+                                                    ],
                                                   )
                                                 : widget.data['order_status'] ==
                                                         10
-                                                    ? const Text(
-                                                        'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว',
-                                                        style: TextStyle(
-                                                          color: Colors.green,
-                                                        ),
+                                                    ? Column(
+                                                        // ignore: prefer_const_literals_to_create_immutables
+                                                        children: [
+                                                          const Text(
+                                                            'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 15,
+                                                          ),
+                                                        ],
                                                       )
                                                     : widget.data[
                                                                 'order_status'] ==
@@ -582,7 +631,10 @@ class _OrderDetailState extends State<OrderDetail> {
                                                                   color: Colors
                                                                       .red,
                                                                 ),
-                                                              )
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 15,
+                                                              ),
                                                             ],
                                                           )
                                                         : const Text('error')

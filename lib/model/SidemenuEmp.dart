@@ -3,9 +3,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/employee/CCreport.dart';
 import 'package:flutter_application_project/views/employee/ChartDaily.dart';
 import 'package:flutter_application_project/views/employee/MainEmp.dart';
 import 'package:flutter_application_project/views/Login.dart';
+import 'package:flutter_application_project/views/employee/ReportDelete.dart';
 import 'package:flutter_application_project/views/employee/ReportOrder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -151,7 +153,7 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                           width: 25,
                         ),
                         Icon(
-                          Icons.history,
+                          Icons.add_business_outlined,
                           size: 35,
                         ),
                         SizedBox(
@@ -211,6 +213,32 @@ class _SideMenuEmpState extends State<SideMenuEmp> {
                         ),
                         Text(
                           'แผนภูมิประจำวัน',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReportDelete(),
+                          ));
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Icon(
+                          Icons.cancel_presentation_sharp,
+                          size: 35,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'สรุปรายการยกเลิก',
                           style: TextStyle(fontSize: 20),
                         ),
                       ],

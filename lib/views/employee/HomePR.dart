@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/views/employee/CreatePR.dart';
 import 'package:flutter_application_project/views/employee/PublicDB.dart';
 
 import '../../model/SidemenuEmp.dart';
@@ -20,7 +21,7 @@ class _HomePRState extends State<HomePR> {
       body: Container(
         padding: EdgeInsets.fromLTRB(30, 2, 25, 0),
         child: Column(children: [
-          const SizedBox(height: 80),
+          const SizedBox(height: 50),
           SizedBox(
             width: 300,
             child: Card(
@@ -28,7 +29,12 @@ class _HomePRState extends State<HomePR> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                          builder: (BuildContext context) => CreatePR()));
+                },
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
@@ -45,7 +51,7 @@ class _HomePRState extends State<HomePR> {
                             Radius.circular(20),
                           )),
                       child: Text(
-                        'สร้างประชาสัมพันธ์',
+                        ' เพิ่มประชาสัมพันธ์ ',
                         style: const TextStyle(fontSize: 25),
                       ),
                     ),
@@ -84,7 +90,7 @@ class _HomePRState extends State<HomePR> {
                             Radius.circular(20),
                           )),
                       child: Text(
-                        'ข้อมูลประชาสัมพันธ์ : ',
+                        ' ข้อมูลประชาสัมพันธ์ ',
                         style: const TextStyle(fontSize: 25),
                       ),
                     ),

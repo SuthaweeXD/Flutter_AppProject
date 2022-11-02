@@ -57,166 +57,179 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   title: const Text("เข้าสู่ระบบ"),
-        // ),
-        backgroundColor: const Color.fromARGB(255, 225, 231, 234),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: Column(children: [
-                  const SizedBox(height: 100),
-                  const Text(
-                    'เข้าสู่ระบบ',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 54, 178, 240),
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 40),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Form(
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            controller: username,
-                            style: const TextStyle(
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontSize: 17),
-                            keyboardType: TextInputType.text,
-                            decoration: const InputDecoration(
-                                labelText: 'ชื่อผู้ใช้',
-                                hintText: 'ชื่อผู้ใช้',
-                                hintStyle: TextStyle(
-                                    color: Color.fromARGB(255, 9, 9, 9)),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 23, 158, 237),
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color:
-                                            Color.fromARGB(255, 23, 158, 237),
-                                        width: 2),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50))),
-                                prefixIcon: Icon(
-                                  Icons.account_circle,
+        backgroundColor: const Color.fromARGB(224, 182, 241, 134),
+        body: SingleChildScrollView(
+          child: Column(children: [
+            const SizedBox(height: 50),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 00),
+              width: 300,
+              height: 250,
+              child: Image.asset(
+                'assets/images/LogoApp.png',
+              ),
+            ),
+            // ignore: prefer_const_constructors
+            const Text(
+              '   ร้านก๊ะนะห์ขนมจีนเส้นสด',
+              style: TextStyle(
+                  color: Color.fromARGB(255, 8, 64, 79),
+                  fontSize: 26,
+                  fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.italic),
+            ),
+            const SizedBox(height: 40),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Form(
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: username,
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0), fontSize: 17),
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(
+                          labelText: 'ชื่อผู้ใช้',
+                          labelStyle:
+                              TextStyle(color: Color.fromARGB(255, 9, 9, 9)),
+                          hintText: 'ชื่อผู้ใช้',
+                          hintStyle:
+                              TextStyle(color: Color.fromARGB(255, 9, 9, 9)),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 100, 101, 101),
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 100, 101, 101),
+                                  width: 2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50))),
+                          prefixIcon: Icon(
+                            Icons.account_circle,
+                            size: 30,
+                            color: Color.fromARGB(255, 2, 2, 2),
+                          )),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    TextFormField(
+                        controller: password,
+                        obscureText: hidepassword,
+                        decoration: InputDecoration(
+                            labelText: 'รหัสผ่าน',
+                            labelStyle: const TextStyle(
+                                color: const Color.fromARGB(255, 9, 9, 9)),
+                            hintText: 'รหัสผ่าน',
+                            hintStyle: const TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                            enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 100, 101, 101)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 100, 101, 101)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)),
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.lock,
+                              size: 30,
+                              color: Color.fromARGB(255, 0, 0, 0),
+                            ),
+                            suffixIcon: IconButton(
+                                onPressed: (() {
+                                  setState(() {
+                                    hidepassword = !hidepassword;
+                                  });
+                                }),
+                                icon: Icon(
+                                  hidepassword
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
                                   size: 30,
-                                  color: Color.fromARGB(255, 46, 152, 252),
-                                )),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          TextFormField(
-                              controller: password,
-                              obscureText: hidepassword,
-                              decoration: InputDecoration(
-                                  labelText: 'รหัสผ่าน',
-                                  hintText: 'รหัสผ่าน',
-                                  hintStyle: const TextStyle(
-                                      color: Color.fromARGB(255, 0, 0, 0)),
-                                  enabledBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Color.fromARGB(
-                                              255, 23, 158, 237)),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(50))),
-                                  focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color:
-                                            Color.fromARGB(255, 23, 158, 237)),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
-                                  ),
-                                  prefixIcon: const Icon(
-                                    Icons.lock,
-                                    size: 30,
-                                    color: Color.fromARGB(255, 46, 152, 252),
-                                  ),
-                                  suffixIcon: IconButton(
-                                      onPressed: (() {
-                                        setState(() {
-                                          hidepassword = !hidepassword;
-                                        });
-                                      }),
-                                      icon: Icon(
-                                        hidepassword
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        size: 30,
-                                        color: const Color.fromARGB(
-                                            255, 46, 152, 252),
-                                      )))),
-                          const SizedBox(height: 30),
-                          ElevatedButton(
-                            onPressed: () async {
-                              await checkLogin(
-                                  username.text, password.text, context);
-                              // Navigator.pushNamedAndRemoveUntil(context,
-                              //     "/Page1", (Route<dynamic> route) => false);
-                            },
-                            child: const Text(
-                              'เข้าสู่ระบบ',
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 45, 134, 156),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 40),
-                              primary: const Color.fromARGB(255, 255, 255, 255),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
+                                  color:
+                                      const Color.fromARGB(255, 100, 101, 101),
+                                )))),
+                    const SizedBox(height: 30),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await checkLogin(username.text, password.text, context);
+                      },
+                      child: Column(
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const Icon(Icons.login),
                           const Text(
-                            'หรือ',
+                            'เข้าสู่ระบบ',
                             style: TextStyle(
-                                color: Color.fromARGB(255, 16, 16, 16)),
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return RegisterScreen();
-                              }));
-                            },
-                            child: const Text('สร้างบัญชีผู้ใช้',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 45, 134, 156),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold)),
-                            style: ElevatedButton.styleFrom(
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 40),
-                              primary: const Color.fromARGB(255, 255, 255, 255),
-                            ),
-                          )
                         ],
                       ),
+                      style: ElevatedButton.styleFrom(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        primary: Color.fromARGB(255, 3, 133, 255),
+                      ),
                     ),
-                  )
-                ])),
-          ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      'หรือ',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 16, 16, 16), fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return RegisterScreen();
+                        }));
+                      },
+                      child: Column(
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const Icon(Icons.person_add),
+                          const Text('สร้างบัญชีผู้ใช้',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 10),
+                        primary: const Color.fromARGB(255, 46, 152, 252),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ]),
         ));
   }
 }

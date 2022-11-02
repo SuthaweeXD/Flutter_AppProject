@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 
-class ChartReport extends StatefulWidget {
-  ChartReport({Key? key, required this.data}) : super(key: key);
+class CCreport extends StatefulWidget {
+  CCreport({Key? key, required this.data}) : super(key: key);
   final dynamic data;
   @override
-  State<ChartReport> createState() => _ChartReportState();
+  State<CCreport> createState() => _CCreportState();
 }
 
-class _ChartReportState extends State<ChartReport> {
+class _CCreportState extends State<CCreport> {
   int touchedIndex = -1;
   @override
   Widget build(BuildContext context) {
@@ -103,7 +103,7 @@ class _ChartReportState extends State<ChartReport> {
                   Container(
                     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                     child: Card(
-                      color: Color.fromARGB(255, 179, 255, 203),
+                      color: Color.fromARGB(255, 255, 212, 212),
                       shadowColor: const Color.fromARGB(255, 114, 114, 114),
                       child: DataTable(
                         border: TableBorder.symmetric(

@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
 import 'package:flutter_application_project/model/SideMenuOwn.dart';
@@ -45,7 +46,7 @@ class _ChartRealtimeState extends State<ChartRealtime> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('แผนภูมิประจำวัน'),
+        title: const Text('แผนภูมิประจำวัน'),
       ),
       body: data != null
           ? SingleChildScrollView(
@@ -83,49 +84,102 @@ class _ChartRealtimeState extends State<ChartRealtime> {
                         ))),
                 Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 95,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 60,
                           height: 30,
                           child: Card(
-                              color: const Color(0xfff8b250),
+                              color: Color(0xfff8b250),
                               child: Text(
                                 'เส้นเล็ก',
                                 style: TextStyle(),
                               )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 60,
                           height: 30,
                           child: Card(
-                              color: const Color(0xff845bef),
+                              color: Color(0xff845bef),
                               child: Text('เส้นใหญ่')),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 60,
                           height: 30,
                           child: Card(
-                              color: const Color(0xff13d38e),
+                              color: Color(0xff13d38e),
                               child: Text('เส้นม้วน')),
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
                       'คำสั่งซื้อทั้งหมด :  ' +
                           "${data['totalorder']}" +
                           '  คำสั่งซื้อ',
-                      style: TextStyle(fontSize: 22),
+                      style: const TextStyle(fontSize: 22),
                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      child: Card(
+                        color: Color.fromARGB(255, 179, 255, 203),
+                        shadowColor: const Color.fromARGB(255, 114, 114, 114),
+                        child: DataTable(
+                          border: TableBorder.symmetric(
+                              inside: BorderSide(), outside: BorderSide()),
+                          columns: const <DataColumn>[
+                            DataColumn(
+                              label: Expanded(
+                                child: Text(
+                                  'ประเภทเส้น',
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Expanded(
+                                child: Text(
+                                  'จำนวนทั้งหมด',
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ),
+                          ],
+                          rows: <DataRow>[
+                            DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text('เส้นเล็ก')),
+                                DataCell(Text('${data['allordersmall']}')),
+                              ],
+                            ),
+                            DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text('เส้นใหญ่')),
+                                DataCell(Text('${data['allorderbig']}')),
+                              ],
+                            ),
+                            DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text('เส้นม้วน')),
+                                DataCell(Text('${data['allorderroll']}')),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 )
               ],

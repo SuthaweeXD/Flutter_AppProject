@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/config/api.dart';
-import 'package:flutter_application_project/views/owner/ChartReport.dart';
+import 'package:flutter_application_project/views/employee/CCreport.dart';
 import 'package:intl/intl.dart';
 
-class ReportOrderEmp extends StatefulWidget {
-  ReportOrderEmp({Key? key, this.data}) : super(key: key);
+class ReportDelete extends StatefulWidget {
+  ReportDelete({Key? key, this.data}) : super(key: key);
   final dynamic data;
-
   @override
-  State<ReportOrderEmp> createState() => _ReportOrderEmpState();
+  State<ReportDelete> createState() => _ReportDeleteState();
 }
 
-class _ReportOrderEmpState extends State<ReportOrderEmp> {
+class _ReportDeleteState extends State<ReportDelete> {
   TextEditingController startdate = TextEditingController();
   TextEditingController enddate = TextEditingController();
   dynamic datareport;
@@ -125,7 +124,7 @@ class _ReportOrderEmpState extends State<ReportOrderEmp> {
                   ElevatedButton(
                     onPressed: () async {
                       var data =
-                          await getReportAllOrder(startdate.text, enddate.text);
+                          await getReportCancle(startdate.text, enddate.text);
                       setState(() {
                         datareport = data;
                         //ใช้ datareportได้แล้ว
@@ -134,7 +133,7 @@ class _ReportOrderEmpState extends State<ReportOrderEmp> {
                       Navigator.push(
                           context,
                           MaterialPageRoute<void>(
-                              builder: (BuildContext context) => ChartReport(
+                              builder: (BuildContext context) => CCreport(
                                     data: datareport,
                                   )));
                     },

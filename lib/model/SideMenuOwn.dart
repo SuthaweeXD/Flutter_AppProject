@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_project/model/Sidemenu.dart';
 import 'package:flutter_application_project/views/Login.dart';
+import 'package:flutter_application_project/views/owner/CreateCus.dart';
 import 'package:flutter_application_project/views/owner/CreateUser.dart';
 import 'package:flutter_application_project/views/owner/Main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,15 +48,15 @@ class _SideMenuOwnState extends State<SideMenuOwn> {
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 3, 87, 255),
+              color: const Color.fromARGB(255, 3, 87, 255),
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 2,
                   blurRadius: 5,
-                  offset: Offset(0, 3), // changes position of shadow
+                  offset: const Offset(0, 3), // changes position of shadow
                 ),
               ],
             ),
@@ -80,12 +81,13 @@ class _SideMenuOwnState extends State<SideMenuOwn> {
                             data != null
                                 ? Text(
                                     ''' ${data['user_fname']}  ${data['user_lname']}''',
+                                    // ignore: prefer_const_constructors
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   )
-                                : Text(''),
+                                : const Text(''),
                           ],
                         ),
                       )
@@ -97,8 +99,8 @@ class _SideMenuOwnState extends State<SideMenuOwn> {
           ),
           Expanded(
             child: ListView(
-              physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.fromLTRB(1, 5, 20, 5),
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(1, 5, 20, 5),
               children: [
                 TextButton(
                     onPressed: () {
@@ -111,19 +113,19 @@ class _SideMenuOwnState extends State<SideMenuOwn> {
                     },
                     child: Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 25,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.person,
                           size: 35,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'ข้อมูลการสั่งซื้อ',
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                         ),
                       ],
                     )),
@@ -137,19 +139,47 @@ class _SideMenuOwnState extends State<SideMenuOwn> {
                           ));
                     },
                     child: Row(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 25,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.person_add,
                           size: 35,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'เพิ่มพนักงาน',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CraeteCustomer(),
+                          ));
+                    },
+                    child: Row(
+                      // ignore: prefer_const_literals_to_create_immutables
+                      children: [
+                        const SizedBox(
+                          width: 25,
+                        ),
+                        const Icon(
+                          Icons.person_add,
+                          size: 35,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text(
+                          'เพิ่มลูกค้า',
                           style: TextStyle(fontSize: 20),
                         ),
                       ],
@@ -165,7 +195,7 @@ class _SideMenuOwnState extends State<SideMenuOwn> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
-                backgroundColor: Color.fromARGB(255, 255, 0, 0),
+                backgroundColor: const Color.fromARGB(255, 255, 0, 0),
                 primary: const Color.fromARGB(255, 255, 255, 255),
                 textStyle: const TextStyle(fontSize: 20),
               ),

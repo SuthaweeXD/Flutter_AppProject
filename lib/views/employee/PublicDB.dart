@@ -37,7 +37,7 @@ class _PRdataState extends State<PRdata> {
               // reverse: true,
               itemCount: data?.length ?? 0,
               itemBuilder: (context, i) => Container(
-                  height: 250,
+                  height: 270,
                   width: 20,
                   child: InkWell(
                       onTap: () {
@@ -87,7 +87,7 @@ class _PRdataState extends State<PRdata> {
                                                 const TextStyle(fontSize: 16),
                                           ),
                                           const SizedBox(
-                                            height: 2,
+                                            height: 8,
                                           ),
                                           SizedBox(
                                             child: Container(

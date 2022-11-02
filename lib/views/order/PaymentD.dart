@@ -38,44 +38,77 @@ class _PaymentDState extends State<PaymentD> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 80),
-              ListTile(
-                title: Text('0634989907'),
-                trailing: Icon(Icons.access_alarm),
-                onTap: () async {
-                  await Clipboard.setData(ClipboardData(text: "presssssss"));
-                  // copied successfully
-                },
+              SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.fromLTRB(45, 0, 45, 10),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.paypal,
+                      size: 50,
+                      color: Colors.green,
+                    ),
+                    Text(
+                      "พร้อมเพย์",
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: Text('0831854808'),
+                        trailing: Icon(Icons.copy),
+                        onTap: () async {
+                          await Clipboard.setData(
+                              ClipboardData(text: "0831854808"));
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 80),
-              _image != null
-                  ? SizedBox.fromSize(
-                      child: Image.file(_image!, fit: BoxFit.cover),
-                    )
-                  : widget.data['order_payment'] != null
-                      ? SizedBox.fromSize(
-                          child: Container(
-                              padding: EdgeInsets.fromLTRB(25, 10, 25, 0),
-                              child: Image(
-                                  image: NetworkImage(
-                                    widget.data['order_payment'],
+              SizedBox(height: 20),
+              Container(
+                padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
+                child: Card(
+                  color: const Color.fromARGB(255, 204, 255, 172),
+                  shadowColor: const Color.fromARGB(255, 114, 114, 114),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Column(
+                    children: [
+                      _image != null
+                          ? SizedBox.fromSize(
+                              child: Image.file(_image!, fit: BoxFit.cover),
+                            )
+                          : widget.data['order_payment'] != null
+                              ? SizedBox.fromSize(
+                                  child: Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(25, 10, 25, 10),
+                                      child: Image(
+                                          image: NetworkImage(
+                                            widget.data['order_payment'],
+                                          ),
+                                          fit: BoxFit.cover)),
+                                )
+                              : SizedBox.fromSize(
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(25, 10, 25, 10),
+                                    child: Image.asset(
+                                      'assets/images/empty.png',
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                  fit: BoxFit.cover)),
-                        )
-                      : SizedBox.fromSize(
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(25, 10, 25, 0),
-                            child: Image.asset(
-                              'assets/images/empty.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-              SizedBox(height: 60),
-              SizedBox(
-                width: 350,
-                height: 80,
+                                ),
+                    ],
+                  ),
+                ),
               ),
+
               SizedBox(height: 20),
               Container(
                 padding: EdgeInsets.fromLTRB(20, 0, 20, 0),

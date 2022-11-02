@@ -3,27 +3,27 @@ import 'package:flutter/material.dart';
 ColorCard(int orderstatus) {
   switch (orderstatus) {
     case 1:
-      return Color.fromARGB(255, 255, 255, 255);
+      return const Color.fromARGB(255, 255, 255, 255);
     case 2:
-      return Color.fromARGB(201, 166, 255, 221);
+      return const Color.fromARGB(201, 166, 255, 221);
     case 3:
-      return Color.fromARGB(255, 255, 162, 162);
+      return const Color.fromARGB(255, 255, 162, 162);
     case 4:
-      return Color.fromARGB(255, 255, 209, 183);
+      return const Color.fromARGB(255, 255, 209, 183);
     case 5:
-      return Color.fromARGB(236, 216, 255, 200);
+      return const Color.fromARGB(236, 216, 255, 200);
     case 6:
-      return Color.fromARGB(222, 255, 185, 185);
+      return const Color.fromARGB(222, 255, 185, 185);
     case 7:
-      return Color.fromARGB(243, 255, 147, 147);
+      return const Color.fromARGB(243, 255, 147, 147);
     case 8:
-      return Color.fromARGB(243, 224, 255, 186);
+      return const Color.fromARGB(243, 224, 255, 186);
     case 9:
-      return Color.fromARGB(243, 196, 255, 250);
+      return const Color.fromARGB(243, 196, 255, 250);
     case 10:
-      return Color.fromARGB(243, 206, 255, 190);
+      return const Color.fromARGB(243, 206, 255, 190);
     case 11:
-      return Color.fromARGB(243, 255, 191, 191);
+      return const Color.fromARGB(243, 255, 191, 191);
   }
 }
 
@@ -59,39 +59,39 @@ IconStatus(int orderstatus) {
     case 1:
       // ignore: prefer_const_constructors
       return Icon(Icons.watch_later_outlined,
-          size: 70, color: Color.fromARGB(255, 110, 110, 110));
+          size: 70, color: const Color.fromARGB(255, 110, 110, 110));
     case 2:
-      return Icon(Icons.verified_rounded,
-          size: 70, color: Color.fromARGB(255, 72, 255, 0));
+      return const Icon(Icons.verified_rounded,
+          size: 70, color: const Color.fromARGB(255, 72, 255, 0));
     case 3:
-      return Icon(
+      return const Icon(
         Icons.cancel_presentation_rounded,
         size: 70,
-        color: Color.fromARGB(255, 255, 0, 0),
+        color: const Color.fromARGB(255, 255, 0, 0),
       );
     case 4:
-      return Icon(Icons.hourglass_top_rounded,
-          size: 70, color: Color.fromARGB(255, 255, 196, 35));
+      return const Icon(Icons.hourglass_top_rounded,
+          size: 70, color: const Color.fromARGB(255, 255, 196, 35));
     case 5:
-      return Icon(Icons.offline_pin,
-          size: 70, color: Color.fromARGB(255, 86, 255, 19));
+      return const Icon(Icons.offline_pin,
+          size: 70, color: const Color.fromARGB(255, 86, 255, 19));
     case 6:
-      return Icon(Icons.cancel,
+      return const Icon(Icons.cancel,
           size: 70, color: Color.fromARGB(255, 255, 0, 0));
     case 7:
-      return Icon(Icons.cancel_schedule_send,
+      return const Icon(Icons.cancel_schedule_send,
           size: 70, color: Color.fromARGB(255, 255, 25, 25));
     case 8:
-      return Icon(Icons.delivery_dining_sharp,
+      return const Icon(Icons.delivery_dining_sharp,
           size: 70, color: Color.fromARGB(255, 255, 204, 64));
     case 9:
-      return Icon(Icons.price_check,
+      return const Icon(Icons.price_check,
           size: 70, color: Color.fromARGB(255, 0, 208, 3));
     case 10:
-      return Icon(Icons.check_circle_rounded,
+      return const Icon(Icons.check_circle_rounded,
           size: 70, color: Color.fromARGB(255, 30, 255, 0));
     case 11:
-      return Icon(Icons.refresh_outlined,
+      return const Icon(Icons.refresh_outlined,
           size: 70, color: Color.fromARGB(255, 255, 0, 0));
   }
 }
@@ -99,40 +99,40 @@ IconStatus(int orderstatus) {
 IconStatus1(int orderstatus) {
   switch (orderstatus) {
     case 1:
-      return Icon(Icons.watch_later_outlined,
-          size: 45, color: Color.fromARGB(255, 110, 110, 110));
+      return const Icon(Icons.watch_later_outlined,
+          size: 45, color: const Color.fromARGB(255, 110, 110, 110));
     case 2:
-      return Icon(Icons.verified_rounded,
-          size: 45, color: Color.fromARGB(255, 72, 255, 0));
+      return const Icon(Icons.verified_rounded,
+          size: 45, color: const Color.fromARGB(255, 72, 255, 0));
     case 3:
-      return Icon(
+      return const Icon(
         Icons.cancel_outlined,
         size: 45,
-        color: Color.fromARGB(255, 255, 0, 0),
+        color: const Color.fromARGB(255, 255, 0, 0),
       );
     case 4:
-      return Icon(Icons.hourglass_top_rounded,
-          size: 45, color: Color.fromARGB(255, 255, 199, 44));
+      return const Icon(Icons.hourglass_top_rounded,
+          size: 45, color: const Color.fromARGB(255, 255, 199, 44));
     case 5:
-      return Icon(Icons.offline_pin,
-          size: 45, color: Color.fromARGB(255, 86, 255, 19));
+      return const Icon(Icons.offline_pin,
+          size: 45, color: const Color.fromARGB(255, 86, 255, 19));
     case 6:
-      return Icon(Icons.cancel,
+      return const Icon(Icons.cancel,
           size: 45, color: Color.fromARGB(255, 255, 0, 0));
     case 7:
-      return Icon(Icons.cancel_schedule_send,
+      return const Icon(Icons.cancel_schedule_send,
           size: 45, color: Color.fromARGB(255, 255, 25, 25));
     case 8:
-      return Icon(Icons.delivery_dining_sharp,
+      return const Icon(Icons.delivery_dining_sharp,
           size: 45, color: Color.fromARGB(255, 255, 204, 64));
     case 9:
-      return Icon(Icons.price_check,
+      return const Icon(Icons.price_check,
           size: 45, color: Color.fromARGB(255, 0, 208, 3));
     case 10:
-      return Icon(Icons.check_circle_rounded,
+      return const Icon(Icons.check_circle_rounded,
           size: 45, color: Color.fromARGB(255, 30, 255, 0));
     case 11:
-      return Icon(Icons.refresh_outlined,
+      return const Icon(Icons.refresh_outlined,
           size: 45, color: Color.fromARGB(255, 255, 0, 0));
   }
 }
