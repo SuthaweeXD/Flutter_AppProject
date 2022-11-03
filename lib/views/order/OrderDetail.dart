@@ -493,8 +493,8 @@ class _OrderDetailState extends State<OrderDetail> {
                                           const Text(
                                             'คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว',
                                             style: TextStyle(
-                                              color: Colors.red,
-                                            ),
+                                                color: Colors.red,
+                                                fontSize: 18),
                                           ),
                                           const SizedBox(
                                             height: 15,
@@ -506,7 +506,11 @@ class _OrderDetailState extends State<OrderDetail> {
                                             // ignore: prefer_const_literals_to_create_immutables
                                             children: [
                                               const Text(
-                                                  'คุณได้ยกเลิกการจัดส่งสินค้า สามารถรับสินค้าได้ที่ร้าน'),
+                                                  'คุณได้ยกเลิกการจัดส่งสินค้า\n   สามารถรับสินค้าได้ที่ร้าน',
+                                                  style: const TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 255, 0, 30),
+                                                      fontSize: 18)),
                                               const SizedBox(
                                                 height: 15,
                                               ),
@@ -532,11 +536,10 @@ class _OrderDetailState extends State<OrderDetail> {
                                                     // ignore: prefer_const_literals_to_create_immutables
                                                     children: [
                                                       const Text(
-                                                        'คุณได้ชำระยอดคงเหลือเรียบร้อย \n คำสั่งซื้อของคุณกำลังจัดส่ง',
+                                                        'คุณได้ชำระยอดคงเหลือเรียบร้อย \n     คำสั่งซื้อของคุณกำลังจัดส่ง',
                                                         style: const TextStyle(
-                                                          color: Colors
-                                                              .greenAccent,
-                                                        ),
+                                                            color: Colors.green,
+                                                            fontSize: 18),
                                                       ),
                                                       const SizedBox(
                                                         height: 15,

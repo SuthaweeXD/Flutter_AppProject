@@ -102,6 +102,22 @@ class _EditOrdersState extends State<EditOrders> {
                     const SizedBox(
                       height: 15,
                     ),
+                    Text(
+                      'ค่ามัดจำ  :     ${widget.data['order_dep']}' +
+                          '        บาท',
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'ราคาทั้งหมด  :     ${widget.data['order_total']}' +
+                          '        บาท',
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     SizedBox(
                       width: 300,
                       height: 150,
@@ -544,53 +560,61 @@ class _EditOrdersState extends State<EditOrders> {
                                               ),
                                             )
                                           : widget.data['order_status'] == 9
-                                              ? ElevatedButton(
-                                                  onPressed: () {
-                                                    "10";
-                                                    print(widget
-                                                        .data['order_id']);
+                                              ? Container(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          35, 0, 35, 0),
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      "8";
 
-                                                    sendstatusOrder1(
-                                                        "10",
-                                                        widget.data['order_id'],
-                                                        context);
-                                                  },
-                                                  child: Row(
-                                                    // ignore: prefer_const_literals_to_create_immutables
-                                                    children: [
-                                                      const Icon(
-                                                        Icons
-                                                            .check_circle_outline_rounded,
-                                                        size: 30,
-                                                        color: Colors.black,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 15,
-                                                      ),
-                                                      const Text('จัดส่งสำเร็จ',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500)),
-                                                    ],
-                                                  ),
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    shape: const RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    10))),
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 10,
-                                                        horizontal: 60),
-                                                    primary:
-                                                        const Color.fromARGB(
-                                                            255, 24, 255, 86),
+                                                      sendstatusOrder1(
+                                                          "8",
+                                                          widget
+                                                              .data['order_id'],
+                                                          context);
+                                                    },
+                                                    child: Row(
+                                                      // ignore: prefer_const_literals_to_create_immutables
+                                                      children: [
+                                                        const Icon(
+                                                          Icons.delivery_dining,
+                                                          size: 30,
+                                                          color: Colors.black,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 15,
+                                                        ),
+                                                        const Text(
+                                                            'กำลังจัดส่ง',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500)),
+                                                      ],
+                                                    ),
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      shape: const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          10))),
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 10,
+                                                          horizontal: 60),
+                                                      primary:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              218,
+                                                              98),
+                                                    ),
                                                   ),
                                                 )
                                               : widget.data['order_status'] ==

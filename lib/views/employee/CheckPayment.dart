@@ -231,7 +231,44 @@ class _CheckPayment1State extends State<CheckPayment1> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 15,
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    "9";
+
+                    sendstatusOrder1("9", widget.data['order_id'], context);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.check_circle_outline,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      const Text('ยืนยันการชำระราคาทั้งหมด',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 30),
+                    primary: Color.fromARGB(255, 80, 255, 92),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
               ),
               Container(
                 padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
