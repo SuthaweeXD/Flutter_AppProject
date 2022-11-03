@@ -45,9 +45,9 @@ class _PRshopState extends State<PRshop> {
               Text(
                 'ประชาสัมพันธ์',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 28, 122, 255),
-                  fontSize: 25,
-                ),
+                    color: Color.fromARGB(255, 28, 122, 255),
+                    fontSize: 25,
+                    fontStyle: FontStyle.italic),
               ),
               SizedBox(
                 height: 15,
