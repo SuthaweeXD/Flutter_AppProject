@@ -52,7 +52,6 @@ class _checkpaymentState extends State<checkpayment> {
             startApi();
           },
           child: ListView.builder(
-            // reverse: true,
             itemCount: data?.length ?? 0,
             itemBuilder: (context, i) => Container(
               height: 130,

@@ -117,6 +117,17 @@ class _OrderDetailState extends State<OrderDetail> {
                             '        บาท',
                         style: const TextStyle(fontSize: 18),
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'ราคาทั้งหมด  :     ${widget.data['order_total']}' +
+                            '        บาท',
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       SizedBox(
                         width: 300,
                         height: 150,

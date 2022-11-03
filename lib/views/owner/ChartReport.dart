@@ -148,7 +148,26 @@ class _ChartReportState extends State<ChartReport> {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Card(
+                    color: Color.fromARGB(255, 171, 255, 174),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      child: Text(
+                        'สรุปรายได้ทั้งหมด : '
+                        '${widget.data['allordertotal']}'
+                        '  บาท',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
                 ])
               ],
             ),

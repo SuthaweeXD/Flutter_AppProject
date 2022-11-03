@@ -59,17 +59,17 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ยืนยันคำสั่งซื้อ'),
+        title: const Text('ยืนยันคำสั่งซื้อ'),
       ),
       body: data != null
           ? SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.fromLTRB(25, 10, 25, 15),
+                padding: const EdgeInsets.fromLTRB(25, 10, 25, 15),
                 child: SizedBox(
                   width: 950,
-                  height: 950,
+                  height: 700,
                   child: Card(
-                    color: Color.fromARGB(255, 203, 255, 170),
+                    color: const Color.fromARGB(255, 203, 255, 170),
                     shadowColor: const Color.fromARGB(255, 114, 114, 114),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -77,7 +77,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 50,
                             ),
                             Row(
@@ -87,11 +87,11 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                   'ชื่อ :  ${data['user_fname']}'
                                   '   '
                                   ' ${data['user_lname']}',
-                                  style: TextStyle(fontSize: 22),
+                                  style: const TextStyle(fontSize: 22),
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             SizedBox(
@@ -100,7 +100,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                               child: Card(
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 15,
                                     ),
                                     Text(
@@ -109,7 +109,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                           '      กิโลกรัม',
                                       style: const TextStyle(fontSize: 18),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
@@ -118,7 +118,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                           '      กิโลกรัม',
                                       style: const TextStyle(fontSize: 18),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
@@ -127,7 +127,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                           '      กิโลกรัม',
                                       style: const TextStyle(fontSize: 18),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
@@ -136,42 +136,43 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                               DateTime.parse(widget.picdate)),
                                       style: const TextStyle(fontSize: 18),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       'เวลาที่รับ :  ' + widget.pictime + ' น.',
                                       style: const TextStyle(fontSize: 18),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 20,
                                     ),
                                     Text(
                                       'ราคา  ' + result.toString() + '  บาท',
-                                      style: TextStyle(fontSize: 21),
+                                      style: const TextStyle(fontSize: 21),
                                     ),
                                     Text(
                                         'มัดจำ  ' +
                                             deposit.toString() +
                                             '  บาท',
-                                        style: TextStyle(fontSize: 21)),
+                                        style: const TextStyle(fontSize: 21)),
                                   ],
                                 ),
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.fromLTRB(25, 10, 25, 5),
+                              padding: const EdgeInsets.fromLTRB(25, 10, 25, 5),
                               child: Card(
-                                color: Color.fromARGB(255, 255, 255, 255),
+                                color: const Color.fromARGB(255, 255, 255, 255),
                                 shadowColor:
                                     const Color.fromARGB(255, 114, 114, 114),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Container(
-                                  padding: EdgeInsets.fromLTRB(15, 10, 15, 15),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 10, 15, 15),
                                   child: Column(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.home_rounded,
                                         size: 45,
                                         color: Colors.blueAccent,
@@ -179,7 +180,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                       Text(
                                         'ที่อยู่สำหรับจัดส่ง: '
                                         ''' ${data['user_address']}''',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Color.fromARGB(255, 0, 0, 0),
                                           fontSize: 18,
                                         ),
@@ -189,7 +190,14 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            const Text(
+                                '*หมายเหตุ หากต้องการแก้ไข้ที่อยู่การจัดส่งให้แก้ไขหน้าข้อมูลส่วนตัว',
+                                style:
+                                    TextStyle(fontSize: 15, color: Colors.red)),
+                            const SizedBox(height: 20),
                             TextButton(
                               onPressed: () {
                                 sendorders(
@@ -211,10 +219,10 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                               style: ElevatedButton.styleFrom(
                                 shape: const RoundedRectangleBorder(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(30))),
+                                        BorderRadius.all(Radius.circular(10))),
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 30),
-                                primary: Color.fromARGB(255, 77, 158, 88),
+                                primary: const Color.fromARGB(255, 77, 158, 88),
                               ),
                             ),
                           ]),

@@ -52,7 +52,7 @@ class _ListOrdersState extends State<ListOrders> {
             startApi();
           },
           child: ListView.builder(
-            // reverse: true,
+            reverse: true,
             itemCount: data?.length ?? 0,
             itemBuilder: (context, i) => Container(
               height: 130,
@@ -88,15 +88,6 @@ class _ListOrdersState extends State<ListOrders> {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Text(
-                        //   'ชื่อ : ${data[i]['user_fname']}',
-                        //   style: TextStyle(fontSize: 18),
-                        // ),
-                        // Text(
-                        //   'นามสกุล : ${data[i]['user_lname']}',
-                        //   style: TextStyle(fontSize: 18),
-                        // ),
-
                         Text(
                           'วันที่สั่ง : ' +
                               DateFormat('dd-MM-yyyy เวลา HH:mm').format(

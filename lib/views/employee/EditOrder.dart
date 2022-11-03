@@ -436,7 +436,9 @@ class _EditOrdersState extends State<EditOrders> {
                                   ),
                                 )
                               : widget.data['order_status'] == 6
-                                  ? const Text('คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว')
+                                  ? const Text('คำสั่งซื้อนี้ได้ถูกยกเลิกแล้ว',
+                                      style: TextStyle(
+                                          fontSize: 16, color: Colors.red))
                                   : widget.data['order_status'] == 7
                                       ? Container(
                                           padding: const EdgeInsets.fromLTRB(
@@ -594,7 +596,11 @@ class _EditOrdersState extends State<EditOrders> {
                                               : widget.data['order_status'] ==
                                                       10
                                                   ? const Text(
-                                                      'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว')
+                                                      'คำสั่งซื้อนี้ได้ถูกจัดส่งเรียบร้อยแล้ว',
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.green),
+                                                    )
                                                   : widget.data[
                                                               'order_status'] ==
                                                           11
